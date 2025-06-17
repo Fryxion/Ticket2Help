@@ -9,7 +9,7 @@ namespace Ticket2Help.DAL.Database
         public TicketDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TicketDbContext>();
-            optionsBuilder.UseSqlServer("Server=localhost;Database=Ticket2HelpDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Ticket2HelpDb;User Id=sa;Password=123;TrustServerCertificate=True;");
 
             return new TicketDbContext(optionsBuilder.Options);
         }

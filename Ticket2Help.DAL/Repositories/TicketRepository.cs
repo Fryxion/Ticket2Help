@@ -33,5 +33,10 @@ namespace Ticket2Help.DAL.Repositories
             _context.Tickets.Update(ticket);
             _context.SaveChanges();
         }
+
+        public Ticket ObterTicketPorId(int id)
+        {
+            return _context.Tickets.FirstOrDefault(t => t.Id == id);
+        }
     }
 }
