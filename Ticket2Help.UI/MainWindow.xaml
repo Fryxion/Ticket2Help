@@ -1,13 +1,16 @@
-﻿<Window x:Class="Ticket2Help.UI.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Ticket2Help - Helpdesk" Height="450" Width="800">
-    <Grid Background="#F0F0F0">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Bem-vindo à Plataforma Ticket2Help" FontSize="22" FontWeight="Bold" Margin="0 0 0 20" />
-            <Button Content="Gerar Novo Ticket" Width="200" Click="BtnGerarTicket_Click" />
-            <Button Content="Listar Meus Tickets" Width="200" Click="BtnListarTickets_Click" />
-            <Button Content="Área do Técnico (Atender Tickets)" Width="200" Click="BtnTecnico_Click" />
-        </StackPanel>
+﻿<Window x:Class="Ticket2Help.UI.MainWindow">
+    <Grid>
+        <DataGrid ItemsSource="{Binding UserTickets}" 
+                  SelectedItem="{Binding SelectedTicket}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nº" Binding="{Binding SequentialNumber}"/>
+                <DataGridTextColumn Header="Tipo" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Estado" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding CreatedDate, StringFormat=dd/MM/yyyy HH:mm}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Criar Ticket Hardware" Click="CreateHardwareTicket_Click"/>
+        <Button Content="Atender Próximo" Click="AttendNextTicket_Click"/>
     </Grid>
 </Window>

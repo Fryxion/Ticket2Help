@@ -172,3 +172,7 @@ G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\refint\Ticket2He
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\Ticket2Help.UI.pdb
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\Ticket2Help.UI.genruntimeconfig.cache
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\ref\Ticket2Help.UI.dll
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\LoginView.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\RegisterView.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\LoginView.g.cs
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\RegisterView.g.cs

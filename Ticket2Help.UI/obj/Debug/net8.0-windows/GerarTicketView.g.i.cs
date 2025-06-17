@@ -76,7 +76,7 @@ namespace Ticket2Help.UI.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Ticket2Help.UI;component/gerarticketview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Ticket2Help.UI;V1.0.0.0;component/gerarticketview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\GerarTicketView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

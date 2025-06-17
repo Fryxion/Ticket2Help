@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 G:\trabalho\Ticket2Help\Ticket2Help.UI\App.xaml
-3-470808790
+5-273791315
 
-7-1213709674
-2301596827013
-GerarTicketView.xaml;MainWindow.xaml;TelaTicket.xaml;
+992469936
+2181228806220
+GerarTicketView.xaml;LoginView.xaml;MainWindow.xaml;RegisterView.xaml;TelaTicket.xaml;
 
 False
 

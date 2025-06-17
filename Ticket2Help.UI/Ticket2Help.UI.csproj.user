@@ -5,6 +5,12 @@
     <Compile Update="GerarTicketView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="RegisterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TelaTicket.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
