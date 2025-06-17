@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ticket2Help.BLL.Models;
+﻿
+using Ticket2Help.DAL.Models;
 using Ticket2Help.DAL.Database;
 using System.Linq;
 
@@ -14,27 +14,24 @@ namespace Ticket2Help.DAL.Repositories
             _context = context;
         }
 
-        // Método para adicionar um ticket
-        public void AdicionarTicket(Ticket ticket)
+        public void AddTicket(Ticket ticket)
         {
             _context.Tickets.Add(ticket);
             _context.SaveChanges();
         }
 
-        // Método para obter tickets de um colaborador
-        public IQueryable<Ticket> ObterTicketsPorColaborador(int codigoColaborador)
+        public IQueryable<Ticket> GetTicketsByEmployee(int employeeId)
         {
-            return _context.Tickets.Where(t => t.CodigoColaborador == codigoColaborador);
+            return _context.Tickets.Where(t => t.EmployeeId == employeeId);
         }
 
-        // Método para marcar ticket como atendido
-        public void AtenderTicket(Ticket ticket)
+        public void UpdateTicket(Ticket ticket)
         {
             _context.Tickets.Update(ticket);
             _context.SaveChanges();
         }
 
-        public Ticket ObterTicketPorId(int id)
+        public Ticket GetTicketById(int id)
         {
             return _context.Tickets.FirstOrDefault(t => t.Id == id);
         }

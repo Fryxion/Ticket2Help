@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.DAL.Models;
 
 namespace Ticket2Help.DAL.Database
 {
     public class TicketDbContext : DbContext
     {
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<User> Users { get; set; }
+
         public DbSet<HardwareTicket> HardwareTickets { get; set; }
         public DbSet<SoftwareTicket> SoftwareTickets { get; set; }
 

@@ -31,7 +31,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj": {
+                "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -96,11 +100,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj": {
-                "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -180,9 +180,6 @@
             "projectReferences": {
               "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj": {
                 "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj"
-              },
-              "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj": {
-                "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj"
               }
             }
           }

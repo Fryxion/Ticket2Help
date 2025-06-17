@@ -22,7 +22,7 @@ namespace Ticket2Help.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Ticket2Help.BLL.Models.Ticket", b =>
+            modelBuilder.Entity("Ticket2Help.DAL.Models.Ticket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,13 +30,13 @@ namespace Ticket2Help.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CodigoColaborador")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DataAtendimento")
+                    b.Property<DateTime?>("AttendanceDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataCriacao")
+                    b.Property<int?>("AttendanceStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Discriminator")
@@ -44,10 +44,10 @@ namespace Ticket2Help.DAL.Migrations
                         .HasMaxLength(21)
                         .HasColumnType("nvarchar(21)");
 
-                    b.Property<int>("Estado")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EstadoAtendimento")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -59,42 +59,70 @@ namespace Ticket2Help.DAL.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("Ticket2Help.BLL.Models.HardwareTicket", b =>
+            modelBuilder.Entity("Ticket2Help.DAL.Models.User", b =>
                 {
-                    b.HasBaseType("Ticket2Help.BLL.Models.Ticket");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("Avaria")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DescricaoReparacao")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Equipamento")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PecasSubstituidas")
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Ticket2Help.DAL.Models.HardwareTicket", b =>
+                {
+                    b.HasBaseType("Ticket2Help.DAL.Models.Ticket");
+
+                    b.Property<string>("Equipment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Malfunction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepairDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReplacementParts")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("HardwareTicket");
                 });
 
-            modelBuilder.Entity("Ticket2Help.BLL.Models.SoftwareTicket", b =>
+            modelBuilder.Entity("Ticket2Help.DAL.Models.SoftwareTicket", b =>
                 {
-                    b.HasBaseType("Ticket2Help.BLL.Models.Ticket");
+                    b.HasBaseType("Ticket2Help.DAL.Models.Ticket");
 
-                    b.Property<string>("DescricaoIntervencao")
+                    b.Property<string>("InterventionDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DescricaoNecessidade")
+                    b.Property<string>("NecessityDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomeSoftware")
+                    b.Property<string>("SoftwareName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

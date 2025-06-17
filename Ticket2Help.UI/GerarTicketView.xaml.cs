@@ -1,5 +1,5 @@
 ﻿using Ticket2Help.DAL.Repositories;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.DAL.Models;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore.Design;
@@ -23,10 +23,10 @@ namespace Ticket2Help.UI.Views
             string descricao = txtDescricao.Text;
 
             Ticket ticket = tipo == "Hardware" ?
-                new HardwareTicket { CodigoColaborador = codigo, Avaria = descricao } :
-                new SoftwareTicket { CodigoColaborador = codigo, DescricaoNecessidade = descricao };
+                new HardwareTicket { Id = codigo, Malfunction = descricao } :
+                new SoftwareTicket { Id = codigo, NecessityDescription = descricao };
 
-            _ticketRepository.AdicionarTicket(ticket);
+            _ticketRepository.AddTicket(ticket);
             MessageBox.Show("Ticket enviado com sucesso!");
             this.Close();
         }

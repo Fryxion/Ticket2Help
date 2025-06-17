@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ticket2Help.DAL\Ticket2Help.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,8 +9,7 @@
       "Ticket2Help.UI/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "9.0.6",
-          "Ticket2Help.BLL": "1.0.0",
-          "Ticket2Help.DAL": "1.0.0"
+          "Ticket2Help.BLL": "1.0.0"
         },
         "runtime": {
           "Ticket2Help.UI.dll": {}
@@ -951,6 +950,9 @@
         }
       },
       "Ticket2Help.BLL/1.0.0": {
+        "dependencies": {
+          "Ticket2Help.DAL": "1.0.0"
+        },
         "runtime": {
           "Ticket2Help.BLL.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -960,8 +962,7 @@
       },
       "Ticket2Help.DAL/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.6",
-          "Ticket2Help.BLL": "1.0.0"
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.6"
         },
         "runtime": {
           "Ticket2Help.DAL.dll": {

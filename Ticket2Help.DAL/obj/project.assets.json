@@ -1601,16 +1601,6 @@
             "rid": "win"
           }
         }
-      },
-      "Ticket2Help.BLL/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Ticket2Help.BLL.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Ticket2Help.BLL.dll": {}
-        }
       }
     }
   },
@@ -4722,18 +4712,12 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "Ticket2Help.BLL/1.0.0": {
-      "type": "project",
-      "path": "../Ticket2Help.BLL/Ticket2Help.BLL.csproj",
-      "msbuildProject": "../Ticket2Help.BLL/Ticket2Help.BLL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.6",
-      "Microsoft.EntityFrameworkCore.Tools >= 9.0.6",
-      "Ticket2Help.BLL >= 1.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 9.0.6"
     ]
   },
   "packageFolders": {
@@ -4767,11 +4751,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj": {
-              "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
