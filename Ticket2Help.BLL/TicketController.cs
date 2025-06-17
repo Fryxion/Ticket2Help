@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ticket2Help.BLL.Models;
 using Ticket2Help.BLL.Services;
-using Ticket2Help.BLL.Factory;
-using Ticket2Help.BLL.Strategy;
 
 namespace Ticket2Help.BLL.Controllers
 {
@@ -16,8 +14,8 @@ namespace Ticket2Help.BLL.Controllers
     public class TicketController
     {
         private readonly ITicketService _ticketService;
-        private readonly IStatisticsService _statisticsService;
         private readonly IUserService _userService;
+        private readonly IStatisticsService _statisticsService;
 
         /// <summary>
         /// Evento disparado quando um ticket é criado
@@ -37,17 +35,14 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Construtor do controller
         /// </summary>
-        /// <param name="ticketService">Serviço de tickets</param>
-        /// <param name="statisticsService">Serviço de estatísticas</param>
-        /// <param name="userService">Serviço de utilizadores</param>
         public TicketController(
             ITicketService ticketService,
-            IStatisticsService statisticsService,
-            IUserService userService)
+            IUserService userService,
+            IStatisticsService statisticsService = null)
         {
             _ticketService = ticketService ?? throw new ArgumentNullException(nameof(ticketService));
-            _statisticsService = statisticsService ?? throw new ArgumentNullException(nameof(statisticsService));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _statisticsService = statisticsService; // Opcional
         }
 
         #region Gestão de Tickets
@@ -55,83 +50,69 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Cria um novo ticket de hardware
         /// </summary>
-        /// <param name="userId">ID do utilizador</param>
-        /// <param name="equipment">Equipamento</param>
-        /// <param name="malfunction">Descrição da avaria</param>
-        /// <returns>Resultado da operação</returns>
-        public async Task<OperationResult<Ticket>> CreateHardwareTicketAsync(int userId, string equipment, string malfunction)
+        public async Task<OperationResult<int>> CreateHardwareTicketAsync(string colaboradorId, string equipamento, string avaria)
         {
             try
             {
                 // Validar permissões
-                var user = await _userService.GetUserByIdAsync(userId);
-                if (user == null || !user.CanCreateTickets())
+                var user = await _userService.GetUserByIdAsync(colaboradorId);
+                if (user == null || !user.PodeCriarTickets())
                 {
-                    return OperationResult<Ticket>.Failure("Utilizador não tem permissões para criar tickets");
+                    return OperationResult<int>.Failure("Utilizador não tem permissões para criar tickets");
                 }
 
-                // Criar dados específicos
-                var hardwareData = new HardwareTicketData(equipment, malfunction);
-
                 // Criar ticket
-                var ticket = await _ticketService.CreateTicketAsync(TicketType.Hardware, userId, hardwareData);
+                var ticketId = await _ticketService.CreateHardwareTicketAsync(colaboradorId, equipamento, avaria);
 
                 // Disparar evento
+                var ticket = await _ticketService.GetTicketByIdAsync(ticketId);
                 TicketCreated?.Invoke(this, new TicketEventArgs(ticket));
 
-                return OperationResult<Ticket>.Success(ticket);
+                return OperationResult<int>.Success(ticketId);
             }
             catch (Exception ex)
             {
-                return OperationResult<Ticket>.Failure($"Erro ao criar ticket de hardware: {ex.Message}");
+                return OperationResult<int>.Failure($"Erro ao criar ticket de hardware: {ex.Message}");
             }
         }
 
         /// <summary>
         /// Cria um novo ticket de software
         /// </summary>
-        /// <param name="userId">ID do utilizador</param>
-        /// <param name="software">Software</param>
-        /// <param name="needDescription">Descrição da necessidade</param>
-        /// <returns>Resultado da operação</returns>
-        public async Task<OperationResult<Ticket>> CreateSoftwareTicketAsync(int userId, string software, string needDescription)
+        public async Task<OperationResult<int>> CreateSoftwareTicketAsync(string colaboradorId, string software, string descricaoNecessidade)
         {
             try
             {
                 // Validar permissões
-                var user = await _userService.GetUserByIdAsync(userId);
-                if (user == null || !user.CanCreateTickets())
+                var user = await _userService.GetUserByIdAsync(colaboradorId);
+                if (user == null || !user.PodeCriarTickets())
                 {
-                    return OperationResult<Ticket>.Failure("Utilizador não tem permissões para criar tickets");
+                    return OperationResult<int>.Failure("Utilizador não tem permissões para criar tickets");
                 }
 
-                // Criar dados específicos
-                var softwareData = new SoftwareTicketData(software, needDescription);
-
                 // Criar ticket
-                var ticket = await _ticketService.CreateTicketAsync(TicketType.Software, userId, softwareData);
+                var ticketId = await _ticketService.CreateSoftwareTicketAsync(colaboradorId, software, descricaoNecessidade);
 
                 // Disparar evento
+                var ticket = await _ticketService.GetTicketByIdAsync(ticketId);
                 TicketCreated?.Invoke(this, new TicketEventArgs(ticket));
 
-                return OperationResult<Ticket>.Success(ticket);
+                return OperationResult<int>.Success(ticketId);
             }
             catch (Exception ex)
             {
-                return OperationResult<Ticket>.Failure($"Erro ao criar ticket de software: {ex.Message}");
+                return OperationResult<int>.Failure($"Erro ao criar ticket de software: {ex.Message}");
             }
         }
 
         /// <summary>
-        /// Obtém os tickets de um utilizador
+        /// Obtém os tickets de um colaborador
         /// </summary>
-        /// <param name="userId">ID do utilizador</param>
-        /// <returns>Lista de tickets</returns>
-        public async Task<OperationResult<IEnumerable<Ticket>>> GetUserTicketsAsync(int userId)
+        public async Task<OperationResult<IEnumerable<Ticket>>> GetUserTicketsAsync(string colaboradorId)
         {
             try
             {
-                var tickets = await _ticketService.GetUserTicketsAsync(userId);
+                var tickets = await _ticketService.GetUserTicketsAsync(colaboradorId);
                 return OperationResult<IEnumerable<Ticket>>.Success(tickets);
             }
             catch (Exception ex)
@@ -143,8 +124,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Obtém um ticket pelo ID
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <returns>Ticket encontrado</returns>
         public async Task<OperationResult<Ticket>> GetTicketByIdAsync(int ticketId)
         {
             try
@@ -170,7 +149,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Obtém o próximo ticket para atendimento
         /// </summary>
-        /// <returns>Próximo ticket</returns>
         public async Task<OperationResult<Ticket>> GetNextTicketForAttendanceAsync()
         {
             try
@@ -192,7 +170,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Obtém todos os tickets pendentes
         /// </summary>
-        /// <returns>Lista de tickets pendentes</returns>
         public async Task<OperationResult<IEnumerable<Ticket>>> GetPendingTicketsAsync()
         {
             try
@@ -209,16 +186,13 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Atende um ticket
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="technicianId">ID do técnico</param>
-        /// <returns>Resultado da operação</returns>
-        public async Task<OperationResult<bool>> AttendTicketAsync(int ticketId, int technicianId)
+        public async Task<OperationResult<bool>> AttendTicketAsync(int ticketId, string technicianId)
         {
             try
             {
                 // Validar permissões do técnico
                 var technician = await _userService.GetUserByIdAsync(technicianId);
-                if (technician == null || !technician.CanAttendTickets())
+                if (technician == null || !technician.PodeAtenderTickets())
                 {
                     return OperationResult<bool>.Failure("Técnico não tem permissões para atender tickets");
                 }
@@ -244,21 +218,15 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Completa o atendimento de um ticket de hardware
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="attendanceStatus">Estado do atendimento</param>
-        /// <param name="repairDescription">Descrição da reparação</param>
-        /// <param name="parts">Peças utilizadas</param>
-        /// <returns>Resultado da operação</returns>
         public async Task<OperationResult<bool>> CompleteHardwareTicketAsync(
             int ticketId,
-            AttendanceStatus attendanceStatus,
+            EstadoAtendimento attendanceStatus,
             string repairDescription,
             string parts = null)
         {
             try
             {
-                var details = new HardwareAttendanceDetails(repairDescription, parts);
-                var success = await _ticketService.CompleteTicketAttendanceAsync(ticketId, attendanceStatus, details);
+                var success = await _ticketService.CompleteHardwareTicketAsync(ticketId, attendanceStatus, repairDescription, parts);
 
                 if (success)
                 {
@@ -278,19 +246,14 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Completa o atendimento de um ticket de software
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="attendanceStatus">Estado do atendimento</param>
-        /// <param name="interventionDescription">Descrição da intervenção</param>
-        /// <returns>Resultado da operação</returns>
         public async Task<OperationResult<bool>> CompleteSoftwareTicketAsync(
             int ticketId,
-            AttendanceStatus attendanceStatus,
+            EstadoAtendimento attendanceStatus,
             string interventionDescription)
         {
             try
             {
-                var details = new SoftwareAttendanceDetails(interventionDescription);
-                var success = await _ticketService.CompleteTicketAttendanceAsync(ticketId, attendanceStatus, details);
+                var success = await _ticketService.CompleteSoftwareTicketAsync(ticketId, attendanceStatus, interventionDescription);
 
                 if (success)
                 {
@@ -307,38 +270,58 @@ namespace Ticket2Help.BLL.Controllers
             }
         }
 
+        #endregion
+
+        #region Gestão de Utilizadores
+
         /// <summary>
-        /// Define a estratégia de atendimento
+        /// Autentica utilizador
         /// </summary>
-        /// <param name="strategy">Estratégia a usar</param>
-        /// <returns>Resultado da operação</returns>
-        public OperationResult<bool> SetAttendanceStrategy(ITicketAttendanceStrategy strategy)
+        public async Task<OperationResult<User>> AuthenticateUserAsync(string username, string password)
         {
             try
             {
-                _ticketService.SetAttendanceStrategy(strategy);
-                return OperationResult<bool>.Success(true);
+                var user = await _userService.AuthenticateAsync(username, password);
+                if (user == null)
+                    return OperationResult<User>.Failure("Credenciais inválidas");
+
+                return OperationResult<User>.Success(user);
             }
             catch (Exception ex)
             {
-                return OperationResult<bool>.Failure($"Erro ao definir estratégia: {ex.Message}");
+                return OperationResult<User>.Failure($"Erro na autenticação: {ex.Message}");
             }
         }
 
         /// <summary>
-        /// Obtém as estratégias de atendimento disponíveis
+        /// Obtém técnicos ativos
         /// </summary>
-        /// <returns>Lista de estratégias</returns>
-        public OperationResult<List<ITicketAttendanceStrategy>> GetAvailableStrategies()
+        public async Task<OperationResult<IEnumerable<User>>> GetActiveTechniciansAsync()
         {
             try
             {
-                var strategies = TicketAttendanceContext.GetAvailableStrategies();
-                return OperationResult<List<ITicketAttendanceStrategy>>.Success(strategies);
+                var technicians = await _userService.GetActiveTechniciansAsync();
+                return OperationResult<IEnumerable<User>>.Success(technicians);
             }
             catch (Exception ex)
             {
-                return OperationResult<List<ITicketAttendanceStrategy>>.Failure($"Erro ao obter estratégias: {ex.Message}");
+                return OperationResult<IEnumerable<User>>.Failure($"Erro ao obter técnicos: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Cria um novo utilizador
+        /// </summary>
+        public async Task<OperationResult<bool>> CreateUserAsync(User user, string password)
+        {
+            try
+            {
+                var success = await _userService.CreateUserAsync(user, password);
+                return OperationResult<bool>.Success(success);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<bool>.Failure($"Erro ao criar utilizador: {ex.Message}");
             }
         }
 
@@ -349,13 +332,18 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Gera estatísticas do dashboard para um período
         /// </summary>
-        /// <param name="startDate">Data de início</param>
-        /// <param name="endDate">Data de fim</param>
-        /// <returns>Estatísticas do dashboard</returns>
         public async Task<OperationResult<DashboardStatistics>> GenerateDashboardStatisticsAsync(DateTime startDate, DateTime endDate)
         {
             try
             {
+                if (_statisticsService == null)
+                {
+                    // Fallback: usar estatísticas básicas do TicketService
+                    var basicStats = await _ticketService.GetTicketStatisticsAsync(startDate, endDate);
+                    var dashboardData = ConvertToDashboardStatistics(basicStats, startDate, endDate);
+                    return OperationResult<DashboardStatistics>.Success(dashboardData);
+                }
+
                 var statistics = await _statisticsService.GenerateDashboardStatisticsAsync(startDate, endDate);
                 return OperationResult<DashboardStatistics>.Success(statistics);
             }
@@ -368,7 +356,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Gera estatísticas para o mês atual
         /// </summary>
-        /// <returns>Estatísticas do mês atual</returns>
         public async Task<OperationResult<DashboardStatistics>> GenerateCurrentMonthStatisticsAsync()
         {
             var now = DateTime.Now;
@@ -381,7 +368,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Gera estatísticas para os últimos 30 dias
         /// </summary>
-        /// <returns>Estatísticas dos últimos 30 dias</returns>
         public async Task<OperationResult<DashboardStatistics>> GenerateLast30DaysStatisticsAsync()
         {
             var endDate = DateTime.Now;
@@ -391,22 +377,53 @@ namespace Ticket2Help.BLL.Controllers
         }
 
         /// <summary>
-        /// Obtém a percentagem de tickets atendidos num período
+        /// Obtém resumo simples do dashboard
         /// </summary>
-        /// <param name="startDate">Data de início</param>
-        /// <param name="endDate">Data de fim</param>
-        /// <returns>Percentagem de tickets atendidos</returns>
-        public async Task<OperationResult<double>> GetAttendedPercentageAsync(DateTime startDate, DateTime endDate)
+        public async Task<OperationResult<DashboardSummary>> GetDashboardSummaryAsync(DateTime startDate, DateTime endDate)
         {
             try
             {
-                var percentage = await _statisticsService.GetAttendedTicketsPercentageAsync(startDate, endDate);
-                return OperationResult<double>.Success(percentage);
+                var summary = await _ticketService.GetDashboardSummaryAsync(startDate, endDate);
+                return OperationResult<DashboardSummary>.Success(summary);
             }
             catch (Exception ex)
             {
-                return OperationResult<double>.Failure($"Erro ao calcular percentagem: {ex.Message}");
+                return OperationResult<DashboardSummary>.Failure($"Erro ao obter resumo: {ex.Message}");
             }
+        }
+
+        #endregion
+
+        #region Métodos Auxiliares
+
+        /// <summary>
+        /// Converte estatísticas básicas em DashboardStatistics
+        /// </summary>
+        private DashboardStatistics ConvertToDashboardStatistics(Dictionary<string, object> basicStats, DateTime startDate, DateTime endDate)
+        {
+            var hwStats = (Dictionary<string, object>)basicStats["Hardware"];
+            var swStats = (Dictionary<string, object>)basicStats["Software"];
+
+            var totalTickets = Convert.ToInt32(basicStats["TotalTickets"]);
+            var totalAtendidos = Convert.ToInt32(basicStats["TotalAtendidos"]);
+
+            return new DashboardStatistics
+            {
+                AnalysisPeriod = new DateRange(startDate, endDate),
+                TotalTickets = totalTickets,
+                AttendedTickets = totalAtendidos,
+                HardwareTickets = Convert.ToInt32(hwStats["TotalTickets"]),
+                SoftwareTickets = Convert.ToInt32(swStats["TotalTickets"]),
+                ResolvedTickets = Convert.ToInt32(basicStats["TotalResolvidos"]),
+                AttendedTicketsPercentage = totalTickets > 0 ? (double)totalAtendidos / totalTickets * 100 : 0,
+                ResolvedTicketsPercentage = totalAtendidos > 0 ? (double)Convert.ToInt32(basicStats["TotalResolvidos"]) / totalAtendidos * 100 : 0,
+                TicketsByStatus = new Dictionary<string, int>
+                {
+                    ["Por Atender"] = totalTickets - totalAtendidos,
+                    ["Atendido"] = totalAtendidos
+                },
+                TicketsByTechnician = new Dictionary<string, int>()
+            };
         }
 
         #endregion
@@ -444,8 +461,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Cria um resultado de sucesso
         /// </summary>
-        /// <param name="data">Dados do resultado</param>
-        /// <returns>Resultado de sucesso</returns>
         public static OperationResult<T> Success(T data)
         {
             return new OperationResult<T>(true, data, null);
@@ -454,8 +469,6 @@ namespace Ticket2Help.BLL.Controllers
         /// <summary>
         /// Cria um resultado de erro
         /// </summary>
-        /// <param name="errorMessage">Mensagem de erro</param>
-        /// <returns>Resultado de erro</returns>
         public static OperationResult<T> Failure(string errorMessage)
         {
             return new OperationResult<T>(false, default(T), errorMessage);

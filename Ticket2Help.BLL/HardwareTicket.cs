@@ -5,40 +5,34 @@ namespace Ticket2Help.BLL.Models
 {
     /// <summary>
     /// Classe que representa um ticket de serviços de hardware
-    /// Herda da classe base Ticket e implementa funcionalidades específicas de hardware
+    /// Compatível com a tabela HardwareTickets do seu DAL
     /// </summary>
     public class HardwareTicket : Ticket
     {
         /// <summary>
         /// Equipamento relacionado com o ticket
         /// </summary>
-        [Required(ErrorMessage = "O equipamento é obrigatório")]
-        [StringLength(100, ErrorMessage = "O nome do equipamento não pode exceder 100 caracteres")]
-        public string Equipment { get; set; }
+        public string Equipamento { get; set; }
 
         /// <summary>
         /// Descrição da avaria reportada
         /// </summary>
-        [Required(ErrorMessage = "A descrição da avaria é obrigatória")]
-        [StringLength(500, ErrorMessage = "A descrição da avaria não pode exceder 500 caracteres")]
-        public string Malfunction { get; set; }
+        public string Avaria { get; set; }
 
         /// <summary>
         /// Descrição da reparação efetuada (preenchida pelo técnico)
         /// </summary>
-        [StringLength(1000, ErrorMessage = "A descrição da reparação não pode exceder 1000 caracteres")]
-        public string RepairDescription { get; set; }
+        public string DescricaoReparacao { get; set; }
 
         /// <summary>
         /// Peças utilizadas na reparação (preenchida pelo técnico)
         /// </summary>
-        [StringLength(500, ErrorMessage = "A lista de peças não pode exceder 500 caracteres")]
-        public string Parts { get; set; }
+        public string Pecas { get; set; }
 
         /// <summary>
-        /// Propriedade que retorna o tipo do ticket
+        /// Tipo do ticket
         /// </summary>
-        public override TicketType Type => TicketType.Hardware;
+        public override TipoTicket TipoTicket => TipoTicket.Hardware;
 
         /// <summary>
         /// Construtor padrão
@@ -50,132 +44,76 @@ namespace Ticket2Help.BLL.Models
         /// <summary>
         /// Construtor com parâmetros
         /// </summary>
-        /// <param name="sequentialNumber">Número sequencial do ticket</param>
-        /// <param name="userId">ID do utilizador que criou o ticket</param>
-        /// <param name="equipment">Equipamento relacionado</param>
-        /// <param name="malfunction">Descrição da avaria</param>
-        public HardwareTicket(int sequentialNumber, int userId, string equipment, string malfunction)
-            : base(sequentialNumber, userId)
+        public HardwareTicket(string colaboradorId, string equipamento, string avaria)
+            : base(colaboradorId)
         {
-            Equipment = equipment ?? throw new ArgumentNullException(nameof(equipment));
-            Malfunction = malfunction ?? throw new ArgumentNullException(nameof(malfunction));
+            Equipamento = equipamento ?? throw new ArgumentNullException(nameof(equipamento));
+            Avaria = avaria ?? throw new ArgumentNullException(nameof(avaria));
         }
 
         /// <summary>
-        /// Valida se o ticket de hardware tem todos os campos obrigatórios preenchidos
+        /// Valida se o ticket de hardware é válido
         /// </summary>
-        /// <returns>True se o ticket é válido</returns>
         public override bool IsValid()
         {
-            return !string.IsNullOrWhiteSpace(Equipment) &&
-                   !string.IsNullOrWhiteSpace(Malfunction) &&
-                   UserId > 0 &&
-                   SequentialNumber > 0;
+            return !string.IsNullOrWhiteSpace(Equipamento) &&
+                   !string.IsNullOrWhiteSpace(Avaria) &&
+                   !string.IsNullOrWhiteSpace(ColaboradorId);
         }
 
         /// <summary>
-        /// Método para atender ticket de hardware
-        /// Adiciona validações específicas para hardware
+        /// Método para completar atendimento de hardware
         /// </summary>
-        /// <param name="technicianId">ID do técnico</param>
-        public override void AttendTicket(int technicianId)
+        public void CompletarAtendimentoHardware(EstadoAtendimento estado, string descricaoReparacao, string pecas = null)
         {
-            if (!IsValid())
+            if (string.IsNullOrWhiteSpace(descricaoReparacao))
             {
-                throw new InvalidOperationException("Ticket de hardware inválido. Verifique se todos os campos obrigatórios estão preenchidos.");
+                throw new ArgumentException("A descrição da reparação é obrigatória.");
             }
 
-            base.AttendTicket(technicianId);
-        }
+            DescricaoReparacao = descricaoReparacao;
+            Pecas = pecas;
 
-        /// <summary>
-        /// Método para completar o atendimento do ticket de hardware
-        /// </summary>
-        /// <param name="attendanceStatus">Estado do atendimento</param>
-        /// <param name="repairDescription">Descrição da reparação</param>
-        /// <param name="parts">Peças utilizadas</param>
-        public void CompleteHardwareAttendance(AttendanceStatus attendanceStatus, string repairDescription, string parts = null)
-        {
-            if (string.IsNullOrWhiteSpace(repairDescription))
-            {
-                throw new ArgumentException("A descrição da reparação é obrigatória para completar o atendimento.");
-            }
-
-            RepairDescription = repairDescription;
-            Parts = parts;
-
-            base.CompleteAttendance(attendanceStatus);
+            base.CompletarAtendimento(estado);
         }
 
         /// <summary>
         /// Retorna informações específicas do ticket de hardware
         /// </summary>
-        /// <returns>String com informações específicas</returns>
-        public override string GetSpecificInfo()
+        public override string GetInformacaoEspecifica()
         {
-            var info = $"Equipamento: {Equipment}\nAvaria: {Malfunction}";
+            var info = $"Equipamento: {Equipamento}\nAvaria: {Avaria}";
 
-            if (!string.IsNullOrWhiteSpace(RepairDescription))
+            if (!string.IsNullOrWhiteSpace(DescricaoReparacao))
             {
-                info += $"\nReparação: {RepairDescription}";
+                info += $"\nReparação: {DescricaoReparacao}";
             }
 
-            if (!string.IsNullOrWhiteSpace(Parts))
+            if (!string.IsNullOrWhiteSpace(Pecas))
             {
-                info += $"\nPeças: {Parts}";
+                info += $"\nPeças: {Pecas}";
             }
 
             return info;
         }
 
         /// <summary>
-        /// Método para verificar se o ticket pode ser considerado urgente
-        /// Baseado em palavras-chave na descrição da avaria
+        /// Verifica se o ticket é urgente baseado em palavras-chave
         /// </summary>
-        /// <returns>True se for considerado urgente</returns>
-        public bool IsUrgent()
+        public bool IsUrgente()
         {
-            var urgentKeywords = new[] { "servidor", "rede", "crítico", "emergência", "fogo", "fumo", "não liga" };
-            var malfunctionLower = Malfunction.ToLower();
+            var palavrasUrgentes = new[] { "servidor", "rede", "crítico", "emergência", "fogo", "fumo", "não liga" };
+            var avariaLower = Avaria.ToLower();
 
-            foreach (var keyword in urgentKeywords)
+            foreach (var palavra in palavrasUrgentes)
             {
-                if (malfunctionLower.Contains(keyword))
+                if (avariaLower.Contains(palavra))
                 {
                     return true;
                 }
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Calcula uma estimativa de tempo de reparação baseada no tipo de equipamento
-        /// </summary>
-        /// <returns>Estimativa em horas</returns>
-        public int GetEstimatedRepairTime()
-        {
-            var equipmentLower = Equipment.ToLower();
-
-            if (equipmentLower.Contains("servidor"))
-                return 4;
-            else if (equipmentLower.Contains("impressora"))
-                return 1;
-            else if (equipmentLower.Contains("computador") || equipmentLower.Contains("pc"))
-                return 2;
-            else if (equipmentLower.Contains("monitor"))
-                return 1;
-            else
-                return 2; // Default
-        }
-
-        /// <summary>
-        /// Override do ToString para representação específica do ticket de hardware
-        /// </summary>
-        /// <returns>Representação string do ticket</returns>
-        public override string ToString()
-        {
-            return $"{base.ToString()} - {Equipment}: {Malfunction}";
         }
     }
 }

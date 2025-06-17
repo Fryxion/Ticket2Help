@@ -1,5 +1,4 @@
 using System.Windows;
-using Microsoft.EntityFrameworkCore.Design;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None,            //where theme specific resource dictionaries are located

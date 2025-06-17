@@ -1,5 +1,4 @@
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\bin\Debug\net8.0\Ticket2Help.DAL.deps.json
-G:\trabalho\Ticket2Help\Ticket2Help.DAL\bin\Debug\net8.0\Ticket2Help.DAL.runtimeconfig.json
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\bin\Debug\net8.0\Ticket2Help.DAL.dll
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\bin\Debug\net8.0\Ticket2Help.DAL.pdb
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\Ticket2Help.DAL.csproj.AssemblyReference.cache
@@ -11,5 +10,4 @@ G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\Ticket2Help.DAL.sourcel
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\Ticket2Help.DAL.dll
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\refint\Ticket2Help.DAL.dll
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\Ticket2Help.DAL.pdb
-G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\Ticket2Help.DAL.genruntimeconfig.cache
 G:\trabalho\Ticket2Help\Ticket2Help.DAL\obj\Debug\net8.0\ref\Ticket2Help.DAL.dll

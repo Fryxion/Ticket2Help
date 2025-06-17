@@ -3,13 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ticket2Help.BLL.Models;
-using Ticket2Help.BLL.Factory;
-using Ticket2Help.BLL.Strategy;
-using Ticket2Help.DAL.Interfaces;
 using Ticket2Help.DAL.Repositories;
 
 namespace Ticket2Help.BLL.Services
 {
+    /// <summary>
+    /// Classe para resumo do dashboard
+    /// </summary>
+    public class DashboardSummary
+    {
+        public int TotalTickets { get; set; }
+        public int TicketsAtendidos { get; set; }
+        public int TicketsResolvidos { get; set; }
+        public double PercentagemAtendidos { get; set; }
+        public double PercentagemResolvidos { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime DataFim { get; set; }
+
+        /// <summary>
+        /// Obtém descrição resumida
+        /// </summary>
+        public string GetSummaryDescription()
+        {
+            return $"Período: {DataInicio:dd/MM/yyyy} - {DataFim:dd/MM/yyyy}\n" +
+                   $"Total: {TotalTickets} tickets\n" +
+                   $"Atendidos: {TicketsAtendidos} ({PercentagemAtendidos:F1}%)\n" +
+                   $"Resolvidos: {TicketsResolvidos} ({PercentagemResolvidos:F1}%)";
+        }
+    }
+
     /// <summary>
     /// Interface para o serviço de tickets
     /// Define as operações de negócio relacionadas com tickets
@@ -17,62 +39,59 @@ namespace Ticket2Help.BLL.Services
     public interface ITicketService
     {
         /// <summary>
-        /// Cria um novo ticket
+        /// Cria um novo ticket de hardware
         /// </summary>
-        /// <param name="type">Tipo do ticket</param>
-        /// <param name="userId">ID do utilizador</param>
-        /// <param name="specificData">Dados específicos do ticket</param>
-        /// <returns>Ticket criado</returns>
-        Task<Ticket> CreateTicketAsync(TicketType type, int userId, object specificData);
+        Task<int> CreateHardwareTicketAsync(string colaboradorId, string equipamento, string avaria);
+
+        /// <summary>
+        /// Cria um novo ticket de software
+        /// </summary>
+        Task<int> CreateSoftwareTicketAsync(string colaboradorId, string software, string descricaoNecessidade);
 
         /// <summary>
         /// Obtém um ticket pelo ID
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <returns>Ticket encontrado</returns>
         Task<Ticket> GetTicketByIdAsync(int ticketId);
 
         /// <summary>
-        /// Obtém todos os tickets de um utilizador
+        /// Obtém todos os tickets de um colaborador
         /// </summary>
-        /// <param name="userId">ID do utilizador</param>
-        /// <returns>Lista de tickets</returns>
-        Task<IEnumerable<Ticket>> GetUserTicketsAsync(int userId);
+        Task<IEnumerable<Ticket>> GetUserTicketsAsync(string colaboradorId);
 
         /// <summary>
         /// Obtém o próximo ticket para atendimento
         /// </summary>
-        /// <returns>Próximo ticket ou null</returns>
         Task<Ticket> GetNextTicketForAttendanceAsync();
 
         /// <summary>
         /// Atende um ticket
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="technicianId">ID do técnico</param>
-        /// <returns>True se bem-sucedido</returns>
-        Task<bool> AttendTicketAsync(int ticketId, int technicianId);
+        Task<bool> AttendTicketAsync(int ticketId, string technicianId);
 
         /// <summary>
-        /// Completa o atendimento de um ticket
+        /// Completa o atendimento de um ticket de hardware
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="attendanceStatus">Estado do atendimento</param>
-        /// <param name="details">Detalhes específicos</param>
-        /// <returns>True se bem-sucedido</returns>
-        Task<bool> CompleteTicketAttendanceAsync(int ticketId, AttendanceStatus attendanceStatus, object details);
+        Task<bool> CompleteHardwareTicketAsync(int ticketId, EstadoAtendimento status, string descricaoReparacao, string pecas = null);
+
+        /// <summary>
+        /// Completa o atendimento de um ticket de software
+        /// </summary>
+        Task<bool> CompleteSoftwareTicketAsync(int ticketId, EstadoAtendimento status, string descricaoIntervencao);
 
         /// <summary>
         /// Obtém todos os tickets disponíveis para atendimento
         /// </summary>
-        /// <returns>Lista de tickets por atender</returns>
         Task<IEnumerable<Ticket>> GetPendingTicketsAsync();
 
         /// <summary>
-        /// Define a estratégia de atendimento
+        /// Obtém estatísticas de tickets
         /// </summary>
-        /// <param name="strategy">Estratégia a usar</param>
-        void SetAttendanceStrategy(ITicketAttendanceStrategy strategy);
+        Task<Dictionary<string, object>> GetTicketStatisticsAsync(DateTime startDate, DateTime endDate);
+
+        /// <summary>
+        /// Obtém estatísticas resumidas para dashboard
+        /// </summary>
+        Task<DashboardSummary> GetDashboardSummaryAsync(DateTime startDate, DateTime endDate);
     }
 
     /// <summary>
@@ -83,285 +102,291 @@ namespace Ticket2Help.BLL.Services
     {
         private readonly ITicketRepository _ticketRepository;
         private readonly IUserRepository _userRepository;
-        private readonly ITicketFactory _ticketFactory;
-        private readonly TicketAttendanceContext _attendanceContext;
-        private int _lastSequentialNumber;
 
         /// <summary>
         /// Construtor do serviço
         /// </summary>
-        /// <param name="ticketRepository">Repositório de tickets</param>
-        /// <param name="userRepository">Repositório de utilizadores</param>
-        /// <param name="ticketFactory">Factory de tickets</param>
-        public TicketService(
-            ITicketRepository ticketRepository,
-            IUserRepository userRepository,
-            ITicketFactory ticketFactory)
+        public TicketService(ITicketRepository ticketRepository, IUserRepository userRepository)
         {
-            _ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository));
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-            _ticketFactory = ticketFactory ?? throw new ArgumentNullException(nameof(ticketFactory));
-            _attendanceContext = new TicketAttendanceContext();
-
-            InitializeSequentialNumber();
+            _ticketRepository = ticketRepository;
+            _userRepository = userRepository;
         }
 
         /// <summary>
-        /// Cria um novo ticket
+        /// Cria um novo ticket de hardware
         /// </summary>
-        /// <param name="type">Tipo do ticket</param>
-        /// <param name="userId">ID do utilizador</param>
-        /// <param name="specificData">Dados específicos</param>
-        /// <returns>Ticket criado</returns>
-        public async Task<Ticket> CreateTicketAsync(TicketType type, int userId, object specificData)
+        public async Task<int> CreateHardwareTicketAsync(string colaboradorId, string equipamento, string avaria)
         {
-            // Validar utilizador
-            var user = await _userRepository.GetUserByIdAsync(userId);
-            if (user == null)
-                throw new ArgumentException("Utilizador não encontrado", nameof(userId));
+            return await Task.Run(() =>
+            {
+                // Validar utilizador usando DAL
+                var dalUser = _userRepository.GetUserById(colaboradorId);
+                if (dalUser == null || !dalUser.Ativo)
+                    throw new InvalidOperationException("Utilizador não pode criar tickets");
 
-            if (!user.CanCreateTickets())
-                throw new InvalidOperationException("Utilizador não tem permissões para criar tickets");
+                // Criar ticket DAL
+                var dalTicket = new DAL.Models.HardwareTicket(colaboradorId, equipamento, avaria);
 
-            // Gerar próximo número sequencial
-            var sequentialNumber = GetNextSequentialNumber();
+                return _ticketRepository.InsertTicket(dalTicket);
+            });
+        }
 
-            // Criar ticket usando a factory
-            var ticket = _ticketFactory.CreateTicket(type, sequentialNumber, userId, specificData);
+        /// <summary>
+        /// Cria um novo ticket de software
+        /// </summary>
+        public async Task<int> CreateSoftwareTicketAsync(string colaboradorId, string software, string descricaoNecessidade)
+        {
+            return await Task.Run(() =>
+            {
+                // Validar utilizador usando DAL
+                var dalUser = _userRepository.GetUserById(colaboradorId);
+                if (dalUser == null || !dalUser.Ativo)
+                    throw new InvalidOperationException("Utilizador não pode criar tickets");
 
-            // Validar ticket
-            if (!ticket.IsValid())
-                throw new InvalidOperationException("Dados do ticket são inválidos");
+                // Criar ticket DAL
+                var dalTicket = new DAL.Models.SoftwareTicket(colaboradorId, software, descricaoNecessidade);
 
-            // Guardar na base de dados
-            var ticketId = await _ticketRepository.AddTicketAsync(ticket);
-            ticket.Id = ticketId;
-
-            return ticket;
+                return _ticketRepository.InsertTicket(dalTicket);
+            });
         }
 
         /// <summary>
         /// Obtém um ticket pelo ID
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <returns>Ticket encontrado</returns>
         public async Task<Ticket> GetTicketByIdAsync(int ticketId)
         {
-            if (ticketId <= 0)
-                throw new ArgumentException("ID do ticket inválido", nameof(ticketId));
+            return await Task.Run(() =>
+            {
+                if (ticketId <= 0)
+                    throw new ArgumentException("ID do ticket inválido", nameof(ticketId));
 
-            return await _ticketRepository.GetTicketByIdAsync(ticketId);
+                var dalTicket = _ticketRepository.GetTicketById(ticketId);
+                return ModelMapper.MapToBll(dalTicket);
+            });
         }
 
         /// <summary>
-        /// Obtém todos os tickets de um utilizador
+        /// Obtém todos os tickets de um colaborador
         /// </summary>
-        /// <param name="userId">ID do utilizador</param>
-        /// <returns>Lista de tickets</returns>
-        public async Task<IEnumerable<Ticket>> GetUserTicketsAsync(int userId)
+        public async Task<IEnumerable<Ticket>> GetUserTicketsAsync(string colaboradorId)
         {
-            if (userId <= 0)
-                throw new ArgumentException("ID do utilizador inválido", nameof(userId));
+            return await Task.Run(() =>
+            {
+                if (string.IsNullOrWhiteSpace(colaboradorId))
+                    throw new ArgumentException("ID do colaborador inválido", nameof(colaboradorId));
 
-            return await _ticketRepository.GetTicketsByUserIdAsync(userId);
+                var dalTickets = _ticketRepository.GetTicketsByColaborador(colaboradorId);
+                return dalTickets.Select(ModelMapper.MapToBll).Where(t => t != null).ToList();
+            });
         }
 
         /// <summary>
-        /// Obtém o próximo ticket para atendimento usando a estratégia configurada
+        /// Obtém o próximo ticket para atendimento (FIFO)
         /// </summary>
-        /// <returns>Próximo ticket</returns>
         public async Task<Ticket> GetNextTicketForAttendanceAsync()
         {
-            var pendingTickets = await GetPendingTicketsAsync();
-            return _attendanceContext.SelectNextTicket(pendingTickets);
+            return await Task.Run(() =>
+            {
+                var dalTickets = _ticketRepository.GetTicketsByEstado(DAL.Models.EstadoTicket.PorAtender);
+                var oldestTicket = dalTickets.OrderBy(t => t.DataCriacao).FirstOrDefault();
+                return ModelMapper.MapToBll(oldestTicket);
+            });
         }
 
         /// <summary>
         /// Atende um ticket
         /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="technicianId">ID do técnico</param>
-        /// <returns>True se bem-sucedido</returns>
-        public async Task<bool> AttendTicketAsync(int ticketId, int technicianId)
+        public async Task<bool> AttendTicketAsync(int ticketId, string technicianId)
         {
-            try
+            return await Task.Run(() =>
             {
-                // Validar técnico
-                var technician = await _userRepository.GetUserByIdAsync(technicianId);
-                if (technician == null || !technician.CanAttendTickets())
-                    throw new InvalidOperationException("Técnico não encontrado ou sem permissões");
-
-                // Obter ticket
-                var ticket = await _ticketRepository.GetTicketByIdAsync(ticketId);
-                if (ticket == null)
-                    throw new ArgumentException("Ticket não encontrado");
-
-                // Atender ticket
-                ticket.AttendTicket(technicianId);
-
-                // Atualizar na base de dados
-                await _ticketRepository.UpdateTicketAsync(ticket);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // Log do erro (implementar logging adequado)
-                Console.WriteLine($"Erro ao atender ticket {ticketId}: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Completa o atendimento de um ticket
-        /// </summary>
-        /// <param name="ticketId">ID do ticket</param>
-        /// <param name="attendanceStatus">Estado do atendimento</param>
-        /// <param name="details">Detalhes específicos</param>
-        /// <returns>True se bem-sucedido</returns>
-        public async Task<bool> CompleteTicketAttendanceAsync(int ticketId, AttendanceStatus attendanceStatus, object details)
-        {
-            try
-            {
-                var ticket = await _ticketRepository.GetTicketByIdAsync(ticketId);
-                if (ticket == null)
-                    throw new ArgumentException("Ticket não encontrado");
-
-                // Completar atendimento baseado no tipo
-                switch (ticket)
+                try
                 {
-                    case HardwareTicket hwTicket:
-                        await CompleteHardwareTicketAsync(hwTicket, attendanceStatus, details);
-                        break;
-                    case SoftwareTicket swTicket:
-                        await CompleteSoftwareTicketAsync(swTicket, attendanceStatus, details);
-                        break;
-                    default:
-                        ticket.CompleteAttendance(attendanceStatus);
-                        break;
+                    // Validar técnico usando DAL
+                    var dalTechnician = _userRepository.GetUserById(technicianId);
+                    if (dalTechnician == null || !dalTechnician.Ativo ||
+                        (dalTechnician.TipoUtilizador != DAL.Models.TipoUtilizador.Tecnico &&
+                         dalTechnician.TipoUtilizador != DAL.Models.TipoUtilizador.Administrador))
+                        throw new InvalidOperationException("Técnico não encontrado ou sem permissões");
+
+                    // Obter e atualizar ticket
+                    var dalTicket = _ticketRepository.GetTicketById(ticketId);
+                    if (dalTicket == null)
+                        throw new ArgumentException("Ticket não encontrado");
+
+                    if (dalTicket.EstadoTicket != DAL.Models.EstadoTicket.PorAtender)
+                        throw new InvalidOperationException("Apenas tickets por atender podem ser atendidos");
+
+                    dalTicket.EstadoTicket = DAL.Models.EstadoTicket.EmAtendimento;
+                    dalTicket.DataAtendimento = DateTime.Now;
+                    dalTicket.TecnicoId = technicianId;
+
+                    return _ticketRepository.UpdateTicket(dalTicket);
                 }
-
-                // Atualizar na base de dados
-                await _ticketRepository.UpdateTicketAsync(ticket);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao completar atendimento do ticket {ticketId}: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Obtém todos os tickets pendentes
-        /// </summary>
-        /// <returns>Lista de tickets por atender</returns>
-        public async Task<IEnumerable<Ticket>> GetPendingTicketsAsync()
-        {
-            var allTickets = await _ticketRepository.GetAllTicketsAsync();
-            return allTickets.Where(t => t.Status == TicketStatus.PorAtender);
-        }
-
-        /// <summary>
-        /// Define a estratégia de atendimento
-        /// </summary>
-        /// <param name="strategy">Estratégia a usar</param>
-        public void SetAttendanceStrategy(ITicketAttendanceStrategy strategy)
-        {
-            if (strategy == null)
-                throw new ArgumentNullException(nameof(strategy));
-
-            _attendanceContext.Strategy = strategy;
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao atender ticket {ticketId}: {ex.Message}");
+                    return false;
+                }
+            });
         }
 
         /// <summary>
         /// Completa o atendimento de um ticket de hardware
         /// </summary>
-        private async Task CompleteHardwareTicketAsync(HardwareTicket ticket, AttendanceStatus status, object details)
+        public async Task<bool> CompleteHardwareTicketAsync(int ticketId, EstadoAtendimento status, string descricaoReparacao, string pecas = null)
         {
-            if (details is HardwareAttendanceDetails hwDetails)
+            return await Task.Run(() =>
             {
-                ticket.CompleteHardwareAttendance(status, hwDetails.RepairDescription, hwDetails.Parts);
-            }
-            else if (details is string description)
-            {
-                ticket.CompleteHardwareAttendance(status, description);
-            }
-            else
-            {
-                throw new ArgumentException("Detalhes inválidos para ticket de hardware");
-            }
+                try
+                {
+                    var dalTicket = _ticketRepository.GetTicketById(ticketId) as DAL.Models.HardwareTicket;
+                    if (dalTicket == null)
+                        return false;
+
+                    if (dalTicket.EstadoTicket != DAL.Models.EstadoTicket.EmAtendimento)
+                        throw new InvalidOperationException("Apenas tickets em atendimento podem ser completados");
+
+                    dalTicket.EstadoTicket = DAL.Models.EstadoTicket.Atendido;
+                    dalTicket.EstadoAtendimento = (DAL.Models.EstadoAtendimento)status;
+                    dalTicket.DescricaoReparacao = descricaoReparacao;
+                    dalTicket.Pecas = pecas;
+
+                    return _ticketRepository.UpdateTicket(dalTicket);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao completar atendimento de hardware {ticketId}: {ex.Message}");
+                    return false;
+                }
+            });
         }
 
         /// <summary>
         /// Completa o atendimento de um ticket de software
         /// </summary>
-        private async Task CompleteSoftwareTicketAsync(SoftwareTicket ticket, AttendanceStatus status, object details)
+        public async Task<bool> CompleteSoftwareTicketAsync(int ticketId, EstadoAtendimento status, string descricaoIntervencao)
         {
-            if (details is SoftwareAttendanceDetails swDetails)
+            return await Task.Run(() =>
             {
-                ticket.CompleteSoftwareAttendance(status, swDetails.InterventionDescription);
-            }
-            else if (details is string description)
-            {
-                ticket.CompleteSoftwareAttendance(status, description);
-            }
-            else
-            {
-                throw new ArgumentException("Detalhes inválidos para ticket de software");
-            }
+                try
+                {
+                    var dalTicket = _ticketRepository.GetTicketById(ticketId) as DAL.Models.SoftwareTicket;
+                    if (dalTicket == null)
+                        return false;
+
+                    if (dalTicket.EstadoTicket != DAL.Models.EstadoTicket.EmAtendimento)
+                        throw new InvalidOperationException("Apenas tickets em atendimento podem ser completados");
+
+                    dalTicket.EstadoTicket = DAL.Models.EstadoTicket.Atendido;
+                    dalTicket.EstadoAtendimento = (DAL.Models.EstadoAtendimento)status;
+                    dalTicket.DescricaoIntervencao = descricaoIntervencao;
+
+                    return _ticketRepository.UpdateTicket(dalTicket);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao completar atendimento de software {ticketId}: {ex.Message}");
+                    return false;
+                }
+            });
         }
 
         /// <summary>
-        /// Inicializa o número sequencial baseado nos tickets existentes
+        /// Obtém todos os tickets pendentes
         /// </summary>
-        private async void InitializeSequentialNumber()
+        public async Task<IEnumerable<Ticket>> GetPendingTicketsAsync()
         {
-            try
+            return await Task.Run(() =>
             {
-                var lastTicket = await _ticketRepository.GetLastTicketAsync();
-                _lastSequentialNumber = lastTicket?.SequentialNumber ?? 0;
-            }
-            catch
-            {
-                _lastSequentialNumber = 0;
-            }
+                var dalTickets = _ticketRepository.GetTicketsByEstado(DAL.Models.EstadoTicket.PorAtender);
+                return dalTickets.Select(ModelMapper.MapToBll).Where(t => t != null).ToList();
+            });
         }
 
         /// <summary>
-        /// Gera o próximo número sequencial
+        /// Obtém estatísticas de tickets
         /// </summary>
-        private int GetNextSequentialNumber()
+        public async Task<Dictionary<string, object>> GetTicketStatisticsAsync(DateTime startDate, DateTime endDate)
         {
-            return ++_lastSequentialNumber;
+            return await Task.Run(() =>
+            {
+                var hwStats = _ticketRepository.GetTicketStatistics(DAL.Models.TipoTicket.Hardware, startDate, endDate);
+                var swStats = _ticketRepository.GetTicketStatistics(DAL.Models.TipoTicket.Software, startDate, endDate);
+
+                return new Dictionary<string, object>
+                {
+                    ["Hardware"] = hwStats,
+                    ["Software"] = swStats,
+                    ["DataInicio"] = startDate,
+                    ["DataFim"] = endDate,
+                    ["TotalTickets"] = Convert.ToInt32(hwStats["TotalTickets"]) + Convert.ToInt32(swStats["TotalTickets"]),
+                    ["TotalAtendidos"] = Convert.ToInt32(hwStats["TicketsAtendidos"]) + Convert.ToInt32(swStats["TicketsAtendidos"]),
+                    ["TotalResolvidos"] = Convert.ToInt32(hwStats["TicketsResolvidos"]) + Convert.ToInt32(swStats["TicketsResolvidos"])
+                };
+            });
+        }
+
+        /// <summary>
+        /// Obtém tickets por estado específico
+        /// </summary>
+        public async Task<IEnumerable<Ticket>> GetTicketsByStatusAsync(EstadoTicket estado)
+        {
+            return await Task.Run(() =>
+            {
+                var dalTickets = _ticketRepository.GetTicketsByEstado((DAL.Models.EstadoTicket)estado);
+                return dalTickets.Select(ModelMapper.MapToBll).Where(t => t != null).ToList();
+            });
+        }
+
+        /// <summary>
+        /// Obtém tickets por intervalo de datas
+        /// </summary>
+        public async Task<IEnumerable<Ticket>> GetTicketsByDateRangeAsync(DateTime startDate, DateTime endDate)
+        {
+            return await Task.Run(() =>
+            {
+                var dalTickets = _ticketRepository.GetTicketsByDateRange(startDate, endDate);
+                return dalTickets.Select(ModelMapper.MapToBll).Where(t => t != null).ToList();
+            });
+        }
+
+        /// <summary>
+        /// Obtém todos os tickets
+        /// </summary>
+        public async Task<IEnumerable<Ticket>> GetAllTicketsAsync()
+        {
+            return await Task.Run(() =>
+            {
+                var dalTickets = _ticketRepository.GetAllTickets();
+                return dalTickets.Select(ModelMapper.MapToBll).Where(t => t != null).ToList();
+            });
+        }
+
+        /// <summary>
+        /// Obtém estatísticas resumidas para dashboard
+        /// </summary>
+        public async Task<DashboardSummary> GetDashboardSummaryAsync(DateTime startDate, DateTime endDate)
+        {
+            return await Task.Run(() =>
+            {
+                var stats = GetTicketStatisticsAsync(startDate, endDate).Result;
+
+                var totalTickets = Convert.ToInt32(stats["TotalTickets"]);
+                var totalAtendidos = Convert.ToInt32(stats["TotalAtendidos"]);
+                var totalResolvidos = Convert.ToInt32(stats["TotalResolvidos"]);
+
+                return new DashboardSummary
+                {
+                    TotalTickets = totalTickets,
+                    TicketsAtendidos = totalAtendidos,
+                    TicketsResolvidos = totalResolvidos,
+                    PercentagemAtendidos = totalTickets > 0 ? (double)totalAtendidos / totalTickets * 100 : 0,
+                    PercentagemResolvidos = totalAtendidos > 0 ? (double)totalResolvidos / totalAtendidos * 100 : 0,
+                    DataInicio = startDate,
+                    DataFim = endDate
+                };
+            });
         }
     }
-
-    /// <summary>
-    /// Classe para detalhes de atendimento de hardware
-    /// </summary>
-    public class HardwareAttendanceDetails
-    {
-        public string RepairDescription { get; set; }
-        public string Parts { get; set; }
-
-        public HardwareAttendanceDetails(string repairDescription, string parts = null)
-        {
-            RepairDescription = repairDescription;
-            Parts = parts;
-        }
-    }
-
-    /// <summary>
-    /// Classe para detalhes de atendimento de software
-    /// </summary>
-    public class SoftwareAttendanceDetails
-    {
-        public string InterventionDescription { get; set; }
-
-        public SoftwareAttendanceDetails(string interventionDescription)
-        {
-            InterventionDescription = interventionDescription;
-        }
-    }
+}

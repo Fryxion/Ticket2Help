@@ -1,133 +1,42 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Ticket2Help.BLL.Services;
-using Ticket2Help.BLL.Factory;
 using Ticket2Help.BLL.Controllers;
-using Ticket2Help.BLL.Strategy;
-using Ticket2Help.DAL.Interfaces;
-using Ticket2Help.DAL.Repositories;
-using Ticket2Help.DAL;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.BLL.Services;
 using Ticket2Help.DAL.Data;
+using Ticket2Help.DAL.Repositories;
+using static Ticket2Help.BLL.Services.DashboardSummary;
 
 namespace Ticket2Help.BLL.Configuration
 {
     /// <summary>
-    /// Classe responsável pela configuração e inicialização do sistema
-    /// Implementa o padrão Dependency Injection para configurar todas as dependências
+    /// Classe responsável pela inicialização do sistema
+    /// Adaptada para ser compatível com o seu DAL existente
     /// </summary>
     public static class SystemBootstrap
     {
-        /// <summary>
-        /// Configura todos os serviços do sistema
-        /// </summary>
-        /// <param name="services">Collection de serviços</param>
-        /// <param name="configuration">Configuração da aplicação</param>
-        /// <returns>ServiceCollection configurada</returns>
-        public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            // Configurar Entity Framework / Base de Dados
-            ConfigureDataAccess(services, configuration);
-
-            // Configurar serviços de negócio
-            ConfigureBusinessServices(services);
-
-            // Configurar factories e estratégias
-            ConfigureFactoriesAndStrategies(services);
-
-            // Configurar controllers
-            ConfigureControllers(services);
-
-            return services;
-        }
+        private static RepositoryFactory _repositoryFactory;
+        private static TicketService _ticketService;
+        private static UserService _userService;
+        private static TicketController _ticketController;
 
         /// <summary>
-        /// Configura o acesso a dados
+        /// Inicializa o sistema com a configuração padrão
         /// </summary>
-        /// <param name="services">Collection de serviços</param>
-        /// <param name="configuration">Configuração</param>
-        private static void ConfigureDataAccess(IServiceCollection services, IConfiguration configuration)
+        public static async Task InicializarSistemaAsync()
         {
-            // Registar o contexto da base de dados
-            services.AddDbContext<DatabaseContext>(options =>
-            {
-                // Configurar connection string
-                var connectionString = configuration.GetConnectionString("DefaultConnection")
-                    ?? "Server=localhost;Database=Ticket2HelpDB;Trusted_Connection=true;TrustServerCertificate=true;";
-
-                options.UseSqlServer(connectionString);
-            });
-
-            // Registar repositórios
-            services.AddScoped<ITicketRepository, TicketRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-        }
-
-        /// <summary>
-        /// Configura os serviços de negócio
-        /// </summary>
-        /// <param name="services">Collection de serviços</param>
-        private static void ConfigureBusinessServices(IServiceCollection services)
-        {
-            // Serviços principais
-            services.AddScoped<ITicketService, TicketService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IStatisticsService, StatisticsService>();
-
-            // Outros serviços auxiliares
-            services.AddScoped<ReportGenerator>();
-        }
-
-        /// <summary>
-        /// Configura factories e estratégias
-        /// </summary>
-        /// <param name="services">Collection de serviços</param>
-        private static void ConfigureFactoriesAndStrategies(IServiceCollection services)
-        {
-            // Factories
-            services.AddScoped<ITicketFactory, TicketFactory>();
-
-            // Estratégias (registar todas as disponíveis)
-            services.AddTransient<FifoAttendanceStrategy>();
-            services.AddTransient<LifoAttendanceStrategy>();
-            services.AddTransient<PriorityAttendanceStrategy>();
-            services.AddTransient<RoundRobinAttendanceStrategy>();
-
-            // Factory para criar estratégias baseadas em tipo
-            services.AddScoped<IAttendanceStrategyFactory, AttendanceStrategyFactory>();
-
-            // Contexto de estratégia com estratégia padrão (FIFO)
-            services.AddScoped<TicketAttendanceContext>(provider =>
-                new TicketAttendanceContext(new FifoAttendanceStrategy()));
-        }
-
-        /// <summary>
-        /// Configura os controllers
-        /// </summary>
-        /// <param name="services">Collection de serviços</param>
-        private static void ConfigureControllers(IServiceCollection services)
-        {
-            services.AddScoped<TicketController>();
-        }
-
-        /// <summary>
-        /// Inicializa a aplicação e cria dados iniciais se necessário
-        /// </summary>
-        /// <param name="serviceProvider">Provider de serviços</param>
-        /// <returns>Task da inicialização</returns>
-        public static async Task InitializeApplicationAsync(IServiceProvider serviceProvider)
-        {
-            using var scope = serviceProvider.CreateScope();
-
             try
             {
-                // Inicializar base de dados
-                await InitializeDatabaseAsync(scope.ServiceProvider);
+                // Criar factory de repositórios
+                _repositoryFactory = new RepositoryFactory();
 
-                // Criar utilizadores padrão se necessário
-                await CreateDefaultUsersAsync(scope.ServiceProvider);
+                // Testar conexão
+                if (!_repositoryFactory.TestDatabaseConnection())
+                {
+                    throw new InvalidOperationException("Não foi possível conectar à base de dados");
+                }
+
+                // Inicializar serviços
+                InicializarServicos();
 
                 Console.WriteLine("Sistema inicializado com sucesso!");
             }
@@ -139,265 +48,238 @@ namespace Ticket2Help.BLL.Configuration
         }
 
         /// <summary>
-        /// Inicializa a base de dados
+        /// Inicializa o sistema com uma string de conexão personalizada
         /// </summary>
-        /// <param name="serviceProvider">Provider de serviços</param>
-        private static async Task InitializeDatabaseAsync(IServiceProvider serviceProvider)
+        /// <param name="connectionString">String de conexão</param>
+        public static async Task InicializarSistemaAsync(string connectionString)
         {
-            var context = serviceProvider.GetRequiredService<DatabaseContext>();
-
-            // Garantir que a base de dados é criada
-            await context.Database.EnsureCreatedAsync();
-
-            // Aplicar migrações pendentes (se existirem)
-            var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
-            if (pendingMigrations.Any())
+            try
             {
-                await context.Database.MigrateAsync();
+                // Criar factory com conexão personalizada
+                _repositoryFactory = new RepositoryFactory(connectionString);
+
+                // Testar conexão
+                if (!_repositoryFactory.TestDatabaseConnection())
+                {
+                    throw new InvalidOperationException("Não foi possível conectar à base de dados");
+                }
+
+                // Inicializar serviços
+                InicializarServicos();
+
+                Console.WriteLine("Sistema inicializado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro na inicialização: {ex.Message}");
+                throw;
             }
         }
 
         /// <summary>
-        /// Cria utilizadores padrão se não existirem
+        /// Inicializa os serviços de negócio
         /// </summary>
-        /// <param name="serviceProvider">Provider de serviços</param>
-        private static async Task CreateDefaultUsersAsync(IServiceProvider serviceProvider)
+        private static void InicializarServicos()
         {
-            var userService = serviceProvider.GetRequiredService<IUserService>();
+            // Obter repositórios
+            var ticketRepository = _repositoryFactory.GetTicketRepository();
+            var userRepository = _repositoryFactory.GetUserRepository();
 
-            // Criar utilizadores padrão apenas se não existirem
-            await userService.CreateDefaultUsersAsync();
+            // Criar serviços
+            _ticketService = new TicketService(ticketRepository, userRepository);
+            _userService = new UserService(userRepository);
+
+            // Criar controller
+            _ticketController = new TicketController(_ticketService, _userService);
+        }
+
+        /// <summary>
+        /// Obtém o controller principal do sistema
+        /// </summary>
+        /// <returns>Instância do TicketController</returns>
+        public static TicketController ObterController()
+        {
+            if (_ticketController == null)
+            {
+                throw new InvalidOperationException("Sistema não foi inicializado. Chame InicializarSistemaAsync() primeiro.");
+            }
+
+            return _ticketController;
+        }
+
+        /// <summary>
+        /// Obtém o serviço de tickets
+        /// </summary>
+        /// <returns>Instância do TicketService</returns>
+        public static TicketService ObterTicketService()
+        {
+            if (_ticketService == null)
+            {
+                throw new InvalidOperationException("Sistema não foi inicializado. Chame InicializarSistemaAsync() primeiro.");
+            }
+
+            return _ticketService;
+        }
+
+        /// <summary>
+        /// Obtém o serviço de utilizadores
+        /// </summary>
+        /// <returns>Instância do UserService</returns>
+        public static UserService ObterUserService()
+        {
+            if (_userService == null)
+            {
+                throw new InvalidOperationException("Sistema não foi inicializado. Chame InicializarSistemaAsync() primeiro.");
+            }
+
+            return _userService;
+        }
+
+        /// <summary>
+        /// Obtém a factory de repositórios
+        /// </summary>
+        /// <returns>Instância do RepositoryFactory</returns>
+        public static RepositoryFactory ObterRepositoryFactory()
+        {
+            if (_repositoryFactory == null)
+            {
+                throw new InvalidOperationException("Sistema não foi inicializado. Chame InicializarSistemaAsync() primeiro.");
+            }
+
+            return _repositoryFactory;
+        }
+
+        /// <summary>
+        /// Testa a conectividade do sistema
+        /// </summary>
+        /// <returns>True se todos os componentes estão funcionais</returns>
+        public static bool TestarSistema()
+        {
+            try
+            {
+                if (_repositoryFactory == null)
+                    return false;
+
+                // Testar conexão com a base de dados
+                if (!_repositoryFactory.TestDatabaseConnection())
+                    return false;
+
+                // Testar repositórios
+                var ticketRepo = _repositoryFactory.GetTicketRepository();
+                var userRepo = _repositoryFactory.GetUserRepository();
+
+                if (ticketRepo == null || userRepo == null)
+                    return false;
+
+                Console.WriteLine("Teste do sistema concluído com sucesso!");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro no teste do sistema: {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Liberta os recursos do sistema
+        /// </summary>
+        public static void LiberarRecursos()
+        {
+            try
+            {
+                _repositoryFactory?.Dispose();
+                _repositoryFactory = null;
+                _ticketService = null;
+                _userService = null;
+                _ticketController = null;
+
+                Console.WriteLine("Recursos do sistema libertados.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao libertar recursos: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Reinicia o sistema
+        /// </summary>
+        public static async Task ReiniciarSistemaAsync()
+        {
+            LiberarRecursos();
+            await InicializarSistemaAsync();
+        }
+
+        /// <summary>
+        /// Reinicia o sistema com nova string de conexão
+        /// </summary>
+        /// <param name="novaConnectionString">Nova string de conexão</param>
+        public static async Task ReiniciarSistemaAsync(string novaConnectionString)
+        {
+            LiberarRecursos();
+            await InicializarSistemaAsync(novaConnectionString);
         }
     }
 
     /// <summary>
-    /// Factory para criar estratégias de atendimento
+    /// Classe para facilitar a integração com WPF
+    /// Fornece métodos estáticos de fácil acesso
     /// </summary>
-    public interface IAttendanceStrategyFactory
+    public static class Ticket2HelpSystem
     {
         /// <summary>
-        /// Cria uma estratégia baseada no nome
+        /// Inicializa o sistema (método de conveniência)
         /// </summary>
-        /// <param name="strategyName">Nome da estratégia</param>
-        /// <returns>Estratégia criada</returns>
-        ITicketAttendanceStrategy CreateStrategy(string strategyName);
-
-        /// <summary>
-        /// Obtém todas as estratégias disponíveis
-        /// </summary>
-        /// <returns>Lista de estratégias</returns>
-        List<ITicketAttendanceStrategy> GetAllStrategies();
-    }
-
-    /// <summary>
-    /// Implementação da factory de estratégias
-    /// </summary>
-    public class AttendanceStrategyFactory : IAttendanceStrategyFactory
-    {
-        private readonly IServiceProvider _serviceProvider;
-
-        public AttendanceStrategyFactory(IServiceProvider serviceProvider)
+        public static async Task StartAsync()
         {
-            _serviceProvider = serviceProvider;
+            await SystemBootstrap.InicializarSistemaAsync();
         }
 
         /// <summary>
-        /// Cria uma estratégia baseada no nome
+        /// Inicializa o sistema com conexão personalizada
         /// </summary>
-        /// <param name="strategyName">Nome da estratégia</param>
-        /// <returns>Estratégia criada</returns>
-        public ITicketAttendanceStrategy CreateStrategy(string strategyName)
+        /// <param name="connectionString">String de conexão</param>
+        public static async Task StartAsync(string connectionString)
         {
-            return strategyName?.ToLower() switch
-            {
-                "fifo" => _serviceProvider.GetService<FifoAttendanceStrategy>(),
-                "lifo" => _serviceProvider.GetService<LifoAttendanceStrategy>(),
-                "prioridade" or "priority" => _serviceProvider.GetService<PriorityAttendanceStrategy>(),
-                "roundrobin" or "round_robin" => _serviceProvider.GetService<RoundRobinAttendanceStrategy>(),
-                "hardware" => new TypeBasedAttendanceStrategy(TicketType.Hardware),
-                "software" => new TypeBasedAttendanceStrategy(TicketType.Software),
-                _ => new FifoAttendanceStrategy() // Estratégia padrão
-            };
+            await SystemBootstrap.InicializarSistemaAsync(connectionString);
         }
 
         /// <summary>
-        /// Obtém todas as estratégias disponíveis
+        /// Obtém o controller principal
         /// </summary>
-        /// <returns>Lista de estratégias</returns>
-        public List<ITicketAttendanceStrategy> GetAllStrategies()
+        public static TicketController Controller
         {
-            return new List<ITicketAttendanceStrategy>
-            {
-                CreateStrategy("fifo"),
-                CreateStrategy("lifo"),
-                CreateStrategy("priority"),
-                CreateStrategy("roundrobin"),
-                CreateStrategy("hardware"),
-                CreateStrategy("software")
-            };
-        }
-    }
-
-    /// <summary>
-    /// Classe para configurações da aplicação
-    /// </summary>
-    public class AppSettings
-    {
-        /// <summary>
-        /// Configurações da base de dados
-        /// </summary>
-        public DatabaseSettings Database { get; set; } = new();
-
-        /// <summary>
-        /// Configurações da aplicação
-        /// </summary>
-        public ApplicationSettings Application { get; set; } = new();
-
-        /// <summary>
-        /// Configurações de logging
-        /// </summary>
-        public LoggingSettings Logging { get; set; } = new();
-    }
-
-    /// <summary>
-    /// Configurações da base de dados
-    /// </summary>
-    public class DatabaseSettings
-    {
-        /// <summary>
-        /// String de conexão com a base de dados
-        /// </summary>
-        public string ConnectionString { get; set; } = "Server=localhost;Database=Ticket2HelpDB;Trusted_Connection=true;TrustServerCertificate=true;";
-
-        /// <summary>
-        /// Timeout para comandos da base de dados (em segundos)
-        /// </summary>
-        public int CommandTimeout { get; set; } = 30;
-
-        /// <summary>
-        /// Indica se deve criar a base de dados automaticamente
-        /// </summary>
-        public bool EnsureCreated { get; set; } = true;
-    }
-
-    /// <summary>
-    /// Configurações da aplicação
-    /// </summary>
-    public class ApplicationSettings
-    {
-        /// <summary>
-        /// Nome da aplicação
-        /// </summary>
-        public string Name { get; set; } = "Ticket2Help";
-
-        /// <summary>
-        /// Versão da aplicação
-        /// </summary>
-        public string Version { get; set; } = "1.0.0";
-
-        /// <summary>
-        /// Estratégia de atendimento padrão
-        /// </summary>
-        public string DefaultAttendanceStrategy { get; set; } = "FIFO";
-
-        /// <summary>
-        /// Indica se deve criar utilizadores padrão
-        /// </summary>
-        public bool CreateDefaultUsers { get; set; } = true;
-
-        /// <summary>
-        /// Número máximo de tickets que um técnico pode ter em atendimento
-        /// </summary>
-        public int MaxTicketsPerTechnician { get; set; } = 5;
-
-        /// <summary>
-        /// Tempo limite para atendimento de tickets (em horas)
-        /// </summary>
-        public int TicketAttendanceTimeoutHours { get; set; } = 24;
-    }
-
-    /// <summary>
-    /// Configurações de logging
-    /// </summary>
-    public class LoggingSettings
-    {
-        /// <summary>
-        /// Nível mínimo de log
-        /// </summary>
-        public string MinimumLevel { get; set; } = "Information";
-
-        /// <summary>
-        /// Indica se deve fazer log para ficheiro
-        /// </summary>
-        public bool LogToFile { get; set; } = true;
-
-        /// <summary>
-        /// Caminho do ficheiro de log
-        /// </summary>
-        public string LogFilePath { get; set; } = "logs/ticket2help.log";
-
-        /// <summary>
-        /// Indica se deve fazer log para consola
-        /// </summary>
-        public bool LogToConsole { get; set; } = true;
-    }
-
-    /// <summary>
-    /// Classe utilitária para validação de configurações
-    /// </summary>
-    public static class ConfigurationValidator
-    {
-        /// <summary>
-        /// Valida as configurações da aplicação
-        /// </summary>
-        /// <param name="settings">Configurações a validar</param>
-        /// <returns>Lista de erros de validação</returns>
-        public static List<string> ValidateSettings(AppSettings settings)
-        {
-            var errors = new List<string>();
-
-            // Validar configurações da base de dados
-            if (string.IsNullOrWhiteSpace(settings.Database.ConnectionString))
-            {
-                errors.Add("Connection string da base de dados é obrigatória");
-            }
-
-            if (settings.Database.CommandTimeout <= 0)
-            {
-                errors.Add("Command timeout deve ser maior que zero");
-            }
-
-            // Validar configurações da aplicação
-            if (string.IsNullOrWhiteSpace(settings.Application.Name))
-            {
-                errors.Add("Nome da aplicação é obrigatório");
-            }
-
-            if (settings.Application.MaxTicketsPerTechnician <= 0)
-            {
-                errors.Add("Número máximo de tickets por técnico deve ser maior que zero");
-            }
-
-            if (settings.Application.TicketAttendanceTimeoutHours <= 0)
-            {
-                errors.Add("Timeout de atendimento deve ser maior que zero");
-            }
-
-            return errors;
+            get => SystemBootstrap.ObterController();
         }
 
         /// <summary>
-        /// Valida e lança exceção se houver erros
+        /// Obtém o serviço de tickets
         /// </summary>
-        /// <param name="settings">Configurações a validar</param>
-        /// <exception cref="InvalidOperationException">Se houver erros de validação</exception>
-        public static void ValidateAndThrow(AppSettings settings)
+        public static TicketService TicketService
         {
-            var errors = ValidateSettings(settings);
-            if (errors.Any())
-            {
-                throw new InvalidOperationException($"Erros de configuração: {string.Join(", ", errors)}");
-            }
+            get => SystemBootstrap.ObterTicketService();
+        }
+
+        /// <summary>
+        /// Obtém o serviço de utilizadores
+        /// </summary>
+        public static UserService UserService
+        {
+            get => SystemBootstrap.ObterUserService();
+        }
+
+        /// <summary>
+        /// Testa o sistema
+        /// </summary>
+        public static bool IsSystemHealthy => SystemBootstrap.TestarSistema();
+
+        /// <summary>
+        /// Encerra o sistema
+        /// </summary>
+        public static void Shutdown()
+        {
+            SystemBootstrap.LiberarRecursos();
         }
     }
 }

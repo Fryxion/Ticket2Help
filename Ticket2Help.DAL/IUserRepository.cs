@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.DAL.Models;
 
 namespace Ticket2Help.DAL.Repositories
 {

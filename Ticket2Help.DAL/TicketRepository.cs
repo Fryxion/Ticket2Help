@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Net.Sockets;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.DAL.Models;
 using Ticket2Help.DAL.Data;
 
 namespace Ticket2Help.DAL.Repositories
@@ -460,7 +460,7 @@ namespace Ticket2Help.DAL.Repositories
             ticket.DataCriacao = reader.GetDateTime("DataCriacao");
             ticket.ColaboradorId = reader.GetString("ColaboradorId");
             ticket.EstadoTicket = (EstadoTicket)reader.GetInt32("EstadoTicket");
-            ticket.TipoTicket = tipoTicket;
+            //ticket.TipoTicket = tipoTicket;
             ticket.DataAtendimento = reader.IsDBNull("DataAtendimento") ? null : reader.GetDateTime("DataAtendimento");
             ticket.EstadoAtendimento = reader.IsDBNull("EstadoAtendimento") ? null : (EstadoAtendimento)reader.GetInt32("EstadoAtendimento");
             ticket.TecnicoId = reader.IsDBNull("TecnicoId") ? null : reader.GetString("TecnicoId");
@@ -582,5 +582,8 @@ namespace Ticket2Help.DAL.Repositories
                 command.ExecuteNonQuery();
             }
         }
+    }
+}
+
 
         #endregion

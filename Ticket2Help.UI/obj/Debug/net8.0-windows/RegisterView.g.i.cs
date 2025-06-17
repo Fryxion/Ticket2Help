@@ -84,7 +84,7 @@ namespace Ticket2Help.UI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Ticket2Help.UI;V1.0.0.0;component/registerview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Ticket2Help.UI;component/registerview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\RegisterView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

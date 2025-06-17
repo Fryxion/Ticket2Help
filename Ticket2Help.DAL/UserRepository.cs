@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.DAL.Models;
 using Ticket2Help.DAL.Data;
+using System.Data;
 
 namespace Ticket2Help.DAL.Repositories
 {
@@ -52,7 +53,7 @@ namespace Ticket2Help.DAL.Repositories
                 if (reader.Read())
                 {
                     var storedPasswordHash = reader.GetString("PasswordHash");
-                    var inputPasswordHash = HashPassword(password);
+                    var inputPasswordHash = password;
 
                     if (storedPasswordHash == inputPasswordHash)
                     {

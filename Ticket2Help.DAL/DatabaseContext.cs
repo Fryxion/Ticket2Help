@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Configuration;
 using Microsoft.IdentityModel.Protocols;
 
@@ -25,8 +25,7 @@ namespace Ticket2Help.DAL.Data
         public DatabaseContext()
         {
             // Obtém a string de conexão do ficheiro app.config
-            _connectionString = ConfigurationManager.ConnectionStrings["Ticket2HelpDB"]?.ConnectionString
-                ?? throw new InvalidOperationException("String de conexão 'Ticket2HelpDB' não encontrada no ficheiro de configuração.");
+            _connectionString = "Server=localhost\\SQLEXPRESS;Initial Catalog=Ticket2HelpDb;Persist Security Info=True;User ID=sa;Password=123;Trust Server Certificate=True";
         }
 
         /// <summary>

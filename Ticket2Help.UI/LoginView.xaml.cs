@@ -1,57 +1,241 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Ticket2Help.BLL.Services;
+using Ticket2Help.BLL.Controllers;
+using Ticket2Help.BLL.Models;
+using Ticket2Help.BLL.Configuration;
+using System.Windows.Automation;
+using System.Windows.Controls;
 
 namespace Ticket2Help.UI
 {
-    public partial class LoginView : Window
+    /// <summary>
+    /// Janela de login simples e acessível
+    /// </summary>
+    public partial class LoginWindow : Window
     {
-        private readonly UserService _userService;
+        private TicketController _controller;
+        private bool _isLoggingIn = false;
 
-        public LoginView(UserService userService)
+        public LoginWindow()
         {
             InitializeComponent();
-            _userService = userService;
+            InitializeAsync();
+            SetupAccessibility();
         }
 
-        // Handle the login button click
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Configura recursos de acessibilidade
+        /// </summary>
+        private void SetupAccessibility()
         {
-            string email = EmailTextBox.Text;
+            // Configurar ordem de tabulação
+            UsernameTextBox.TabIndex = 1;
+            PasswordBox.TabIndex = 2;
+            LoginButton.TabIndex = 3;
+
+            // Configurar teclas de atalho
+            UsernameTextBox.KeyDown += OnKeyDown;
+            PasswordBox.KeyDown += OnKeyDown;
+
+            // Focar no primeiro campo
+            Loaded += (s, e) => UsernameTextBox.Focus();
+
+            // Configurar eventos para limpeza de erro
+            UsernameTextBox.TextChanged += (s, e) => ClearError();
+            PasswordBox.PasswordChanged += (s, e) => ClearError();
+        }
+
+        /// <summary>
+        /// Inicializa o sistema de forma assíncrona
+        /// </summary>
+        private async void InitializeAsync()
+        {
+            try
+            {
+                await InitializeSystemAsync();
+            }
+            catch (Exception ex)
+            {
+                ShowError($"Erro ao inicializar o sistema: {ex.Message}");
+                LoginButton.IsEnabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Inicializa o sistema backend
+        /// </summary>
+        private async Task InitializeSystemAsync()
+        {
+            await Ticket2HelpSystem.StartAsync();
+            _controller = Ticket2HelpSystem.Controller;
+
+            // Criar utilizadores padrão se necessário
+            //var userService = Ticket2HelpSystem.UserService;
+            //await userService.CreateDefaultUsersAsync();
+        }
+
+        /// <summary>
+        /// Manipula teclas especiais
+        /// </summary>
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    if (sender == UsernameTextBox)
+                    {
+                        PasswordBox.Focus();
+                    }
+                    else if (sender == PasswordBox && !_isLoggingIn)
+                    {
+                        LoginButton_Click(null, null);
+                    }
+                    break;
+
+                case Key.Escape:
+                    ClearError();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Evento do botão de login
+        /// </summary>
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isLoggingIn) return;
+
+            await PerformLoginAsync();
+        }
+
+        /// <summary>
+        /// Executa o processo de login
+        /// </summary>
+        private async Task PerformLoginAsync()
+        {
+            string username = UsernameTextBox.Text?.Trim();
             string password = PasswordBox.Password;
 
-            var user = _userService.Login(email, password);
-
-            if (user != null)
+            // Validação simples
+            if (string.IsNullOrEmpty(username))
             {
-                // Successfully logged in, proceed to the main page or next action
-                MessageBox.Show("Login successful!");
-                this.Close(); // Close the login window
-                // Open the main window or another page
+                ShowError("Por favor, introduza o nome de utilizador.");
+                UsernameTextBox.Focus();
+                return;
             }
-            else
+
+            if (string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Invalid email or password.");
+                ShowError("Por favor, introduza a password.");
+                PasswordBox.Focus();
+                return;
+            }
+
+            _isLoggingIn = true;
+
+            try
+            {
+                var result = await _controller.AuthenticateUserAsync(username, password);
+
+                if (result.IsSuccess)
+                {
+                    // Login bem-sucedido
+                    var user = result.Data;
+                    OpenMainWindow(user);
+                }
+                else
+                {
+                    // Erro de autenticação
+                    PasswordBox.Clear();
+                    ShowError(result.ErrorMessage ?? "Nome de utilizador ou password incorretos.");
+                    PasswordBox.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError($"Erro durante a autenticação: {ex.Message}");
+            }
+            finally
+            {
+                _isLoggingIn = false;
             }
         }
 
-        // Navigate to the Register page
-        private void RegisterTextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        /// <summary>
+        /// Abre a janela principal
+        /// </summary>
+        private void OpenMainWindow(User user)
         {
-            var registerPage = new RegisterView(_userService);
-            registerPage.Show();
-            this.Close(); // Close the login window
+            try
+            {
+                //var mainWindow = new MainWindow();
+                var mainWindow = new MainWindow(user, _controller);
+                mainWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                ShowError($"Erro ao abrir a aplicação principal: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Mostra mensagem de erro
+        /// </summary>
+        private void ShowError(string message)
+        {
+            ErrorText.Text = message;
+            ErrorBorder.Visibility = Visibility.Visible;
+
+            // Anunciar erro para leitores de ecrã
+            AutomationProperties.SetLiveSetting(ErrorBorder, AutomationLiveSetting.Assertive);
+        }
+
+        /// <summary>
+        /// Limpa mensagem de erro
+        /// </summary>
+        private void ClearError()
+        {
+            ErrorBorder.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Cleanup quando a janela fecha
+        /// </summary>
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            // Libertar recursos se necessário
+            try
+            {
+                if (Application.Current.MainWindow == this)
+                {
+                    Ticket2HelpSystem.Shutdown();
+                }
+            }
+            catch
+            {
+                // Ignorar erros no shutdown
+            }
+        }
+
+        /// <summary>
+        /// Suporte para teclas de atalho globais
+        /// </summary>
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            // Alt + F4 para fechar
+            if (e.Key == Key.F4 && e.KeyboardDevice.Modifiers == ModifierKeys.Alt)
+            {
+                this.Close();
+                return;
+            }
+
+            base.OnKeyDown(e);
         }
     }
+
 }

@@ -2,7 +2,7 @@
 using Ticket2Help.BLL.Models;
 
 namespace Ticket2Help.BLL.Factory
-{
+{/*
     /// <summary>
     /// Interface para a Factory de tickets
     /// Define o contrato para criação de diferentes tipos de tickets
@@ -17,7 +17,7 @@ namespace Ticket2Help.BLL.Factory
         /// <param name="userId">ID do utilizador que cria o ticket</param>
         /// <param name="specificData">Dados específicos do tipo de ticket</param>
         /// <returns>Instância do ticket criado</returns>
-        Ticket CreateTicket(TicketType type, int sequentialNumber, int userId, object specificData);
+        Ticket CreateTicket(TipoTicket type, int sequentialNumber, int userId, object specificData);
 
         /// <summary>
         /// Cria um ticket de hardware
@@ -86,15 +86,15 @@ namespace Ticket2Help.BLL.Factory
         /// <returns>Ticket criado</returns>
         /// <exception cref="ArgumentException">Quando o tipo não é suportado</exception>
         /// <exception cref="ArgumentNullException">Quando os dados específicos são nulos</exception>
-        public Ticket CreateTicket(TicketType type, int sequentialNumber, int userId, object specificData)
+        public Ticket CreateTicket(TipoTicket type, int sequentialNumber, int userId, object specificData)
         {
             if (specificData == null)
                 throw new ArgumentNullException(nameof(specificData));
 
             return type switch
             {
-                TicketType.Hardware => CreateHardwareTicketFromData(sequentialNumber, userId, specificData),
-                TicketType.Software => CreateSoftwareTicketFromData(sequentialNumber, userId, specificData),
+                TipoTicket.Hardware => CreateHardwareTicketFromData(sequentialNumber, userId, specificData),
+                TipoTicket.Software => CreateSoftwareTicketFromData(sequentialNumber, userId, specificData),
                 _ => throw new ArgumentException($"Tipo de ticket não suportado: {type}")
             };
         }
@@ -112,7 +112,7 @@ namespace Ticket2Help.BLL.Factory
             ValidateCommonParameters(sequentialNumber, userId);
             ValidateHardwareParameters(equipment, malfunction);
 
-            return new HardwareTicket(sequentialNumber, userId, equipment, malfunction);
+            return new HardwareTicket(sequentialNumber, userId, equipment);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Ticket2Help.BLL.Factory
             ValidateCommonParameters(sequentialNumber, userId);
             ValidateSoftwareParameters(software, needDescription);
 
-            return new SoftwareTicket(sequentialNumber, userId, software, needDescription);
+            return new SoftwareTicket(sequentialNumber, userId, software);
         }
 
         /// <summary>
@@ -223,3 +223,5 @@ namespace Ticket2Help.BLL.Factory
                 throw new ArgumentException("A descrição da necessidade é obrigatória", nameof(needDescription));
         }
     }
+    */
+}

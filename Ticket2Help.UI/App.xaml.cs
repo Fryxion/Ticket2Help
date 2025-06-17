@@ -1,15 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
-using Ticket2Help.BLL.Services;
-using Ticket2Help.UI.ViewModel;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Ticket2Help.DAL.Database;
-using Microsoft.Extensions.Configuration;
+using System.Windows.Input;
 using Ticket2Help.BLL.Configuration;
-using Ticket2Help.BLL.Controllers;
+using Ticket2Help.BLL.Models;
+using Ticket2Help.BLL.Services;
 
 namespace Ticket2Help.UI
 {
@@ -18,34 +16,39 @@ namespace Ticket2Help.UI
     /// </summary>
     public partial class App : Application
     {
-        private IServiceProvider _serviceProvider;
-
         protected override async void OnStartup(StartupEventArgs e)
         {
-            // Configurar dependency injection
-            var services = new ServiceCollection();
-            var configuration = BuildConfiguration();
+            try
+            {
+                // Inicializar o sistema Ticket2Help
+                await Ticket2HelpSystem.StartAsync();
 
-            services.ConfigureServices(configuration);
+                // Verificar se sistema está saudável
+                if (!Ticket2HelpSystem.IsSystemHealthy)
+                {
+                    MessageBox.Show("Erro ao inicializar o sistema!", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Shutdown();
+                    return;
+                }
 
-            _serviceProvider = services.BuildServiceProvider();
+                // Criar e mostrar janela principal
+                //var mainWindow = new LoginWindow();
+                //mainWindow.Show();
 
-            // Inicializar sistema
-            await SystemBootstrap.InitializeApplicationAsync(_serviceProvider);
-
-            // Criar janela principal
-            var mainWindow = new MainWindow();
-            mainWindow.DataContext = _serviceProvider.GetService<TicketController>();
-            mainWindow.Show();
-
-            base.OnStartup(e);
+                base.OnStartup(e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro fatal: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+            }
         }
 
-        private IConfiguration BuildConfiguration()
+        protected override void OnExit(ExitEventArgs e)
         {
-            return new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: true)
-                .Build();
+            // Libertar recursos do sistema
+            Ticket2HelpSystem.Shutdown();
+            base.OnExit(e);
         }
     }
 

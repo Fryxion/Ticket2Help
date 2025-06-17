@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
-using Ticket2Help.BLL.Models;
+using Ticket2Help.DAL.Models;
 
 namespace Ticket2Help.DAL.Repositories
 {

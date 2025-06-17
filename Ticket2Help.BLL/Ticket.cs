@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Ticket2Help.BLL.Models
 {
     /// <summary>
-    /// Enumeração para os estados do ticket
+    /// Enumeração para os estados do ticket (compatível com seu DAL)
     /// </summary>
-    public enum TicketStatus
+    public enum EstadoTicket
     {
         PorAtender = 0,
         EmAtendimento = 1,
@@ -14,9 +14,9 @@ namespace Ticket2Help.BLL.Models
     }
 
     /// <summary>
-    /// Enumeração para os estados de atendimento
+    /// Enumeração para os estados de atendimento (compatível com seu DAL)
     /// </summary>
-    public enum AttendanceStatus
+    public enum EstadoAtendimento
     {
         Aberto = 0,
         Resolvido = 1,
@@ -24,144 +24,132 @@ namespace Ticket2Help.BLL.Models
     }
 
     /// <summary>
-    /// Enumeração para os tipos de ticket
+    /// Enumeração para os tipos de ticket (compatível com seu DAL)
     /// </summary>
-    public enum TicketType
+    public enum TipoTicket
     {
         Hardware = 0,
         Software = 1
     }
 
     /// <summary>
+    /// Enumeração para tipos de utilizador (compatível com seu DAL)
+    /// </summary>
+    public enum TipoUtilizador
+    {
+        Colaborador = 0,
+        Tecnico = 1,
+        Administrador = 2
+    }
+
+    /// <summary>
     /// Classe base abstrata para todos os tipos de tickets
-    /// Implementa o padrão Template Method para a estrutura comum dos tickets
+    /// Adaptada para compatibilidade com seu DAL
     /// </summary>
     public abstract class Ticket
     {
         /// <summary>
-        /// ID único do ticket (gerado automaticamente)
+        /// ID único do ticket (gerado automaticamente pela BD)
         /// </summary>
-        [Key]
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Número sequencial do ticket
-        /// </summary>
-        [Required]
-        public int SequentialNumber { get; set; }
+        public int TicketId { get; set; }
 
         /// <summary>
         /// Data e hora de criação do ticket (gerada automaticamente)
         /// </summary>
-        [Required]
-        public DateTime CreatedDate { get; set; }
+        public DateTime DataCriacao { get; set; }
 
         /// <summary>
-        /// Data e hora de atendimento do ticket
+        /// ID do colaborador que submeteu o ticket
         /// </summary>
-        public DateTime? AttendedDate { get; set; }
-
-        /// <summary>
-        /// Código do colaborador que submeteu o ticket
-        /// </summary>
-        [Required]
-        public int UserId { get; set; }
+        public string ColaboradorId { get; set; }
 
         /// <summary>
         /// Estado atual do ticket
         /// </summary>
-        [Required]
-        public TicketStatus Status { get; set; }
-
-        /// <summary>
-        /// Estado do atendimento (apenas aplicável quando o ticket está atendido)
-        /// </summary>
-        public AttendanceStatus? AttendanceStatus { get; set; }
-
-        /// <summary>
-        /// ID do técnico que atendeu o ticket
-        /// </summary>
-        public int? TechnicianId { get; set; }
+        public EstadoTicket EstadoTicket { get; set; }
 
         /// <summary>
         /// Tipo do ticket (Hardware ou Software)
         /// </summary>
-        [Required]
-        public abstract TicketType Type { get; }
+        public abstract TipoTicket TipoTicket { get; }
+
+        /// <summary>
+        /// Data e hora de atendimento do ticket
+        /// </summary>
+        public DateTime? DataAtendimento { get; set; }
+
+        /// <summary>
+        /// Estado do atendimento (apenas aplicável quando o ticket está atendido)
+        /// </summary>
+        public EstadoAtendimento? EstadoAtendimento { get; set; }
+
+        /// <summary>
+        /// ID do técnico que atendeu o ticket
+        /// </summary>
+        public string TecnicoId { get; set; }
 
         /// <summary>
         /// Construtor da classe base
-        /// Inicializa os valores padrão
         /// </summary>
         protected Ticket()
         {
-            CreatedDate = DateTime.Now;
-            Status = TicketStatus.PorAtender;
+            DataCriacao = DateTime.Now;
+            EstadoTicket = EstadoTicket.PorAtender;
         }
 
         /// <summary>
         /// Construtor com parâmetros
         /// </summary>
-        /// <param name="sequentialNumber">Número sequencial do ticket</param>
-        /// <param name="userId">ID do utilizador que criou o ticket</param>
-        protected Ticket(int sequentialNumber, int userId) : this()
+        protected Ticket(string colaboradorId) : this()
         {
-            SequentialNumber = sequentialNumber;
-            UserId = userId;
+            ColaboradorId = colaboradorId ?? throw new ArgumentNullException(nameof(colaboradorId));
         }
 
         /// <summary>
         /// Método para atender o ticket
-        /// Template Method - define o fluxo comum de atendimento
         /// </summary>
-        /// <param name="technicianId">ID do técnico que está a atender</param>
-        public virtual void AttendTicket(int technicianId)
+        public virtual void AtenderTicket(string tecnicoId)
         {
-            if (Status != TicketStatus.PorAtender)
+            if (EstadoTicket != EstadoTicket.PorAtender)
             {
                 throw new InvalidOperationException("Apenas tickets por atender podem ser atendidos.");
             }
 
-            Status = TicketStatus.EmAtendimento;
-            AttendedDate = DateTime.Now;
-            TechnicianId = technicianId;
+            EstadoTicket = EstadoTicket.EmAtendimento;
+            DataAtendimento = DateTime.Now;
+            TecnicoId = tecnicoId;
         }
 
         /// <summary>
         /// Método para completar o atendimento
         /// </summary>
-        /// <param name="attendanceStatus">Estado final do atendimento</param>
-        public virtual void CompleteAttendance(AttendanceStatus attendanceStatus)
+        public virtual void CompletarAtendimento(EstadoAtendimento estadoAtendimento)
         {
-            if (Status != TicketStatus.EmAtendimento)
+            if (EstadoTicket != EstadoTicket.EmAtendimento)
             {
                 throw new InvalidOperationException("Apenas tickets em atendimento podem ser completados.");
             }
 
-            Status = TicketStatus.Atendido;
-            AttendanceStatus = attendanceStatus;
+            EstadoTicket = EstadoTicket.Atendido;
+            EstadoAtendimento = estadoAtendimento;
         }
 
         /// <summary>
         /// Método abstrato para validação específica de cada tipo de ticket
         /// </summary>
-        /// <returns>True se o ticket é válido</returns>
         public abstract bool IsValid();
 
         /// <summary>
         /// Método para obter informações específicas do ticket
-        /// Template Method - cada subclasse implementa suas especificidades
         /// </summary>
-        /// <returns>String com informações específicas</returns>
-        public abstract string GetSpecificInfo();
+        public abstract string GetInformacaoEspecifica();
 
         /// <summary>
         /// Override do ToString para representação textual do ticket
         /// </summary>
-        /// <returns>Representação string do ticket</returns>
         public override string ToString()
         {
-            return $"Ticket #{SequentialNumber} - {Type} - {Status}";
+            return $"Ticket #{TicketId} - {TipoTicket} - {EstadoTicket}";
         }
     }
 }
