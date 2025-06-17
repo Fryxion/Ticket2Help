@@ -1,0 +1,178 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\trabalho\\Ticket2Help\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\gerarticketview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\gerarticketview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\gerarticketview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\gerarticketview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\models\\softwareticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\models\\softwareticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\models\\hardwareticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\models\\hardwareticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 85,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GerarTicketView.xaml.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\GerarTicketView.xaml.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\GerarTicketView.xaml.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\GerarTicketView.xaml.cs",
+              "RelativeToolTip": "Ticket2Help.UI\\GerarTicketView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:20:20.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GerarTicketView.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\GerarTicketView.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\GerarTicketView.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\GerarTicketView.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\GerarTicketView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T01:19:35.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SoftwareTicket.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\SoftwareTicket.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.BLL\\Models\\SoftwareTicket.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\SoftwareTicket.cs",
+              "RelativeToolTip": "Ticket2Help.BLL\\Models\\SoftwareTicket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:09:07.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HardwareTicket.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\HardwareTicket.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.BLL\\Models\\HardwareTicket.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\HardwareTicket.cs",
+              "RelativeToolTip": "Ticket2Help.BLL\\Models\\HardwareTicket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:06:48.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Ticket.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\Ticket.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.BLL\\Models\\Ticket.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\Ticket.cs",
+              "RelativeToolTip": "Ticket2Help.BLL\\Models\\Ticket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:06:15.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\Enums.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.BLL\\Models\\Enums.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Models\\Enums.cs",
+              "RelativeToolTip": "Ticket2Help.BLL\\Models\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T00:59:54.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\MainWindow.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T00:48:39.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\MainWindow.xaml.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Ticket2Help.UI\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAArwBkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T00:48:37.984Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 85,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 85,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
