@@ -31,11 +31,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj": {
-                "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -100,7 +96,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj": {
+                "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -118,6 +118,18 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -168,6 +180,9 @@
             "projectReferences": {
               "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj": {
                 "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\Ticket2Help.BLL.csproj"
+              },
+              "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj": {
+                "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj"
               }
             }
           }

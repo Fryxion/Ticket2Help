@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ticket2Help.BLL\Ticket2Help.BLL.csproj" />
+    <ProjectReference Include="..\Ticket2Help.DAL\Ticket2Help.DAL.csproj" />
   </ItemGroup>
 
 </Project>

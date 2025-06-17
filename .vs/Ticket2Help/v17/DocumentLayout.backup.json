@@ -41,7 +41,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 85,
+          "DockedHeight": 120,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Ticket2Help.UI\\GerarTicketView.xaml.cs",
               "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\GerarTicketView.xaml.cs",
               "RelativeToolTip": "Ticket2Help.UI\\GerarTicketView.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T01:20:20.424Z",
               "EditorCaption": ""
@@ -66,8 +66,7 @@
               "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\GerarTicketView.xaml",
               "RelativeToolTip": "Ticket2Help.UI\\GerarTicketView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-17T01:19:35.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T01:19:35.379Z"
             },
             {
               "$type": "Document",
@@ -79,8 +78,7 @@
               "RelativeToolTip": "Ticket2Help.BLL\\Models\\SoftwareTicket.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T01:09:07.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T01:09:07.681Z"
             },
             {
               "$type": "Document",
@@ -92,8 +90,7 @@
               "RelativeToolTip": "Ticket2Help.BLL\\Models\\HardwareTicket.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T01:06:48.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T01:06:48.099Z"
             },
             {
               "$type": "Document",
@@ -105,8 +102,7 @@
               "RelativeToolTip": "Ticket2Help.BLL\\Models\\Ticket.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T01:06:15.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T01:06:15.464Z"
             },
             {
               "$type": "Document",
@@ -118,8 +114,7 @@
               "RelativeToolTip": "Ticket2Help.BLL\\Models\\Enums.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T00:59:54.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T00:59:54.749Z"
             },
             {
               "$type": "Document",
@@ -130,8 +125,7 @@
               "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml",
               "RelativeToolTip": "Ticket2Help.UI\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-17T00:48:39.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T00:48:39.217Z"
             },
             {
               "$type": "Document",
@@ -143,8 +137,7 @@
               "RelativeToolTip": "Ticket2Help.UI\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAArwBkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T00:48:37.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T00:48:37.984Z"
             }
           ]
         },
@@ -163,9 +156,13 @@
           ]
         },
         {
-          "DockedHeight": 85,
+          "DockedHeight": 50,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
