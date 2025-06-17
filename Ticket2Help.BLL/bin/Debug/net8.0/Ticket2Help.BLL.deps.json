@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Ticket2Help.BLL/1.0.0": {
+        "runtime": {
+          "Ticket2Help.BLL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Ticket2Help.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

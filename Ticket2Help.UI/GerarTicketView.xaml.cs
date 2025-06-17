@@ -2,6 +2,7 @@
 using Ticket2Help.BLL.Models;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Ticket2Help.UI.Views
 {

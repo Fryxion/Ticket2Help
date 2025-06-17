@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Ticket2Help.UI
 {
@@ -23,20 +24,20 @@ namespace Ticket2Help.UI
 
         private void BtnGerarTicket_Click(object sender, RoutedEventArgs e)
         {
-            var gerarTicket = new Views.GerarTicketView();
-            gerarTicket.Show();
+            //var gerarTicket = new Views.GerarTicketView();
+            //gerarTicket.Show();
         }
 
         private void BtnListarTickets_Click(object sender, RoutedEventArgs e)
         {
-            var listar = new Views.ListarTicketsView();
-            listar.Show();
+            //var listar = new Views.ListarTicketsView();
+            //listar.Show();
         }
 
         private void BtnTecnico_Click(object sender, RoutedEventArgs e)
         {
-            var tecnico = new Views.AtenderTicketView();
-            tecnico.Show();
+            //var tecnico = new Views.AtenderTicketView();
+            //tecnico.Show();
         }
     }
 

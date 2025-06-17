@@ -1,0 +1,12 @@
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\bin\Debug\net8.0\Ticket2Help.BLL.deps.json
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\bin\Debug\net8.0\Ticket2Help.BLL.dll
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\bin\Debug\net8.0\Ticket2Help.BLL.pdb
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.GeneratedMSBuildEditorConfig.editorconfig
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.AssemblyInfoInputs.cache
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.AssemblyInfo.cs
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.csproj.CoreCompileInputs.cache
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.sourcelink.json
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.dll
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\refint\Ticket2Help.BLL.dll
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\Ticket2Help.BLL.pdb
+G:\trabalho\Ticket2Help\Ticket2Help.BLL\obj\Debug\net8.0\ref\Ticket2Help.BLL.dll
