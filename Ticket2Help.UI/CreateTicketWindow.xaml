@@ -1,0 +1,215 @@
+﻿<Window x:Class="Ticket2Help.UI.CreateTicketWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Criar Novo Ticket - Ticket2Help" 
+        Height="600" Width="500"
+        MinHeight="550" MinWidth="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <!-- Estilos simples e acessíveis -->
+        <Style x:Key="SimpleButton" TargetType="Button">
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1976D2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#CCCCCC"/>
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource SimpleButton}">
+            <Setter Property="Background" Value="#757575"/>
+        </Style>
+
+        <Style x:Key="SimpleTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,5,0,10"/>
+        </Style>
+
+        <Style x:Key="SimpleComboBox" TargetType="ComboBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,5,0,10"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="Foreground" Value="#333333"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F8F9FA" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Título -->
+            <RowDefinition Height="*"/>
+            <!-- Formulário -->
+            <RowDefinition Height="Auto"/>
+            <!-- Botões -->
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="🎫 Criar Novo Ticket" 
+                      FontSize="20" FontWeight="Bold" 
+                      Foreground="#333333" HorizontalAlignment="Center"/>
+            <TextBlock Text="Preencha os dados para criar seu ticket de suporte" 
+                      FontSize="12" Foreground="#666666" 
+                      HorizontalAlignment="Center" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- Formulário -->
+        <Border Grid.Row="1" Background="White" 
+               BorderBrush="#E0E0E0" BorderThickness="1" 
+               CornerRadius="8" Padding="25">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+
+                    <!-- Tipo de Ticket -->
+                    <TextBlock Text="Tipo de Ticket *" Style="{StaticResource LabelStyle}"/>
+                    <ComboBox x:Name="TicketTypeComboBox" 
+                             Style="{StaticResource SimpleComboBox}"
+                             SelectionChanged="TicketTypeComboBox_SelectionChanged"
+                             TabIndex="1"
+                             ToolTip="Selecione o tipo de problema">
+                        <ComboBoxItem Content="Hardware - Problemas com equipamentos" Tag="Hardware"/>
+                        <ComboBoxItem Content="Software - Problemas com programas" Tag="Software"/>
+                    </ComboBox>
+
+                    <!-- Campos específicos para Hardware -->
+                    <StackPanel x:Name="HardwarePanel" Visibility="Collapsed">
+                        <TextBlock Text="Equipamento *" Style="{StaticResource LabelStyle}"/>
+                        <TextBox x:Name="EquipmentTextBox" 
+                                Style="{StaticResource SimpleTextBox}"
+                                TabIndex="2"
+                                ToolTip="Ex: Computador, Impressora, Monitor..."
+                                MaxLength="100"/>
+
+                        <TextBlock Text="Descrição da Avaria *" Style="{StaticResource LabelStyle}"/>
+                        <TextBox x:Name="MalfunctionTextBox" 
+                                Style="{StaticResource SimpleTextBox}"
+                                TextWrapping="Wrap" AcceptsReturn="True"
+                                Height="120" VerticalScrollBarVisibility="Auto"
+                                TabIndex="3"
+                                ToolTip="Descreva detalhadamente o problema encontrado"
+                                MaxLength="500"/>
+                    </StackPanel>
+
+                    <!-- Campos específicos para Software -->
+                    <StackPanel x:Name="SoftwarePanel" Visibility="Collapsed">
+                        <TextBlock Text="Software *" Style="{StaticResource LabelStyle}"/>
+                        <TextBox x:Name="SoftwareTextBox" 
+                                Style="{StaticResource SimpleTextBox}"
+                                TabIndex="2"
+                                ToolTip="Ex: Microsoft Word, Windows, Navegador..."
+                                MaxLength="100"/>
+
+                        <TextBlock Text="Descrição da Necessidade *" Style="{StaticResource LabelStyle}"/>
+                        <TextBox x:Name="NeedDescriptionTextBox" 
+                                Style="{StaticResource SimpleTextBox}"
+                                TextWrapping="Wrap" AcceptsReturn="True"
+                                Height="120" VerticalScrollBarVisibility="Auto"
+                                TabIndex="3"
+                                ToolTip="Descreva o que precisa ou qual problema está enfrentando"
+                                MaxLength="500"/>
+                    </StackPanel>
+
+                    <!-- Informações adicionais (opcional) -->
+                    <TextBlock Text="Informações Adicionais (opcional)" 
+                              Style="{StaticResource LabelStyle}" Margin="0,20,0,0"/>
+                    <TextBox x:Name="AdditionalInfoTextBox" 
+                            Style="{StaticResource SimpleTextBox}"
+                            TextWrapping="Wrap" AcceptsReturn="True"
+                            Height="80" VerticalScrollBarVisibility="Auto"
+                            TabIndex="4"
+                            ToolTip="Qualquer informação extra que possa ajudar"
+                            MaxLength="300"/>
+
+                    <!-- Informações do utilizador (readonly) -->
+                    <Border Background="#F1F3F4" BorderBrush="#E0E0E0" 
+                           BorderThickness="1" CornerRadius="4" 
+                           Padding="10" Margin="0,20,0,0">
+                        <StackPanel>
+                            <TextBlock Text="📝 Informações do Solicitante" 
+                                      FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Nome: " FontWeight="SemiBold"/>
+                                <TextBlock x:Name="UserNameText" Text="-"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                                <TextBlock Text="Email: " FontWeight="SemiBold"/>
+                                <TextBlock x:Name="UserEmailText" Text="-"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Validação -->
+                    <TextBlock x:Name="ValidationMessageText" 
+                              Foreground="Red" FontWeight="SemiBold" 
+                              Margin="0,10,0,0" Visibility="Collapsed"
+                              TextWrapping="Wrap"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Botões -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                   HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="CancelButton" Content="Cancelar" 
+                   Style="{StaticResource CancelButton}"
+                   Click="CancelButton_Click" 
+                   TabIndex="6"
+                   ToolTip="Cancelar criação do ticket"/>
+            <Button x:Name="CreateButton" Content="Criar Ticket" 
+                   Style="{StaticResource SimpleButton}"
+                   Click="CreateButton_Click" 
+                   TabIndex="5"
+                   ToolTip="Criar o ticket de suporte"/>
+        </StackPanel>
+
+        <!-- Loading overlay -->
+        <Border x:Name="LoadingOverlay" Grid.RowSpan="3" 
+               Background="#80000000" Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" Width="200" Height="4" 
+                           Foreground="#2196F3" Margin="0,0,0,10"/>
+                <TextBlock x:Name="LoadingText" Text="Criando ticket..." 
+                          Foreground="White" FontSize="14" 
+                          HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

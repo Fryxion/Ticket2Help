@@ -215,9 +215,11 @@ namespace Ticket2Help.DAL.Repositories
                 {
                     // Inserir ticket base
                     const string insertTicketQuery = @"
-                        INSERT INTO Tickets (DataCriacao, ColaboradorId, EstadoTicket, TipoTicket, DataAtendimento, EstadoAtendimento, TecnicoId)
-                        OUTPUT INSERTED.TicketId
-                        VALUES (@DataCriacao, @ColaboradorId, @EstadoTicket, @TipoTicket, @DataAtendimento, @EstadoAtendimento, @TecnicoId)";
+    INSERT INTO Tickets
+        (DataCriacao, ColaboradorId, EstadoTicket, TipoTicket, DataAtendimento, EstadoAtendimento, TecnicoId)
+    VALUES
+        (@DataCriacao, @ColaboradorId, @EstadoTicket, @TipoTicket, @DataAtendimento, @EstadoAtendimento, @TecnicoId);
+    SELECT CAST(@@IDENTITY AS int);";
 
                     var ticketParameters = new SqlParameter[]
                     {
@@ -233,7 +235,16 @@ namespace Ticket2Help.DAL.Repositories
                     using (var command = new SqlCommand(insertTicketQuery, _context.GetConnection(), transaction))
                     {
                         command.Parameters.AddRange(ticketParameters);
-                        var ticketId = (int)command.ExecuteScalar();
+                        // Executar e obter o ID
+                        var result = command.ExecuteScalar();
+
+                        // Verificação segura do resultado
+                        if (result == null || result == DBNull.Value)
+                        {
+                            throw new Exception("Falha ao obter o ID do ticket criado");
+                        }
+
+                        var ticketId = Convert.ToInt32(result);
 
                         // Inserir dados específicos baseados no tipo
                         if (ticket is HardwareTicket hardwareTicket)

@@ -1,0 +1,289 @@
+﻿<Window x:Class="Ticket2Help.UI.Windows.RegistoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registo de Utilizador - Ticket2Help" 
+        Height="650" 
+        Width="500"
+        MinHeight="600" 
+        MinWidth="450"
+        MaxHeight="700"
+        MaxWidth="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <!-- Estilos para acessibilidade e aparência -->
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#34495E"/>
+            <Setter Property="Margin" Value="0,5,0,3"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="32"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="#E74C3C"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="32"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="32"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.9"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+            <Setter Property="Background" Value="#27AE60"/>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+            <Setter Property="Background" Value="#95A5A6"/>
+        </Style>
+
+        <Style x:Key="ValidationErrorStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#E74C3C"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cabeçalho -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="👤" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <TextBlock Text="Criar Nova Conta" Style="{StaticResource HeaderTextStyle}"/>
+            <TextBlock Text="Preencha os dados para criar um novo utilizador"
+                      FontSize="12" 
+                      Foreground="#7F8C8D" 
+                      HorizontalAlignment="Center" 
+                      TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <!-- Formulário -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0,0,0,10">
+
+                <!-- Nome Completo -->
+                <Label Content="Nome Completo:" 
+                       Target="{Binding ElementName=txtNome}"
+                       Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="txtNome" 
+                         Style="{StaticResource TextBoxStyle}"
+                         AutomationProperties.Name="Nome completo"
+                         AutomationProperties.HelpText="Digite o nome completo do utilizador"
+                         TextChanged="ValidarCampos"/>
+                <TextBlock x:Name="lblErroNome" 
+                          Style="{StaticResource ValidationErrorStyle}" 
+                          Visibility="Collapsed"/>
+
+                <!-- Nome de Utilizador -->
+                <Label Content="Nome de Utilizador:" 
+                       Target="{Binding ElementName=txtUsername}"
+                       Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="txtUsername" 
+                         Style="{StaticResource TextBoxStyle}"
+                         AutomationProperties.Name="Nome de utilizador"
+                         AutomationProperties.HelpText="Digite um nome de utilizador único para login"
+                         TextChanged="ValidarCampos"
+                         LostFocus="TxtUsername_LostFocus"/>
+                <TextBlock x:Name="lblErroUsername" 
+                          Style="{StaticResource ValidationErrorStyle}" 
+                          Visibility="Collapsed"/>
+
+                <!-- Email -->
+                <Label Content="Email:" 
+                       Target="{Binding ElementName=txtEmail}"
+                       Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="txtEmail" 
+                         Style="{StaticResource TextBoxStyle}"
+                         AutomationProperties.Name="Endereço de email"
+                         AutomationProperties.HelpText="Digite um endereço de email válido"
+                         TextChanged="ValidarCampos"/>
+                <TextBlock x:Name="lblErroEmail" 
+                          Style="{StaticResource ValidationErrorStyle}" 
+                          Visibility="Collapsed"/>
+
+                <!-- Tipo de Utilizador -->
+
+                <!-- Password -->
+                <Label Content="Password:" 
+                       Target="{Binding ElementName=txtPassword}"
+                       Style="{StaticResource LabelStyle}"/>
+                <PasswordBox x:Name="txtPassword" 
+                            Style="{StaticResource PasswordBoxStyle}"
+                            AutomationProperties.Name="Password"
+                            AutomationProperties.HelpText="Digite uma password com pelo menos 6 caracteres"
+                            PasswordChanged="ValidarCampos"/>
+                <TextBlock x:Name="lblErroPassword" 
+                          Style="{StaticResource ValidationErrorStyle}" 
+                          Visibility="Collapsed"/>
+
+                <!-- Confirmar Password -->
+                <Label Content="Confirmar Password:" 
+                       Target="{Binding ElementName=txtConfirmarPassword}"
+                       Style="{StaticResource LabelStyle}"/>
+                <PasswordBox x:Name="txtConfirmarPassword" 
+                            Style="{StaticResource PasswordBoxStyle}"
+                            AutomationProperties.Name="Confirmar password"
+                            AutomationProperties.HelpText="Digite novamente a password para confirmação"
+                            PasswordChanged="ValidarCampos"/>
+                <TextBlock x:Name="lblErroConfirmarPassword" 
+                          Style="{StaticResource ValidationErrorStyle}" 
+                          Visibility="Collapsed"/>
+
+                <!-- Indicador de Força da Password -->
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,15">
+                    <TextBlock Text="Força da Password:" 
+                              FontSize="10" 
+                              Foreground="#7F8C8D" 
+                              VerticalAlignment="Center" 
+                              Margin="0,0,10,0"/>
+                    <Border x:Name="indicadorForcaPassword" 
+                           Width="100" 
+                           Height="6" 
+                           Background="#ECF0F1" 
+                           CornerRadius="3">
+                        <Border x:Name="barraForcaPassword" 
+                               Width="0" 
+                               Height="6" 
+                               Background="#E74C3C" 
+                               CornerRadius="3" 
+                               HorizontalAlignment="Left"/>
+                    </Border>
+                    <TextBlock x:Name="lblForcaPassword" 
+                              Text="Fraca" 
+                              FontSize="10" 
+                              Foreground="#E74C3C" 
+                              Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <!-- Opções Avançadas -->
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Botões e Status -->
+        <StackPanel Grid.Row="2">
+            <!-- Barra de Status -->
+            <Border Background="#34495E" 
+                    CornerRadius="3" 
+                    Padding="10,5" 
+                    Margin="0,10,0,10">
+                <TextBlock x:Name="txtStatus" 
+                          Text="Preencha todos os campos obrigatórios" 
+                          Foreground="White" 
+                          FontSize="11" 
+                          HorizontalAlignment="Center"/>
+            </Border>
+
+            <!-- Botões de Ação -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnCancelar" 
+                        Grid.Column="0"
+                        Content="❌ Cancelar" 
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Click="BtnCancelar_Click"
+                        AutomationProperties.Name="Cancelar registo"
+                        AutomationProperties.HelpText="Cancela o registo e fecha a janela"/>
+
+                <Button x:Name="btnLimpar" 
+                        Grid.Column="1"
+                        Content="🔄 Limpar" 
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Background="#F39C12"
+                        Click="BtnLimpar_Click"
+                        AutomationProperties.Name="Limpar formulário"
+                        AutomationProperties.HelpText="Limpa todos os campos do formulário"/>
+
+                <Button x:Name="btnRegistar" 
+                        Grid.Column="2"
+                        Content="✅ Registar" 
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Click="BtnRegistar_Click"
+                        IsEnabled="False"
+                        AutomationProperties.Name="Registar utilizador"
+                        AutomationProperties.HelpText="Cria o novo utilizador com os dados fornecidos"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

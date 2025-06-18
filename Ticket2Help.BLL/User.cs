@@ -138,8 +138,7 @@ namespace Ticket2Help.BLL.Models
         {
             return !string.IsNullOrWhiteSpace(UserId) &&
                    !string.IsNullOrWhiteSpace(Username) &&
-                   !string.IsNullOrWhiteSpace(Nome) &&
-                   !string.IsNullOrWhiteSpace(PasswordHash);
+                   !string.IsNullOrWhiteSpace(Nome);
         }
 
         /// <summary>

@@ -7,6 +7,8 @@ using Ticket2Help.BLL.Models;
 using Ticket2Help.BLL.Configuration;
 using System.Windows.Automation;
 using System.Windows.Controls;
+using Ticket2Help.UI.Windows;
+using Ticket2Help.BLL.Services;
 
 namespace Ticket2Help.UI
 {
@@ -16,6 +18,7 @@ namespace Ticket2Help.UI
     public partial class LoginWindow : Window
     {
         private TicketController _controller;
+        private UserService _userService;
         private bool _isLoggingIn = false;
 
         public LoginWindow()
@@ -72,7 +75,7 @@ namespace Ticket2Help.UI
             _controller = Ticket2HelpSystem.Controller;
 
             // Criar utilizadores padrão se necessário
-            //var userService = Ticket2HelpSystem.UserService;
+            _userService = Ticket2HelpSystem.UserService;
             //await userService.CreateDefaultUsersAsync();
         }
 
@@ -98,6 +101,16 @@ namespace Ticket2Help.UI
                     ClearError();
                     break;
             }
+        }
+
+        
+
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var w = new RegistoWindow(_userService);
+            w.Show();
+
         }
 
         /// <summary>

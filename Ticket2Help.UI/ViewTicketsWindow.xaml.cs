@@ -86,8 +86,8 @@ namespace Ticket2Help.UI
         /// </summary>
         public ViewTicketsWindow(User currentUser, TicketController controller)
         {
-            _currentUser = currentUser;
-            _controller = controller;
+            _currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
+            _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _allTickets = new ObservableCollection<Ticket>();
             _ticketsViewSource = new CollectionViewSource { Source = _allTickets };
 
@@ -109,7 +109,7 @@ namespace Ticket2Help.UI
         {
             DataContext = this;
             Title = $"Meus Tickets - {_currentUser.Nome} - Ticket2Help";
-            
+
             // Configurar título baseado no tipo de utilizador
             if (_currentUser.PodeAtenderTickets())
             {
@@ -129,7 +129,7 @@ namespace Ticket2Help.UI
         private void SetupDataBinding()
         {
             TicketsDataGrid.ItemsSource = FilteredTickets;
-            
+
             // Configurar filtro personalizado
             _ticketsViewSource.Filter += TicketsViewSource_Filter;
         }
@@ -141,7 +141,7 @@ namespace Ticket2Help.UI
         {
             // Teclas de atalho
             KeyDown += ViewTicketsWindow_KeyDown;
-            
+
             // Ordem de tabulação
             RefreshButton.TabIndex = 1;
             CreateTicketButton.TabIndex = 2;
@@ -174,7 +174,7 @@ namespace Ticket2Help.UI
                 ShowStatus("Carregando tickets...");
 
                 // Determinar que tickets carregar baseado no tipo de utilizador
-                var result = _currentUser.PodeAtenderTickets() 
+                var result = _currentUser.PodeAtenderTickets()
                     ? await _controller.GetPendingTicketsAsync()  // Técnicos veem todos os tickets pendentes
                     : await _controller.GetUserTicketsAsync(_currentUser.UserId); // Utilizadores veem apenas os seus
 
@@ -190,11 +190,10 @@ namespace Ticket2Help.UI
 
                     UpdateStatistics();
                     ShowStatus($"Carregados {_allTickets.Count} tickets");
-                    TotalTicketsText.Text = "Total: " + _allTickets.Count.ToString();
                 }
                 else
                 {
-                    ShowMessage($"Erro ao carregar tickets: {result.ErrorMessage}", 
+                    ShowMessage($"Erro ao carregar tickets: {result.ErrorMessage}",
                                "Erro", MessageBoxImage.Error);
                     ShowStatus("Erro ao carregar tickets");
                 }
@@ -210,123 +209,290 @@ namespace Ticket2Help.UI
             }
         }
 
+        /// <summary>
+        /// Enriquece dados do ticket (nome do técnico, etc.)
+        /// </summary>
+        private async Task EnrichTicketData(Ticket ticket)
+        {
+            try
+            {
+                await Task.Delay(1);
+            }
+            catch (Exception ex)
+            {
+                // Log do erro, mas não interromper o carregamento
+                Console.WriteLine($"Erro ao enriquecer dados do ticket {ticket?.TicketId}: {ex.Message}");
+            }
+        }
+
         #endregion
 
         #region Filtros e Pesquisa
 
         /// <summary>
-        /// Filtro aplicado à coleção de tickets
+        /// Filtro personalizado para a coleção de tickets
         /// </summary>
         private void TicketsViewSource_Filter(object sender, FilterEventArgs e)
         {
-            if (e.Item is not Ticket ticket)
+            if (e.Item is Ticket ticket)
             {
-                e.Accepted = false;
-                return;
-            }
-
-            // Filtro por texto
-            if (!string.IsNullOrWhiteSpace(_searchText))
-            {
-                var search = _searchText.ToLower();
-                if (!(ticket.ToString().ToLower().Contains(search)
-                    || ticket.GetInformacaoEspecifica().ToLower().Contains(search)))
-                {
-                    e.Accepted = false;
-                    return;
-                }
-            }
-
-            // Filtro por estado
-            if (StatusFilterComboBox.SelectedItem is EstadoTicket estadoSelecionado &&
-                ticket.EstadoTicket != estadoSelecionado)
-            {
-                e.Accepted = false;
-                return;
-            }
-
-            // Filtro por tipo
-            if (TypeFilterComboBox.SelectedItem is TipoTicket tipoSelecionado &&
-                ticket.TipoTicket != tipoSelecionado)
-            {
-                e.Accepted = false;
-                return;
-            }
-
-            // Filtro por data (exemplo simples: mês atual)
-            if (DateFilterComboBox.SelectedIndex == 1 && ticket.DataCriacao.Month != DateTime.Now.Month)
-            {
-                e.Accepted = false;
+                e.Accepted = PassesAllFilters(ticket);
             }
         }
 
         /// <summary>
-        /// Aplica todos os filtros ativos
+        /// Verifica se o ticket passa por todos os filtros aplicados
+        /// </summary>
+        private bool PassesAllFilters(Ticket ticket)
+        {
+            // Filtro de pesquisa
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                var searchLower = SearchText.ToLower();
+                var passesSearch = ticket.TicketId.ToString().Contains(searchLower) ||
+                                  ticket.TipoTicket.ToString().ToLower().Contains(searchLower) ||
+                                  ticket.GetInformacaoEspecifica().ToLower().Contains(searchLower);
+
+                if (!passesSearch) return false;
+            }
+
+            // Filtro de estado
+            if (StatusFilterComboBox.SelectedIndex > 0)
+            {
+                var selectedStatus = ((ComboBoxItem)StatusFilterComboBox.SelectedItem).Content.ToString();
+                var ticketStatus = ticket.EstadoTicket.ToString();
+
+                var statusMatch = selectedStatus switch
+                {
+                    "Por Atender" => ticketStatus == "PorAtender",
+                    "Em Atendimento" => ticketStatus == "EmAtendimento",
+                    "Atendido" => ticketStatus == "Atendido",
+                    _ => true
+                };
+
+                if (!statusMatch) return false;
+            }
+
+            // Filtro de tipo
+            if (TypeFilterComboBox.SelectedIndex > 0)
+            {
+                var selectedType = ((ComboBoxItem)TypeFilterComboBox.SelectedItem).Content.ToString();
+                if (ticket.TipoTicket.ToString() != selectedType)
+                    return false;
+            }
+
+            // Filtro de data
+            if (DateFilterComboBox.SelectedIndex > 0)
+            {
+                var selectedPeriod = ((ComboBoxItem)DateFilterComboBox.SelectedItem).Content.ToString();
+                var cutoffDate = selectedPeriod switch
+                {
+                    "Últimos 7 dias" => DateTime.Now.AddDays(-7),
+                    "Últimos 30 dias" => DateTime.Now.AddDays(-30),
+                    "Últimos 90 dias" => DateTime.Now.AddDays(-90),
+                    _ => DateTime.MinValue
+                };
+
+                if (ticket.DataCriacao < cutoffDate)
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Aplica todos os filtros
         /// </summary>
         private void ApplyFilters()
         {
-            _ticketsViewSource.View.Refresh();
+            FilteredTickets.Refresh();
+            UpdateStatistics();
+        }
+
+        /// <summary>
+        /// Atualiza as estatísticas mostradas
+        /// </summary>
+        private void UpdateStatistics()
+        {
+            var totalTickets = _allTickets.Count;
+            var filteredCount = FilteredTickets.Cast<object>().Count();
+
+            TotalTicketsText.Text = $"Total: {totalTickets}";
+            FilteredTicketsText.Text = $"Exibindo: {filteredCount}";
         }
 
         #endregion
 
-        #region UI - Detalhes, Atualização, Mensagens
+        #region Event Handlers - Filtros
 
         /// <summary>
-        /// Atualiza o painel de detalhes quando seleciona outro ticket
+        /// Manipula mudança no texto de pesquisa
         /// </summary>
-        private void UpdateTicketDetails()
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (_selectedTicket == null)
-            {
-                TicketDetailsPanel.Visibility = Visibility.Collapsed;
-                return;
-            }
-            
-
-            TicketDetailsPanel.Visibility = Visibility.Visible;
-            DetailsContentPanel.Visibility = Visibility.Visible;
-            NoSelectionMessage.Visibility = Visibility.Collapsed;
-            var ticket = _allTickets.FirstOrDefault(t => t.TicketId == _selectedTicket.TicketId);
-
-            if (ticket != null)
-            {
-                DetailIdText.Text = ticket.TicketId.ToString();
-                DetailTypeText.Text = ticket.TipoTicket.ToString();
-                DetailStatusText.Text = ticket.EstadoTicket.ToString();
-                DetailCreatedText.Text = ticket.DataCriacao.ToString();
-
-            }
-
-
-            DetailSpecificInfoText.Text = _selectedTicket.GetInformacaoEspecifica();
+            // A propriedade SearchText já tem binding e chama ApplyFilters()
         }
 
         /// <summary>
-        /// Mostra mensagem no status bar
+        /// Manipula mudança no filtro de estado
         /// </summary>
-        private void ShowStatus(string msg)
+        private void StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            StatusText.Text = msg;
+            if (IsLoaded) ApplyFilters();
         }
 
         /// <summary>
-        /// Mostra uma MessageBox customizada
+        /// Manipula mudança no filtro de tipo
         /// </summary>
-        private void ShowMessage(string msg, string title = "Info", MessageBoxImage icon = MessageBoxImage.Information)
+        private void TypeFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(this, msg, title, MessageBoxButton.OK, icon);
+            if (IsLoaded) ApplyFilters();
+        }
+
+        /// <summary>
+        /// Manipula mudança no filtro de data
+        /// </summary>
+        private void DateFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (IsLoaded) ApplyFilters();
+        }
+
+        /// <summary>
+        /// Limpa todos os filtros
+        /// </summary>
+        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchTextBox.Text = string.Empty;
+            StatusFilterComboBox.SelectedIndex = 0;
+            TypeFilterComboBox.SelectedIndex = 0;
+            DateFilterComboBox.SelectedIndex = 0;
+
+            ApplyFilters();
+            ShowStatus("Filtros limpos");
         }
 
         #endregion
 
-        #region Comandos UI (Botões, DataGrid, etc)
+        #region Event Handlers - DataGrid
 
+        /// <summary>
+        /// Manipula seleção de ticket no DataGrid
+        /// </summary>
+        private void TicketsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedTicket = TicketsDataGrid.SelectedItem as Ticket;
+        }
+
+        /// <summary>
+        /// Manipula duplo-clique no DataGrid
+        /// </summary>
+        private void TicketsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedTicket != null)
+            {
+                ViewFullDetailsButton_Click(sender, new RoutedEventArgs());
+            }
+        }
+
+        #endregion
+
+        #region Event Handlers - Botões
+
+        /// <summary>
+        /// Atualiza a lista de tickets
+        /// </summary>
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             LoadTicketsAsync();
         }
 
+        /// <summary>
+        /// Abre janela de criação de ticket
+        /// </summary>
+        private void CreateTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var createWindow = new CreateTicketWindow(_currentUser, _controller);
+                createWindow.Owner = this;
+
+                if (createWindow.ShowDialog() == true && createWindow.TicketCreated)
+                {
+                    ShowMessage(
+                        $"✅ Ticket #{createWindow.CreatedTicketId} criado com sucesso!\n\n" +
+                        "A lista será atualizada automaticamente.",
+                        "Ticket Criado",
+                        MessageBoxImage.Information);
+
+                    // Recarregar lista após criação
+                    LoadTicketsAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Erro ao abrir criação de ticket: {ex.Message}",
+                           "Erro", MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Ver detalhes completos do ticket
+        /// </summary>
+        private void ViewFullDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTicket == null)
+            {
+                ShowMessage("Selecione um ticket para ver os detalhes.",
+                           "Aviso", MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                // Aqui você pode abrir uma janela de detalhes completos
+                var detailsMessage = GetFullTicketDetails(SelectedTicket);
+                ShowMessage(detailsMessage, $"Detalhes do Ticket #{SelectedTicket.TicketId}",
+                           MessageBoxImage.Information);
+
+                // Exemplo de como implementar com janela própria:
+                // var detailsWindow = new TicketDetailsWindow(SelectedTicket, _controller);
+                // detailsWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Erro ao exibir detalhes: {ex.Message}",
+                           "Erro", MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Imprimir ticket
+        /// </summary>
+        private void PrintTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTicket == null)
+            {
+                ShowMessage("Selecione um ticket para imprimir.",
+                           "Aviso", MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                // Implementar funcionalidade de impressão
+                ShowMessage("Funcionalidade de impressão será implementada em breve.",
+                           "Informação", MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Erro ao imprimir: {ex.Message}",
+                           "Erro", MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Fechar janela
+        /// </summary>
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = new MainWindow(_currentUser, _controller);
@@ -334,118 +500,140 @@ namespace Ticket2Help.UI
             this.Close();
         }
 
-        private void CreateTicketButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Abre janela de criação (deves ter uma CreateTicketWindow implementada)
-            //var createWindow = new CreateTicketWindow(_currentUser, _controller);
-            //if (createWindow.ShowDialog() == true)
-            //{
-            //   LoadTicketsAsync(); // Recarrega tickets após criação
-            //}
-        }
+        #endregion
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SearchText = SearchTextBox.Text;
-        }
+        #region Event Handlers - Teclado
 
-        private void StatusFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void TypeFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void DateFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        // Para botões (Click)
-        private void ViewFullDetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Lógica para abrir detalhes completos do ticket selecionado
-        }
-
-        private void PrintTicketButton_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Lógica para imprimir ou exportar o ticket
-        }
-
-        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchTextBox.Text = string.Empty;
-            StatusFilterComboBox.SelectedIndex = -1;
-            TypeFilterComboBox.SelectedIndex = -1;
-            DateFilterComboBox.SelectedIndex = -1;
-            ApplyFilters();
-        }
-
-        // Para SelectionChanged em ComboBox/DataGrid
-        private void TypeFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void StatusFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void DateFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        // Para seleção no DataGrid
-        private void TicketsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (TicketsDataGrid.SelectedItem is Ticket selected)
-            {
-                SelectedTicket = selected;
-            }
-        }
-
-
-        private void TicketsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (SelectedTicket != null)
-            {
-                // Mostra detalhes completos ou permite ações conforme perfil
-                //var details = new TicketDetailsWindow(SelectedTicket, _controller, _currentUser);
-                //details.ShowDialog();
-            }
-        }
-
+        /// <summary>
+        /// Manipula teclas de atalho
+        /// </summary>
         private void ViewTicketsWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.F5)
+            switch (e.Key)
             {
-                LoadTicketsAsync();
-                e.Handled = true;
+                case Key.F5:
+                    RefreshButton_Click(sender, new RoutedEventArgs());
+                    e.Handled = true;
+                    break;
+
+                case Key.Escape:
+                    if (SelectedTicket != null)
+                    {
+                        TicketsDataGrid.SelectedItem = null;
+                    }
+                    else
+                    {
+                        Close();
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.Enter:
+                    if (SelectedTicket != null)
+                    {
+                        ViewFullDetailsButton_Click(sender, new RoutedEventArgs());
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.F3:
+                    SearchTextBox.Focus();
+                    SearchTextBox.SelectAll();
+                    e.Handled = true;
+                    break;
             }
         }
 
         #endregion
 
-        #region Utilidades
+        #region Atualização de Detalhes
 
-        private async Task EnrichTicketData(Ticket ticket)
+        /// <summary>
+        /// Atualiza o painel de detalhes do ticket selecionado
+        /// </summary>
+        private void UpdateTicketDetails()
         {
-            // Caso queiras enriquecer o ticket com info adicional (ex: nome técnico)
-            // Podes implementar fetch extra aqui, se precisares
-            await Task.CompletedTask;
+            if (SelectedTicket == null)
+            {
+                NoSelectionMessage.Visibility = Visibility.Visible;
+                DetailsContentPanel.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            NoSelectionMessage.Visibility = Visibility.Collapsed;
+            DetailsContentPanel.Visibility = Visibility.Visible;
+
+            // Informações básicas
+            DetailIdText.Text = SelectedTicket.TicketId.ToString();
+            DetailTypeText.Text = SelectedTicket.TipoTicket.ToString();
+            DetailStatusText.Text = SelectedTicket.EstadoTicket.ToString();
+            DetailCreatedText.Text = SelectedTicket.DataCriacao.ToString("dd/MM/yyyy HH:mm");
+
+            // Cronologia
+            DetailAttendedText.Text = SelectedTicket.DataAtendimento?.ToString("dd/MM/yyyy HH:mm") ?? "Não atendido";
+            DetailTechnicianText.Text = string.IsNullOrWhiteSpace(SelectedTicket.TecnicoId)
+                ? "Não atribuído"
+                : SelectedTicket.TecnicoId; // Aqui você pode carregar o nome do técnico
+
+            // Detalhes específicos
+            DetailSpecificInfoText.Text = SelectedTicket.GetInformacaoEspecifica();
+
+            ShowStatus($"Exibindo detalhes do ticket #{SelectedTicket.TicketId}");
         }
 
-        private void UpdateStatistics()
+        #endregion
+
+        #region Métodos Auxiliares
+
+        /// <summary>
+        /// Obtém detalhes completos do ticket formatados
+        /// </summary>
+        private string GetFullTicketDetails(Ticket ticket)
         {
-            // Se quiseres mostrar estatísticas em labels da janela (total, resolvidos, etc.)
-            // Exemplo:
-            // TotalTicketsTextBlock.Text = _allTickets.Count.ToString();
-            // ResolvedTicketsTextBlock.Text = _allTickets.Count(t => t.EstadoAtendimento == EstadoAtendimento.Resolvido).ToString();
+            var details = $"TICKET #{ticket.TicketId}\n";
+            details += new string('=', 40) + "\n\n";
+
+            details += $"Tipo: {ticket.TipoTicket}\n";
+            details += $"Estado: {ticket.EstadoTicket}\n";
+            details += $"Criado em: {ticket.DataCriacao:dd/MM/yyyy HH:mm}\n";
+
+            if (ticket.DataAtendimento.HasValue)
+            {
+                details += $"Atendido em: {ticket.DataAtendimento:dd/MM/yyyy HH:mm}\n";
+            }
+
+            if (!string.IsNullOrWhiteSpace(ticket.TecnicoId))
+            {
+                details += $"Técnico: {ticket.TecnicoId}\n";
+            }
+
+            details += "\nDetalhes Específicos:\n";
+            details += new string('-', 20) + "\n";
+            details += ticket.GetInformacaoEspecifica();
+
+            if (ticket.EstadoAtendimento.HasValue)
+            {
+                details += $"\n\nEstado do Atendimento: {ticket.EstadoAtendimento}";
+            }
+
+            return details;
+        }
+
+        /// <summary>
+        /// Mostra status na barra inferior
+        /// </summary>
+        private void ShowStatus(string message)
+        {
+            StatusText.Text = message;
+        }
+
+        /// <summary>
+        /// Mostra mensagem para o utilizador
+        /// </summary>
+        private void ShowMessage(string message, string title = "Informação",
+                                MessageBoxImage icon = MessageBoxImage.Information)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, icon);
         }
 
         #endregion
@@ -453,11 +641,37 @@ namespace Ticket2Help.UI
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
+
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// Extensões para a classe Ticket para exibição na UI
+    /// </summary>
+    public static class TicketExtensions
+    {
+        /// <summary>
+        /// Obtém um resumo da descrição para exibição na lista
+        /// </summary>
+        public static string GetResumoDescricao(this Ticket ticket)
+        {
+            var info = ticket.GetInformacaoEspecifica();
+            if (string.IsNullOrWhiteSpace(info))
+                return "Sem descrição";
+
+            // Pegar apenas a primeira linha ou os primeiros 100 caracteres
+            var lines = info.Split('\n');
+            var firstLine = lines[0];
+
+            if (firstLine.Length > 100)
+                return firstLine.Substring(0, 100) + "...";
+
+            return firstLine;
+        }
     }
 }

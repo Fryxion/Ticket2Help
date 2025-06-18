@@ -1,0 +1,227 @@
+﻿<Window x:Class="Ticket2Help.UI.Windows.RelatoriosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Relatórios - Ticket2Help" 
+        Height="700" 
+        Width="1000"
+        MinHeight="600" 
+        MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <!-- Estilos para melhor acessibilidade e aparência -->
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+        <Style x:Key="SectionBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#FAFAFA"/>
+        </Style>
+
+        <Style x:Key="AccessibleButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#1F618D"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#95A5A6"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cabeçalho -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBlock Text="📊" FontSize="24" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <StackPanel>
+                <TextBlock Text="Relatórios do Sistema" 
+                          FontSize="20" 
+                          FontWeight="Bold" 
+                          Foreground="#2C3E50"/>
+                <TextBlock x:Name="txtUsuarioLogado" 
+                          Text="Utilizador: [Nome]" 
+                          FontSize="12" 
+                          Foreground="#7F8C8D"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Filtros e Configurações -->
+        <Border Grid.Row="1" Style="{StaticResource SectionBorderStyle}">
+            <StackPanel>
+                <TextBlock Text="Configurações do Relatório" Style="{StaticResource HeaderTextStyle}"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Tipo de Relatório -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+                        <Label Content="Tipo de Relatório:" 
+                               Target="{Binding ElementName=cmbTipoRelatorio}"
+                               FontWeight="Bold"/>
+                        <ComboBox x:Name="cmbTipoRelatorio" 
+                                  SelectionChanged="CmbTipoRelatorio_SelectionChanged"
+                                  AutomationProperties.Name="Tipo de relatório"
+                                  AutomationProperties.HelpText="Selecione o tipo de relatório que deseja gerar">
+                            <ComboBoxItem Content="Resumo Geral" IsSelected="True"/>
+                            <ComboBoxItem Content="Tickets por Técnico"/>
+                            <ComboBoxItem Content="Estatísticas por Período"/>
+                            <ComboBoxItem Content="Desempenho do Sistema"/>
+                            <ComboBoxItem Content="Relatório de Hardware"/>
+                            <ComboBoxItem Content="Relatório de Software"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Período -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+                        <Label Content="Data Início:" 
+                               Target="{Binding ElementName=dpDataInicio}"
+                               FontWeight="Bold"/>
+                        <DatePicker x:Name="dpDataInicio" 
+                                    SelectedDate="{x:Static sys:DateTime.Today}"
+                                    AutomationProperties.Name="Data de início do relatório"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2" Margin="5">
+                        <Label Content="Data Fim:" 
+                               Target="{Binding ElementName=dpDataFim}"
+                               FontWeight="Bold"/>
+                        <DatePicker x:Name="dpDataFim" 
+                                    SelectedDate="{x:Static sys:DateTime.Today}"
+                                    AutomationProperties.Name="Data de fim do relatório"/>
+                    </StackPanel>
+
+                    <!-- Filtros Adicionais -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="5"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="5"/>
+
+                    <!-- Botões de Ação -->
+                    <StackPanel Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" 
+                                Orientation="Vertical" 
+                                VerticalAlignment="Center" 
+                                Margin="10,0,0,0">
+                        <Button x:Name="btnGerar" 
+                                Content="📋 Gerar Relatório" 
+                                Style="{StaticResource AccessibleButtonStyle}"
+                                Click="BtnGerar_Click"
+                                AutomationProperties.Name="Gerar relatório"
+                                AutomationProperties.HelpText="Gera o relatório com os filtros selecionados"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Período Rápido -->
+                <StackPanel Orientation="Horizontal" Margin="5,10,5,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Área de Conteúdo do Relatório -->
+        <Border Grid.Row="2" Style="{StaticResource SectionBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Cabeçalho do Relatório -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock x:Name="txtTituloRelatorio" 
+                              Text="Selecione um tipo de relatório e clique em 'Gerar Relatório'" 
+                              Style="{StaticResource HeaderTextStyle}"
+                              FontSize="16"/>
+                    <TextBlock x:Name="txtStatusGeracao" 
+                              Text="" 
+                              FontStyle="Italic" 
+                              Foreground="#E74C3C" 
+                              Margin="20,0,0,0"
+                              VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Conteúdo Dinâmico -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ContentControl x:Name="contentRelatorio">
+                        <!-- Conteúdo será inserido dinamicamente -->
+                        <StackPanel>
+                            <TextBlock Text="📋 Bem-vindo aos Relatórios do Ticket2Help!" 
+                                      FontSize="18" 
+                                      FontWeight="Bold" 
+                                      HorizontalAlignment="Center" 
+                                      Margin="0,50,0,20"/>
+
+                            <StackPanel Margin="20,0,0,0"/>
+                        </StackPanel>
+                    </ContentControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- Barra de Status -->
+        <Border Grid.Row="3" 
+                Background="#34495E" 
+                CornerRadius="3" 
+                Margin="0,10,0,0">
+            <Grid Margin="10,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="txtStatus" 
+                          Grid.Column="0"
+                          Text="Pronto" 
+                          Foreground="White" 
+                          VerticalAlignment="Center"/>
+
+                <Button x:Name="btnFechar" 
+                       Grid.Column="2"
+                       Content="✖️ Fechar" 
+                       Style="{StaticResource AccessibleButtonStyle}"
+                       Background="#E74C3C"
+                       Click="BtnFechar_Click"
+                       AutomationProperties.Name="Fechar janela de relatórios"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

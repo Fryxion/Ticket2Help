@@ -7,6 +7,50 @@
       "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\registowindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\registowindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\loginview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\loginview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\registowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\registowindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\relatorioswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\relatorioswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\relatorioswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\relatorioswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\atenderticketswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\atenderticketswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\viewticketswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\viewticketswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -15,8 +59,16 @@
       "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\viewticketswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|g:\\trabalho\\ticket2help\\ticket2help.bll\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE7C1D20-F60B-4782-B6C7-CE182EBEA893}|Ticket2Help.BLL\\Ticket2Help.BLL.csproj|solutionrelative:ticket2help.bll\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\createticketwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\createticketwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0196613-969E-4BD2-833C-6D19513378ED}|Ticket2Help.DAL\\Ticket2Help.DAL.csproj|g:\\trabalho\\ticket2help\\ticket2help.dal\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0196613-969E-4BD2-833C-6D19513378ED}|Ticket2Help.DAL\\Ticket2Help.DAL.csproj|solutionrelative:ticket2help.dal\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|g:\\trabalho\\ticket2help\\ticket2help.ui\\createticketwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F7FBAB-B905-4530-BD6A-EA1005E7CBC5}|Ticket2Help.UI\\Ticket2Help.UI.csproj|solutionrelative:ticket2help.ui\\createticketwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,8 +77,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 31,
-          "SelectedChildIndex": 5,
+          "DockedHeight": 35,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,33 +90,196 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\User.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.BLL\\User.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\User.cs",
+              "RelativeToolTip": "Ticket2Help.BLL\\User.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAjwIsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T05:30:48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "UserService.cs",
               "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\UserService.cs",
               "RelativeDocumentMoniker": "Ticket2Help.BLL\\UserService.cs",
               "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\UserService.cs",
               "RelativeToolTip": "Ticket2Help.BLL\\UserService.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAqwKgAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAkwIYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T01:28:38.303Z",
+              "WhenOpened": "2025-06-18T05:28:09.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginView.xaml.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\LoginView.xaml.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\LoginView.xaml.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\LoginView.xaml.cs",
+              "RelativeToolTip": "Ticket2Help.UI\\LoginView.xaml.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAcwG4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T05:02:42.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginView.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\LoginView.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\LoginView.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\LoginView.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\LoginView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T05:02:32.657Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "RegistoWindow.xaml.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RegistoWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\RegistoWindow.xaml.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RegistoWindow.xaml.cs",
+              "RelativeToolTip": "Ticket2Help.UI\\RegistoWindow.xaml.cs",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAjwLgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T05:00:31.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegistoWindow.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RegistoWindow.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\RegistoWindow.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RegistoWindow.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\RegistoWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T04:59:49.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RelatoriosWindow.xaml.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RelatoriosWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\RelatoriosWindow.xaml.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RelatoriosWindow.xaml.cs",
+              "RelativeToolTip": "Ticket2Help.UI\\RelatoriosWindow.xaml.cs",
+              "ViewState": "AgIAADwBAAAAAAAAAAAUwFMBAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T04:08:19.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RelatoriosWindow.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RelatoriosWindow.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\RelatoriosWindow.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\RelatoriosWindow.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\RelatoriosWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T04:08:14.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\MainWindow.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T02:46:48.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TicketController.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\TicketController.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.BLL\\TicketController.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.BLL\\TicketController.cs",
+              "RelativeToolTip": "Ticket2Help.BLL\\TicketController.cs",
+              "ViewState": "AgIAAHIBAAAAAAAAAIAywIIBAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T02:45:19.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AtenderTicketsWindow.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\AtenderTicketsWindow.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\AtenderTicketsWindow.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\AtenderTicketsWindow.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\AtenderTicketsWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T02:43:10.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TicketRepository.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\TicketRepository.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.DAL\\TicketRepository.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\TicketRepository.cs",
+              "RelativeToolTip": "Ticket2Help.DAL\\TicketRepository.cs",
+              "ViewState": "AgIAANEAAAAAAAAAAAAxwNEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T02:17:58.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CreateTicketWindow.xaml.cs",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\CreateTicketWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\CreateTicketWindow.xaml.cs",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\CreateTicketWindow.xaml.cs",
+              "RelativeToolTip": "Ticket2Help.UI\\CreateTicketWindow.xaml.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAawC8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T02:14:59.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CreateTicketWindow.xaml",
+              "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\CreateTicketWindow.xaml",
+              "RelativeDocumentMoniker": "Ticket2Help.UI\\CreateTicketWindow.xaml",
+              "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\CreateTicketWindow.xaml",
+              "RelativeToolTip": "Ticket2Help.UI\\CreateTicketWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T02:14:34.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "ViewTicketsWindow.xaml.cs",
               "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\ViewTicketsWindow.xaml.cs",
               "RelativeDocumentMoniker": "Ticket2Help.UI\\ViewTicketsWindow.xaml.cs",
               "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\ViewTicketsWindow.xaml.cs",
               "RelativeToolTip": "Ticket2Help.UI\\ViewTicketsWindow.xaml.cs",
-              "ViewState": "AgIAAHIBAAAAAAAAAAAAAIgBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAiwLsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T00:04:36.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "ViewTicketsWindow.xaml",
               "DocumentMoniker": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\ViewTicketsWindow.xaml",
               "RelativeDocumentMoniker": "Ticket2Help.UI\\ViewTicketsWindow.xaml",
@@ -82,7 +297,7 @@
               "RelativeDocumentMoniker": "Ticket2Help.UI\\MainWindow.xaml.cs",
               "ToolTip": "G:\\trabalho\\Ticket2Help\\Ticket2Help.UI\\MainWindow.xaml.cs",
               "RelativeToolTip": "Ticket2Help.UI\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAAwLYAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAuwHcAAABdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T23:25:40.316Z",
               "EditorCaption": ""
@@ -90,7 +305,7 @@
           ]
         },
         {
-          "DockedHeight": 5,
+          "DockedHeight": 1,
           "SelectedChildIndex": -1,
           "Children": [
             {

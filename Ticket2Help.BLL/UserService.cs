@@ -133,7 +133,7 @@ namespace Ticket2Help.BLL.Services
 
                 // Mapear para DAL e definir password
                 var dalUser = ModelMapper.MapToDal(user);
-                dalUser.PasswordHash = HashPassword(password);
+                dalUser.PasswordHash = password;
 
                 return _userRepository.InsertUser(dalUser);
             });

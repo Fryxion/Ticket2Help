@@ -187,3 +187,11 @@ G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\MainWindow.g.cs
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\MainWindow.baml
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\ViewTicketsWindow.baml
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\ViewTicketsWindow.g.cs
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\CreateTicketWindow.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\CreateTicketWindow.g.cs
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\AtenderTicketsWindow.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\AtenderTicketsWindow.g.cs
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\RelatoriosWindow.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\RelatoriosWindow.g.cs
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\RegistoWindow.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\RegistoWindow.g.cs

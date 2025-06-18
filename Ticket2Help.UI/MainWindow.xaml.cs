@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Ticket2Help.BLL.Controllers;
 using Ticket2Help.BLL.Models;
+using Ticket2Help.UI.Windows;
 
 namespace Ticket2Help.UI
 {
@@ -116,12 +117,12 @@ namespace Ticket2Help.UI
                 var endDate = DateTime.Now;
                 var startDate = endDate.AddDays(-30); // Últimos 30 dias
 
-                //var summary = await _controller.TicketService.GetDashboardSummaryAsync(startDate, endDate);
+                var summary = await _controller.GetDashboardSummaryAsync(startDate, endDate);
 
                 // Atualizar interface
-                //TotalTicketsText.Text = summary.TotalTickets.ToString();
-                //PendingTicketsText.Text = (summary.TotalTickets - summary.TicketsAtendidos).ToString();
-                //ResolvedTicketsText.Text = summary.TicketsResolvidos.ToString();
+                TotalTicketsText.Text = summary.Data.TotalTickets.ToString();
+                PendingTicketsText.Text = (summary.Data.TotalTickets - summary.Data.TicketsAtendidos).ToString();
+                ResolvedTicketsText.Text = summary.Data.TicketsResolvidos.ToString();
 
                 HideLoading();
             }
@@ -202,7 +203,29 @@ namespace Ticket2Help.UI
                 await Task.Delay(1000);
 
                 HideLoading();
-                ShowMessage("Funcionalidade 'Criar Ticket' em desenvolvimento.", "Informação", MessageBoxImage.Information);
+                var createTicketWindow = new CreateTicketWindow(_currentUser, _controller);
+                createTicketWindow.Owner = this;
+
+                var result = createTicketWindow.ShowDialog();
+
+                // Se ticket foi criado com sucesso
+                if (result == true && createTicketWindow.TicketCreated)
+                {
+                    var ticketId = createTicketWindow.CreatedTicketId;
+
+                    ShowMessage(
+                        $"✅ Ticket #{ticketId} criado com sucesso!\n\n" +
+                        "Seu ticket foi adicionado à fila de atendimento.\n" +
+                        "Você pode acompanhar o status na área 'Meus Tickets'.",
+                        "Ticket Criado",
+                        MessageBoxImage.Information);
+
+                    // Atualizar estatísticas se for técnico/admin
+                    if (_currentUser.PodeAtenderTickets())
+                    {
+                        await LoadQuickStatsAsync();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -224,7 +247,17 @@ namespace Ticket2Help.UI
                 await Task.Delay(1000);
 
                 HideLoading();
-                ShowMessage("Funcionalidade 'Atender Tickets' em desenvolvimento.", "Informação", MessageBoxImage.Information);
+
+                // Criar e mostrar a janela
+                var janelaAtendimento = new AtenderTicketsWindow(_currentUser, _controller);
+
+                // Configurar como janela modal (opcional)
+                // janelaAtendimento.Owner = this; // se for chamado de uma janela pai
+
+                // Mostrar a janela
+                janelaAtendimento.ShowDialog(); // Modal
+                                                // ou
+                                                // janelaAtendimento.Show(); // Não modal
             }
             catch (Exception ex)
             {
@@ -246,7 +279,10 @@ namespace Ticket2Help.UI
                 await Task.Delay(1000);
 
                 HideLoading();
-                ShowMessage("Funcionalidade 'Relatórios' em desenvolvimento.", "Informação", MessageBoxImage.Information);
+
+                var relatoriosWindow = new RelatoriosWindow(_currentUser, _controller);
+                relatoriosWindow.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

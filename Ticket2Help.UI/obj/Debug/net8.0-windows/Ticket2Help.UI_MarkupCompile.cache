@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 G:\trabalho\Ticket2Help\Ticket2Help.UI\App.xaml
-31238692822
+7-1807676194
 
-6-242054829
+10-260932242
 2231825751171
-LoginView.xaml;MainWindow.xaml;ViewTicketsWindow.xaml;
+AtenderTicketsWindow.xaml;CreateTicketWindow.xaml;LoginView.xaml;MainWindow.xaml;RegistoWindow.xaml;RelatoriosWindow.xaml;ViewTicketsWindow.xaml;
 
 False
 
