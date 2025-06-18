@@ -25,7 +25,7 @@ namespace Ticket2Help.DAL.Data
         public DatabaseContext()
         {
             // Obtém a string de conexão do ficheiro app.config
-            _connectionString = "Server=localhost\\SQLEXPRESS;Initial Catalog=Ticket2HelpDb;Persist Security Info=True;User ID=sa;Password=123;Trust Server Certificate=True";
+            _connectionString = "Server=CARIB1977\\SQLEXPRESS;Initial Catalog=Ticket2HelpDb;Persist Security Info=True;User ID=sa;Password=123;Trust Server Certificate=True";
         }
 
         /// <summary>

@@ -1,0 +1,81 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Controllers.\+Ticket\+Controller Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller}{}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller}\index{Ticket2Help.BLL.Controllers.TicketController@{Ticket2Help.BLL.Controllers.TicketController}}
+
+
+Controller principal para gestão de tickets Implementa o padrão MVC -\/ Controller Faz a mediação entre a \doxylink{namespace_ticket2_help_1_1_u_i}{UI} e os serviços de negócio.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a9d52d0267a3332e4c94c5cf0afd688fc}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a9d52d0267a3332e4c94c5cf0afd688fc} 
+{\bfseries Ticket\+Controller} (\mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service}{ITicket\+Service}} ticket\+Service, \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service}{IUser\+Service}} user\+Service, \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service}{IStatistics\+Service}} statistics\+Service=null)
+\begin{DoxyCompactList}\small\item\em Construtor do controller. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_aa6270a3c013ed5906a874542bb908df9}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_aa6270a3c013ed5906a874542bb908df9} 
+async Task$<$ Operation\+Result$<$ int $>$ $>$ {\bfseries Create\+Hardware\+Ticket\+Async} (string colaborador\+Id, string equipamento, string avaria)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket de hardware. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a5f65e5020c63ef61dc82ed8cd23922b1}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a5f65e5020c63ef61dc82ed8cd23922b1} 
+async Task$<$ Operation\+Result$<$ int $>$ $>$ {\bfseries Create\+Software\+Ticket\+Async} (string colaborador\+Id, string software, string descricao\+Necessidade)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket de software. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a700b776d4f34a4a51af417a63d1ddb3a}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a700b776d4f34a4a51af417a63d1ddb3a} 
+async Task$<$ Operation\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ $>$ {\bfseries Get\+User\+Tickets\+Async} (string colaborador\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém os tickets de um colaborador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a2b6aee43e4be204a249602c42c3c06e3}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a2b6aee43e4be204a249602c42c3c06e3} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ {\bfseries Get\+Ticket\+By\+Id\+Async} (int ticket\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém um ticket pelo ID. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_aaf3593542c8f99bbd93266b2cbea5ad7}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_aaf3593542c8f99bbd93266b2cbea5ad7} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ {\bfseries Get\+Next\+Ticket\+For\+Attendance\+Async} ()
+\begin{DoxyCompactList}\small\item\em Obtém o próximo ticket para atendimento. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a2f327e93b658e5883f59b4d7126f9a62}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a2f327e93b658e5883f59b4d7126f9a62} 
+async Task$<$ Operation\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ $>$ {\bfseries Get\+Pending\+Tickets\+Async} ()
+\begin{DoxyCompactList}\small\item\em Obtém todos os tickets pendentes. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_afc6ddca25d29d45f0d9bfb643dd00396}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_afc6ddca25d29d45f0d9bfb643dd00396} 
+async Task$<$ Operation\+Result$<$ bool $>$ $>$ {\bfseries Attend\+Ticket\+Async} (int ticket\+Id, string technician\+Id)
+\begin{DoxyCompactList}\small\item\em Atende um ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a685ffa77f1845486506cdc57aa762c77}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a685ffa77f1845486506cdc57aa762c77} 
+async Task$<$ Operation\+Result$<$ bool $>$ $>$ {\bfseries Complete\+Hardware\+Ticket\+Async} (int ticket\+Id, \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} attendance\+Status, string repair\+Description, string parts=null)
+\begin{DoxyCompactList}\small\item\em Completa o atendimento de um ticket de hardware. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a2db14341bcfe2b02ab29c2b38f249129}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a2db14341bcfe2b02ab29c2b38f249129} 
+async Task$<$ Operation\+Result$<$ bool $>$ $>$ {\bfseries Complete\+Software\+Ticket\+Async} (int ticket\+Id, \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} attendance\+Status, string intervention\+Description)
+\begin{DoxyCompactList}\small\item\em Completa o atendimento de um ticket de software. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_afe6b37d0e9f53cb1c8fb0bfa3ede51bc}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_afe6b37d0e9f53cb1c8fb0bfa3ede51bc} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ $>$ {\bfseries Authenticate\+User\+Async} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Autentica utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ae126e0b4d226b57e8091eefc290026ba}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ae126e0b4d226b57e8091eefc290026ba} 
+async Task$<$ Operation\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ $>$ $>$ {\bfseries Get\+Active\+Technicians\+Async} ()
+\begin{DoxyCompactList}\small\item\em Obtém técnicos ativos. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ab9dab7b1ce836e8fbda8990fb71a92ae}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ab9dab7b1ce836e8fbda8990fb71a92ae} 
+async Task$<$ Operation\+Result$<$ bool $>$ $>$ {\bfseries Create\+User\+Async} (\mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} user, string password)
+\begin{DoxyCompactList}\small\item\em Cria um novo utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a09c888bc364eec21a269e6d4bc69fef9}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a09c888bc364eec21a269e6d4bc69fef9} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ $>$ {\bfseries Generate\+Dashboard\+Statistics\+Async} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Gera estatísticas do dashboard para um período. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ad233606e90de9d0d0e0d59f054e209c0}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ad233606e90de9d0d0e0d59f054e209c0} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ $>$ {\bfseries Generate\+Current\+Month\+Statistics\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gera estatísticas para o mês atual. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a5fdcd421ef4f9818aa07416fc7e8d840}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a5fdcd421ef4f9818aa07416fc7e8d840} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ $>$ {\bfseries Generate\+Last30\+Days\+Statistics\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gera estatísticas para os últimos 30 dias. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ab90785bad665ce01d37231da5e2194cd}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_ab90785bad665ce01d37231da5e2194cd} 
+async Task$<$ Operation\+Result$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_summary}{Dashboard\+Summary}} $>$ $>$ {\bfseries Get\+Dashboard\+Summary\+Async} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Obtém resumo simples do dashboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a30ca48177077e95682101f7a93feac86}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_a30ca48177077e95682101f7a93feac86} 
+Event\+Handler$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_event_args}{Ticket\+Event\+Args}} $>$ {\bfseries Ticket\+Created}
+\begin{DoxyCompactList}\small\item\em Evento disparado quando um ticket é criado. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_adb73b37324bc9b1f18748b896df828db}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_adb73b37324bc9b1f18748b896df828db} 
+Event\+Handler$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_event_args}{Ticket\+Event\+Args}} $>$ {\bfseries Ticket\+Attended}
+\begin{DoxyCompactList}\small\item\em Evento disparado quando um ticket é atendido. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_aa8a442f3ab4821180ae3c9d5fb52f9d1}\label{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_controller_aa8a442f3ab4821180ae3c9d5fb52f9d1} 
+Event\+Handler$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_controllers_1_1_ticket_event_args}{Ticket\+Event\+Args}} $>$ {\bfseries Attendance\+Completed}
+\begin{DoxyCompactList}\small\item\em Evento disparado quando um atendimento é completado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller principal para gestão de tickets Implementa o padrão MVC -\/ Controller Faz a mediação entre a \doxylink{namespace_ticket2_help_1_1_u_i}{UI} e os serviços de negócio. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/Ticket\+Controller.\+cs\end{DoxyCompactItemize}

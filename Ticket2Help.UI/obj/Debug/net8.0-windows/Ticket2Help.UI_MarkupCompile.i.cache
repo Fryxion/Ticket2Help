@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\
+C:\Users\carib\Downloads\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\
 Ticket2Help.UI
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-G:\trabalho\Ticket2Help\Ticket2Help.UI\App.xaml
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+C:\Users\carib\Downloads\Ticket2Help\Ticket2Help.UI\App.xaml
 7-1807676194
 
 121524716694
-2231825751171
+223-1790969946
 AtenderTicketsWindow.xaml;CreateTicketWindow.xaml;LoginView.xaml;MainWindow.xaml;RegistoWindow.xaml;RelatoriosWindow.xaml;ViewTicketsWindow.xaml;
 
 False

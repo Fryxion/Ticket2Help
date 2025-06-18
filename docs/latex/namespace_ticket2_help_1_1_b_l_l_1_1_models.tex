@@ -1,0 +1,73 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Models Namespace Reference}
+\hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models}{}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models}\index{Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_hardware_ticket}{Hardware\+Ticket}}
+\begin{DoxyCompactList}\small\item\em Classe que representa um ticket de serviços de hardware. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket}{Software\+Ticket}}
+\begin{DoxyCompactList}\small\item\em Classe que representa um ticket de serviços de software Herda da classe base \doxylink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket} e implementa funcionalidades específicas de software. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}}
+\begin{DoxyCompactList}\small\item\em Classe base abstrata para todos os tipos de tickets Adaptada para compatibilidade com seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}}
+\begin{DoxyCompactList}\small\item\em Classe que representa um utilizador do sistema Contém informações básicas e permissões do utilizador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_ab0c7650dbd95dc92573bb918b9603706}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_ab0c7650dbd95dc92573bb918b9603706} 
+enum \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ab0c7650dbd95dc92573bb918b9603706}{Estado\+Ticket}} \{ {\bfseries Por\+Atender} = 0
+, {\bfseries Em\+Atendimento} = 1
+, {\bfseries Atendido} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeração para os estados do ticket (compatível com seu DAL) \end{DoxyCompactList}\item 
+\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1} 
+enum \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} \{ {\bfseries Aberto} = 0
+, {\bfseries Resolvido} = 1
+, {\bfseries Nao\+Resolvido} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeração para os estados de atendimento (compatível com seu DAL) \end{DoxyCompactList}\item 
+\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_ae579a93cd260362f7d6d6185951ee2fd}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_ae579a93cd260362f7d6d6185951ee2fd} 
+enum \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ae579a93cd260362f7d6d6185951ee2fd}{Tipo\+Ticket}} \{ {\bfseries Hardware} = 0
+, {\bfseries Software} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeração para os tipos de ticket (compatível com seu DAL) \end{DoxyCompactList}\item 
+\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_aeb2b6932e7a9b54065fa4db376907fa0}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_aeb2b6932e7a9b54065fa4db376907fa0} 
+enum \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aeb2b6932e7a9b54065fa4db376907fa0}{Tipo\+Utilizador}} \{ {\bfseries Colaborador} = 0
+, {\bfseries Tecnico} = 1
+, {\bfseries Administrador} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeração para tipos de utilizador (compatível com seu DAL) \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ff}{User\+Role}} \{ \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffa8f9bfe9d1345237cb3b2b205864da075}{User}} = 0
+, \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffaf08343fd09a97d71be54810f2eb372b9}{Technician}} = 1
+, \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffa7b7bc2512ee1fedcd76bdc68926d4f7b}{Administrator}} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeração para os tipos de utilizador no sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ff}\index{Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}!UserRole@{UserRole}}
+\index{UserRole@{UserRole}!Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}}
+\doxysubsubsection{\texorpdfstring{UserRole}{UserRole}}
+{\footnotesize\ttfamily \label{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ff} 
+enum \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ff}{Ticket2\+Help.\+BLL.\+Models.\+User\+Role}}}
+
+
+
+Enumeração para os tipos de utilizador no sistema. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{User@{User}!Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}}\index{Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}!User@{User}}}\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffa8f9bfe9d1345237cb3b2b205864da075}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffa8f9bfe9d1345237cb3b2b205864da075} 
+User&Utilizador comum que pode criar tickets. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Technician@{Technician}!Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}}\index{Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}!Technician@{Technician}}}\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffaf08343fd09a97d71be54810f2eb372b9}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffaf08343fd09a97d71be54810f2eb372b9} 
+Technician&Técnico de helpdesk que pode atender tickets. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Administrator@{Administrator}!Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}}\index{Ticket2Help.BLL.Models@{Ticket2Help.BLL.Models}!Administrator@{Administrator}}}\Hypertarget{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffa7b7bc2512ee1fedcd76bdc68926d4f7b}\label{namespace_ticket2_help_1_1_b_l_l_1_1_models_aa88d5bc237d62abfdbf2707b60ef18ffa7b7bc2512ee1fedcd76bdc68926d4f7b} 
+Administrator&Administrador do sistema. \\
+\hline
+
+\end{DoxyEnumFields}

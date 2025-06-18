@@ -1,0 +1,71 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Models.\+User Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}\index{Ticket2Help.BLL.Models.User@{Ticket2Help.BLL.Models.User}}
+
+
+Classe que representa um utilizador do sistema Contém informações básicas e permissões do utilizador.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_acf0328681faf44280a08e55ad9cc212f}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_acf0328681faf44280a08e55ad9cc212f} 
+{\bfseries User} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_acc7157de6be4e450b1ef73350ba478c8}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_acc7157de6be4e450b1ef73350ba478c8} 
+bool {\bfseries Is\+Tecnico} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o utilizador é técnico. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_acb496dd120165789998b4177f07c8e7e}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_acb496dd120165789998b4177f07c8e7e} 
+bool {\bfseries Is\+Administrador} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o utilizador é administrador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a38befcdc275527cfad8ce8ab1d8a9c6a}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a38befcdc275527cfad8ce8ab1d8a9c6a} 
+bool {\bfseries Pode\+Criar\+Tickets} ()
+\begin{DoxyCompactList}\small\item\em Verifica se pode criar tickets. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_adc78334ee030de948145389071967a20}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_adc78334ee030de948145389071967a20} 
+bool {\bfseries Pode\+Atender\+Tickets} ()
+\begin{DoxyCompactList}\small\item\em Verifica se pode atender tickets. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a36c73ea519414e43aca03f79c5919462}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a36c73ea519414e43aca03f79c5919462} 
+string {\bfseries Get\+Descricao\+Tipo} ()
+\begin{DoxyCompactList}\small\item\em Obtém descrição do tipo de utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a2541bf5f452bc98c3120196985f81fe7}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a2541bf5f452bc98c3120196985f81fe7} 
+bool {\bfseries Is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Validação básica do utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a468c0673969a8d2158c84f349dea66c8}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a468c0673969a8d2158c84f349dea66c8} 
+override string {\bfseries To\+String} ()
+\begin{DoxyCompactList}\small\item\em Representação string do utilizador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_ae0068d9e714dfa95e4ea585f92c6b627}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_ae0068d9e714dfa95e4ea585f92c6b627} 
+string {\bfseries User\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID único do utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a0d1bf3cca2f5ce50ab3be89a04aa91d8}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a0d1bf3cca2f5ce50ab3be89a04aa91d8} 
+string {\bfseries Username}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nome de utilizador para login. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a6225675c47e8733994d76013842905f4}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a6225675c47e8733994d76013842905f4} 
+string {\bfseries Password\+Hash}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Hash da password. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a439d03b88d72408fdfed16bd77e7475d}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a439d03b88d72408fdfed16bd77e7475d} 
+string {\bfseries Nome}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nome completo do utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_ab1944deb58e95ee0be0dce2c5bdfda15}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_ab1944deb58e95ee0be0dce2c5bdfda15} 
+string {\bfseries Email}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Email do utilizador. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_ae52f29d773bb4cc96646d9a2805945e2}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_ae52f29d773bb4cc96646d9a2805945e2} 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_aeb2b6932e7a9b54065fa4db376907fa0}{Tipo\+Utilizador}} {\bfseries Tipo\+Utilizador}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tipo/\+Papel do utilizador no sistema. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_af3e52928707df31dbe1811ff06f854eb}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_af3e52928707df31dbe1811ff06f854eb} 
+bool {\bfseries Ativo}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indica se o utilizador está ativo. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a63852d4c64b0be7b254a304be22a7b4e}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user_a63852d4c64b0be7b254a304be22a7b4e} 
+Date\+Time {\bfseries Data\+Criacao}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Data de criação da conta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa um utilizador do sistema Contém informações básicas e permissões do utilizador. 
+
+Classe que representa um utilizador do sistema Compatível com a tabela Users do seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/User.\+cs\end{DoxyCompactItemize}

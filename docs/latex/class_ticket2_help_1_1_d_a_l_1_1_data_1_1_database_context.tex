@@ -1,0 +1,215 @@
+\doxysection{Ticket2\+Help.\+DAL.\+Data.\+Database\+Context Class Reference}
+\hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{}\label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+
+
+Classe responsável pela gestão da conexão com a base de dados SQL Server.  
+
+
+Inheritance diagram for Ticket2\+Help.\+DAL.\+Data.\+Database\+Context\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a0180d5a6828f7a320ad3e1afb9c37898}\label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a0180d5a6828f7a320ad3e1afb9c37898} 
+{\bfseries Database\+Context} ()
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o contexto da base de dados. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a5287aa0a0b87c5f701b5cf404b06d219}{Database\+Context}} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Construtor que permite especificar uma string de conexão personalizada. \end{DoxyCompactList}\item 
+Sql\+Connection \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a8d5a593577c6390fefa833aac72ddd70}{Get\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Obtém uma conexão ativa com a base de dados. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a3c3b70da984a0fc652bbc87404409e42}{Test\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Testa se a conexão com a base de dados está funcional. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a2532f459bb9762d858b572ad82f147bf}{Execute\+Non\+Query}} (string command\+Text, params Sql\+Parameter\mbox{[}$\,$\mbox{]} parameters)
+\begin{DoxyCompactList}\small\item\em Executa um comando SQL que não retorna dados (INSERT, UPDATE, DELETE) \end{DoxyCompactList}\item 
+object \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a968ff6609ab3c746752eae6d099c81b6}{Execute\+Scalar}} (string command\+Text, params Sql\+Parameter\mbox{[}$\,$\mbox{]} parameters)
+\begin{DoxyCompactList}\small\item\em Executa um comando SQL que retorna um valor único (COUNT, MAX, etc.) \end{DoxyCompactList}\item 
+Sql\+Data\+Reader \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_aadad68252e9aa4de74a8431b5444b3b7}{Execute\+Reader}} (string command\+Text, params Sql\+Parameter\mbox{[}$\,$\mbox{]} parameters)
+\begin{DoxyCompactList}\small\item\em Executa um comando SQL que retorna dados (SELECT) \end{DoxyCompactList}\item 
+Data\+Table \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a40a985256ad10225ef0c34382298b7f3}{Execute\+Data\+Table}} (string command\+Text, params Sql\+Parameter\mbox{[}$\,$\mbox{]} parameters)
+\begin{DoxyCompactList}\small\item\em Executa um comando SQL e retorna um Data\+Table com os resultados. \end{DoxyCompactList}\item 
+Sql\+Transaction \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_afed560d6da69a9e25ae42383f3ec10d3}{Begin\+Transaction}} (Isolation\+Level isolation\+Level=Isolation\+Level.\+Read\+Committed)
+\begin{DoxyCompactList}\small\item\em Inicia uma transação na base de dados. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a4242a6aeec1c757cec7a7922357f7b1d}\label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a4242a6aeec1c757cec7a7922357f7b1d} 
+void {\bfseries Dispose} ()
+\begin{DoxyCompactList}\small\item\em Implementação do padrão Dispose para libertar recursos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_abf941748a7faafd9f996de3cef00e279}{Dispose}} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Método protegido para libertar recursos geridos e não geridos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe responsável pela gestão da conexão com a base de dados SQL Server. 
+
+\label{doc-constructors}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a5287aa0a0b87c5f701b5cf404b06d219}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!DatabaseContext@{DatabaseContext}}
+\index{DatabaseContext@{DatabaseContext}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{DatabaseContext()}{DatabaseContext()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a5287aa0a0b87c5f701b5cf404b06d219} 
+Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Database\+Context (\begin{DoxyParamCaption}\item[{string}]{connection\+String}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que permite especificar uma string de conexão personalizada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & String de conexão personalizada\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_afed560d6da69a9e25ae42383f3ec10d3}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!BeginTransaction@{BeginTransaction}}
+\index{BeginTransaction@{BeginTransaction}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{BeginTransaction()}{BeginTransaction()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_afed560d6da69a9e25ae42383f3ec10d3} 
+Sql\+Transaction Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Begin\+Transaction (\begin{DoxyParamCaption}\item[{Isolation\+Level}]{isolation\+Level}{ = {\ttfamily IsolationLevel\+:\+:ReadCommitted}}\end{DoxyParamCaption})}
+
+
+
+Inicia uma transação na base de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isolation\+Level} & Nível de isolamento da transação\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objeto Sql\+Transaction para controlar a transação
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_abf941748a7faafd9f996de3cef00e279}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_abf941748a7faafd9f996de3cef00e279} 
+virtual void Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Método protegido para libertar recursos geridos e não geridos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & Indica se deve libertar recursos geridos\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a40a985256ad10225ef0c34382298b7f3}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!ExecuteDataTable@{ExecuteDataTable}}
+\index{ExecuteDataTable@{ExecuteDataTable}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{ExecuteDataTable()}{ExecuteDataTable()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a40a985256ad10225ef0c34382298b7f3} 
+Data\+Table Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Execute\+Data\+Table (\begin{DoxyParamCaption}\item[{string}]{command\+Text}{, }\item[{params Sql\+Parameter\mbox{[}$\,$\mbox{]}}]{parameters}{}\end{DoxyParamCaption})}
+
+
+
+Executa um comando SQL e retorna um Data\+Table com os resultados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Text} & Comando SQL a executar\\
+\hline
+{\em parameters} & Parâmetros do comando\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Table com os dados retornados
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a2532f459bb9762d858b572ad82f147bf}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!ExecuteNonQuery@{ExecuteNonQuery}}
+\index{ExecuteNonQuery@{ExecuteNonQuery}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{ExecuteNonQuery()}{ExecuteNonQuery()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a2532f459bb9762d858b572ad82f147bf} 
+int Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Execute\+Non\+Query (\begin{DoxyParamCaption}\item[{string}]{command\+Text}{, }\item[{params Sql\+Parameter\mbox{[}$\,$\mbox{]}}]{parameters}{}\end{DoxyParamCaption})}
+
+
+
+Executa um comando SQL que não retorna dados (INSERT, UPDATE, DELETE) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Text} & Comando SQL a executar\\
+\hline
+{\em parameters} & Parâmetros do comando\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Número de linhas afetadas
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_aadad68252e9aa4de74a8431b5444b3b7}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!ExecuteReader@{ExecuteReader}}
+\index{ExecuteReader@{ExecuteReader}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{ExecuteReader()}{ExecuteReader()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_aadad68252e9aa4de74a8431b5444b3b7} 
+Sql\+Data\+Reader Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Execute\+Reader (\begin{DoxyParamCaption}\item[{string}]{command\+Text}{, }\item[{params Sql\+Parameter\mbox{[}$\,$\mbox{]}}]{parameters}{}\end{DoxyParamCaption})}
+
+
+
+Executa um comando SQL que retorna dados (SELECT) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Text} & Comando SQL a executar\\
+\hline
+{\em parameters} & Parâmetros do comando\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sql\+Data\+Reader com os dados retornados
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a968ff6609ab3c746752eae6d099c81b6}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!ExecuteScalar@{ExecuteScalar}}
+\index{ExecuteScalar@{ExecuteScalar}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{ExecuteScalar()}{ExecuteScalar()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a968ff6609ab3c746752eae6d099c81b6} 
+object Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Execute\+Scalar (\begin{DoxyParamCaption}\item[{string}]{command\+Text}{, }\item[{params Sql\+Parameter\mbox{[}$\,$\mbox{]}}]{parameters}{}\end{DoxyParamCaption})}
+
+
+
+Executa um comando SQL que retorna um valor único (COUNT, MAX, etc.) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Text} & Comando SQL a executar\\
+\hline
+{\em parameters} & Parâmetros do comando\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valor escalar retornado pelo comando
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a8d5a593577c6390fefa833aac72ddd70}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!GetConnection@{GetConnection}}
+\index{GetConnection@{GetConnection}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{GetConnection()}{GetConnection()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a8d5a593577c6390fefa833aac72ddd70} 
+Sql\+Connection Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Get\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma conexão ativa com a base de dados. 
+
+\begin{DoxyReturn}{Returns}
+Conexão SQL ativa
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a3c3b70da984a0fc652bbc87404409e42}\index{Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}!TestConnection@{TestConnection}}
+\index{TestConnection@{TestConnection}!Ticket2Help.DAL.Data.DatabaseContext@{Ticket2Help.DAL.Data.DatabaseContext}}
+\doxysubsubsection{\texorpdfstring{TestConnection()}{TestConnection()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context_a3c3b70da984a0fc652bbc87404409e42} 
+bool Ticket2\+Help.\+DAL.\+Data.\+Database\+Context.\+Test\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Testa se a conexão com a base de dados está funcional. 
+
+\begin{DoxyReturn}{Returns}
+True se a conexão está operacional, False caso contrário
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+DAL/Database\+Context.\+cs\end{DoxyCompactItemize}

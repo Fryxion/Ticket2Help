@@ -1,0 +1,240 @@
+\doxysection{Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository Class Reference}
+\hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository}{}\label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+
+
+Implementação concreta do repositório de utilizadores para SQL Server.  
+
+
+Inheritance diagram for Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a21222dedf758f26dc80e06e6efa101c9}{User\+Repository}} (\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o repositório com o contexto da base de dados. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a3d3e0d71a8a48c6669590c185acc664b}{Authenticate\+User}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Autentica um utilizador com username e password. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a097c3be1f9c2492f4744426f125e404b}{Get\+User\+By\+Id}} (string user\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém um utilizador pelo seu ID. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a059017a2e72fe22fcb49ab3c8a3daa21}{Get\+All\+Users}} ()
+\begin{DoxyCompactList}\small\item\em Obtém todos os utilizadores da base de dados. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_af78cd6b9228876acf0036ea910a0a8b9}{Get\+Users\+By\+Tipo}} (\mbox{\hyperlink{namespace_ticket2_help_1_1_d_a_l_1_1_models_a07c66ff9f8eb8201db0950f86137c99f}{Tipo\+Utilizador}} tipo\+Utilizador)
+\begin{DoxyCompactList}\small\item\em Obtém utilizadores filtrados por tipo (Técnico ou Colaborador) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a49408335b7cdb6eb7e0576c5466604fa}{Insert\+User}} (\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} user)
+\begin{DoxyCompactList}\small\item\em Insere um novo utilizador na base de dados. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a7179e860f335262c0b5c5161e86bbb70}{Update\+User}} (\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} user)
+\begin{DoxyCompactList}\small\item\em Atualiza um utilizador existente na base de dados. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a83317eedfccbacbe4309051ad98abf92}{Delete\+User}} (string user\+Id)
+\begin{DoxyCompactList}\small\item\em Remove um utilizador da base de dados (desativa em vez de remover) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a4f9ce9f0795ead45eb15e12e91aaae46}{Username\+Exists}} (string username)
+\begin{DoxyCompactList}\small\item\em Verifica se um username já existe na base de dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação concreta do repositório de utilizadores para SQL Server. 
+
+\label{doc-constructors}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a21222dedf758f26dc80e06e6efa101c9}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!UserRepository@{UserRepository}}
+\index{UserRepository@{UserRepository}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UserRepository()}{UserRepository()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a21222dedf758f26dc80e06e6efa101c9} 
+Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+User\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa o repositório com o contexto da base de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Contexto da base de dados\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a3d3e0d71a8a48c6669590c185acc664b}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!AuthenticateUser@{AuthenticateUser}}
+\index{AuthenticateUser@{AuthenticateUser}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AuthenticateUser()}{AuthenticateUser()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a3d3e0d71a8a48c6669590c185acc664b} 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Authenticate\+User (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Autentica um utilizador com username e password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Nome de utilizador\\
+\hline
+{\em password} & Password do utilizador\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Utilizador autenticado ou null se as credenciais forem inválidas
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_a7d0769444c2649e4d65b9fee64d1a0db}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a83317eedfccbacbe4309051ad98abf92}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!DeleteUser@{DeleteUser}}
+\index{DeleteUser@{DeleteUser}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteUser()}{DeleteUser()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a83317eedfccbacbe4309051ad98abf92} 
+bool Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Delete\+User (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Remove um utilizador da base de dados (desativa em vez de remover) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & ID do utilizador a ser removido\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se a remoção foi bem-\/sucedida, False caso contrário
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_ae87579f99bbf8d42dbf5e57adbf6a697}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a059017a2e72fe22fcb49ab3c8a3daa21}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!GetAllUsers@{GetAllUsers}}
+\index{GetAllUsers@{GetAllUsers}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllUsers()}{GetAllUsers()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a059017a2e72fe22fcb49ab3c8a3daa21} 
+List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} $>$ Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Get\+All\+Users (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém todos os utilizadores da base de dados. 
+
+\begin{DoxyReturn}{Returns}
+Lista de todos os utilizadores
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_a509438c001094cab4053e0675d9527de}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a097c3be1f9c2492f4744426f125e404b}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!GetUserById@{GetUserById}}
+\index{GetUserById@{GetUserById}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserById()}{GetUserById()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a097c3be1f9c2492f4744426f125e404b} 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Get\+User\+By\+Id (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém um utilizador pelo seu ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & ID do utilizador\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Utilizador encontrado ou null se não existir
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_a1592d75d0034ce21fd1b100df6ebb274}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_af78cd6b9228876acf0036ea910a0a8b9}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!GetUsersByTipo@{GetUsersByTipo}}
+\index{GetUsersByTipo@{GetUsersByTipo}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUsersByTipo()}{GetUsersByTipo()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_af78cd6b9228876acf0036ea910a0a8b9} 
+List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}} $>$ Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Get\+Users\+By\+Tipo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_ticket2_help_1_1_d_a_l_1_1_models_a07c66ff9f8eb8201db0950f86137c99f}{Tipo\+Utilizador}}}]{tipo\+Utilizador}{}\end{DoxyParamCaption})}
+
+
+
+Obtém utilizadores filtrados por tipo (Técnico ou Colaborador) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tipo\+Utilizador} & Tipo de utilizador\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de utilizadores do tipo especificado
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_a7bb1b1002f4821ed72a83f2d818baf3f}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a49408335b7cdb6eb7e0576c5466604fa}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!InsertUser@{InsertUser}}
+\index{InsertUser@{InsertUser}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{InsertUser()}{InsertUser()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a49408335b7cdb6eb7e0576c5466604fa} 
+bool Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Insert\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Insere um novo utilizador na base de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Utilizador a ser inserido\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se a inserção foi bem-\/sucedida, False caso contrário
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_ad74b5292db382697304581d5a05fc850}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a7179e860f335262c0b5c5161e86bbb70}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!UpdateUser@{UpdateUser}}
+\index{UpdateUser@{UpdateUser}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateUser()}{UpdateUser()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a7179e860f335262c0b5c5161e86bbb70} 
+bool Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Update\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_models_1_1_user}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza um utilizador existente na base de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Utilizador com dados atualizados\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se a atualização foi bem-\/sucedida, False caso contrário
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_a96833b8a2ed1bf153e1a98faf7fc805d}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a4f9ce9f0795ead45eb15e12e91aaae46}\index{Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}!UsernameExists@{UsernameExists}}
+\index{UsernameExists@{UsernameExists}!Ticket2Help.DAL.Repositories.UserRepository@{Ticket2Help.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UsernameExists()}{UsernameExists()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_user_repository_a4f9ce9f0795ead45eb15e12e91aaae46} 
+bool Ticket2\+Help.\+DAL.\+Repositories.\+User\+Repository.\+Username\+Exists (\begin{DoxyParamCaption}\item[{string}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se um username já existe na base de dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Username a verificar\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se o username já existe, False caso contrário
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository_ace287bd1abe48d2b10e5a3473ca65c5b}{Ticket2\+Help.\+DAL.\+Repositories.\+IUser\+Repository}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+DAL/User\+Repository.\+cs\end{DoxyCompactItemize}

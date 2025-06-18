@@ -1,0 +1,217 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service}{}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+
+
+Implementação do serviço de tickets Contém a lógica de negócio para gestão de tickets.  
+
+
+Inheritance diagram for Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ab9b9958aa984c093335089f2bbb14155}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ab9b9958aa984c093335089f2bbb14155} 
+{\bfseries Ticket\+Service} (\mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_ticket_repository}{ITicket\+Repository}} ticket\+Repository, \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\begin{DoxyCompactList}\small\item\em Construtor do serviço. \end{DoxyCompactList}\item 
+async Task$<$ int $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_acdfe4f0fd108c77417d2a8e00513264d}{Create\+Hardware\+Ticket\+Async}} (string colaborador\+Id, string equipamento, string avaria)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket de hardware. \end{DoxyCompactList}\item 
+async Task$<$ int $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a6c9ee1dbb065c5d4504c9464a3eb2db5}{Create\+Software\+Ticket\+Async}} (string colaborador\+Id, string software, string descricao\+Necessidade)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket de software. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a523e907b211d9e23c3d20981abc9e850}{Get\+Ticket\+By\+Id\+Async}} (int ticket\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém um ticket pelo ID. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_af8015f38405fcfbf3b3c19cc8e0f9ac4}{Get\+User\+Tickets\+Async}} (string colaborador\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém todos os tickets de um colaborador. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_adf56784d99ef7926388c2e8b20a61040}{Get\+Next\+Ticket\+For\+Attendance\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o próximo ticket para atendimento (FIFO) \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a940e00ba144133782aef62cb2a78a5f9}{Attend\+Ticket\+Async}} (int ticket\+Id, string technician\+Id)
+\begin{DoxyCompactList}\small\item\em Atende um ticket. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ab7d2348b17fe52a3857f68c0c5da5c9a}{Complete\+Hardware\+Ticket\+Async}} (int ticket\+Id, \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} status, string descricao\+Reparacao, string pecas=null)
+\begin{DoxyCompactList}\small\item\em Completa o atendimento de um ticket de hardware. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a32177b98d4f0b103cde30dbcf4f433bd}{Complete\+Software\+Ticket\+Async}} (int ticket\+Id, \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} status, string descricao\+Intervencao)
+\begin{DoxyCompactList}\small\item\em Completa o atendimento de um ticket de software. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_aa8d0c30986d086f64feb03fafe334396}{Get\+Pending\+Tickets\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém todos os tickets pendentes. \end{DoxyCompactList}\item 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_aa71057e84ec8079293e8e5419420e13c}{Get\+Ticket\+Statistics\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Obtém estatísticas de tickets. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ae67f86da3f84252ab16d7175b7951d70}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ae67f86da3f84252ab16d7175b7951d70} 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ {\bfseries Get\+Tickets\+By\+Status\+Async} (\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ab0c7650dbd95dc92573bb918b9603706}{Estado\+Ticket}} estado)
+\begin{DoxyCompactList}\small\item\em Obtém tickets por estado específico. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a3281f20678a58ad8e09c57516c8e8a5d}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a3281f20678a58ad8e09c57516c8e8a5d} 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ {\bfseries Get\+Tickets\+By\+Date\+Range\+Async} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Obtém tickets por intervalo de datas. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ae7df43a7bc825b7c3818c81744495c11}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ae7df43a7bc825b7c3818c81744495c11} 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ {\bfseries Get\+All\+Tickets\+Async} ()
+\begin{DoxyCompactList}\small\item\em Obtém todos os tickets. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_summary}{Dashboard\+Summary}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a55537b0e7023a19eedba618fbd5d588c}{Get\+Dashboard\+Summary\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Obtém estatísticas resumidas para dashboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação do serviço de tickets Contém a lógica de negócio para gestão de tickets. 
+
+\label{doc-func-members}
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a940e00ba144133782aef62cb2a78a5f9}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!AttendTicketAsync@{AttendTicketAsync}}
+\index{AttendTicketAsync@{AttendTicketAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{AttendTicketAsync()}{AttendTicketAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a940e00ba144133782aef62cb2a78a5f9} 
+async Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Attend\+Ticket\+Async (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{, }\item[{string}]{technician\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Atende um ticket. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_a18a5e3e734f29c1a1e2a7675476f701c}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ab7d2348b17fe52a3857f68c0c5da5c9a}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!CompleteHardwareTicketAsync@{CompleteHardwareTicketAsync}}
+\index{CompleteHardwareTicketAsync@{CompleteHardwareTicketAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{CompleteHardwareTicketAsync()}{CompleteHardwareTicketAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_ab7d2348b17fe52a3857f68c0c5da5c9a} 
+async Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Complete\+Hardware\+Ticket\+Async (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{, }\item[{\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}}}]{status}{, }\item[{string}]{descricao\+Reparacao}{, }\item[{string}]{pecas}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Completa o atendimento de um ticket de hardware. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_ac19f784cb50d010b5e134c6a96e7a448}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a32177b98d4f0b103cde30dbcf4f433bd}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!CompleteSoftwareTicketAsync@{CompleteSoftwareTicketAsync}}
+\index{CompleteSoftwareTicketAsync@{CompleteSoftwareTicketAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{CompleteSoftwareTicketAsync()}{CompleteSoftwareTicketAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a32177b98d4f0b103cde30dbcf4f433bd} 
+async Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Complete\+Software\+Ticket\+Async (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{, }\item[{\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}}}]{status}{, }\item[{string}]{descricao\+Intervencao}{}\end{DoxyParamCaption})}
+
+
+
+Completa o atendimento de um ticket de software. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_a5af9b470b09ad56e3161114b1a22ce84}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_acdfe4f0fd108c77417d2a8e00513264d}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!CreateHardwareTicketAsync@{CreateHardwareTicketAsync}}
+\index{CreateHardwareTicketAsync@{CreateHardwareTicketAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{CreateHardwareTicketAsync()}{CreateHardwareTicketAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_acdfe4f0fd108c77417d2a8e00513264d} 
+async Task$<$ int $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Create\+Hardware\+Ticket\+Async (\begin{DoxyParamCaption}\item[{string}]{colaborador\+Id}{, }\item[{string}]{equipamento}{, }\item[{string}]{avaria}{}\end{DoxyParamCaption})}
+
+
+
+Cria um novo ticket de hardware. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_a7731e4616d0ea2308b5eb33784ad3585}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a6c9ee1dbb065c5d4504c9464a3eb2db5}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!CreateSoftwareTicketAsync@{CreateSoftwareTicketAsync}}
+\index{CreateSoftwareTicketAsync@{CreateSoftwareTicketAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{CreateSoftwareTicketAsync()}{CreateSoftwareTicketAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a6c9ee1dbb065c5d4504c9464a3eb2db5} 
+async Task$<$ int $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Create\+Software\+Ticket\+Async (\begin{DoxyParamCaption}\item[{string}]{colaborador\+Id}{, }\item[{string}]{software}{, }\item[{string}]{descricao\+Necessidade}{}\end{DoxyParamCaption})}
+
+
+
+Cria um novo ticket de software. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_ae0288b590667f298e2e7b789cf700771}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a55537b0e7023a19eedba618fbd5d588c}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!GetDashboardSummaryAsync@{GetDashboardSummaryAsync}}
+\index{GetDashboardSummaryAsync@{GetDashboardSummaryAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{GetDashboardSummaryAsync()}{GetDashboardSummaryAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a55537b0e7023a19eedba618fbd5d588c} 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_summary}{Dashboard\+Summary}} $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Get\+Dashboard\+Summary\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Obtém estatísticas resumidas para dashboard. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_abcd9600fe3f6737fbe9cdc4dd9081acb}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_adf56784d99ef7926388c2e8b20a61040}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!GetNextTicketForAttendanceAsync@{GetNextTicketForAttendanceAsync}}
+\index{GetNextTicketForAttendanceAsync@{GetNextTicketForAttendanceAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{GetNextTicketForAttendanceAsync()}{GetNextTicketForAttendanceAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_adf56784d99ef7926388c2e8b20a61040} 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Get\+Next\+Ticket\+For\+Attendance\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém o próximo ticket para atendimento (FIFO) 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_ab22562f52ea1fd89589431f425dda220}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_aa8d0c30986d086f64feb03fafe334396}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!GetPendingTicketsAsync@{GetPendingTicketsAsync}}
+\index{GetPendingTicketsAsync@{GetPendingTicketsAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{GetPendingTicketsAsync()}{GetPendingTicketsAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_aa8d0c30986d086f64feb03fafe334396} 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Get\+Pending\+Tickets\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém todos os tickets pendentes. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_a6a9f136694f276afcbb9457a7bbc3bbc}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a523e907b211d9e23c3d20981abc9e850}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!GetTicketByIdAsync@{GetTicketByIdAsync}}
+\index{GetTicketByIdAsync@{GetTicketByIdAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{GetTicketByIdAsync()}{GetTicketByIdAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_a523e907b211d9e23c3d20981abc9e850} 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Get\+Ticket\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém um ticket pelo ID. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_aeaf6fd2e6ec7339b35f4a3d276619acc}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_aa71057e84ec8079293e8e5419420e13c}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!GetTicketStatisticsAsync@{GetTicketStatisticsAsync}}
+\index{GetTicketStatisticsAsync@{GetTicketStatisticsAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{GetTicketStatisticsAsync()}{GetTicketStatisticsAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_aa71057e84ec8079293e8e5419420e13c} 
+async Task$<$ Dictionary$<$ string, object $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Get\+Ticket\+Statistics\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Obtém estatísticas de tickets. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_a315159e72b9e979600b9dbfbc85ca5bd}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_af8015f38405fcfbf3b3c19cc8e0f9ac4}\index{Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}!GetUserTicketsAsync@{GetUserTicketsAsync}}
+\index{GetUserTicketsAsync@{GetUserTicketsAsync}!Ticket2Help.BLL.Services.TicketService@{Ticket2Help.BLL.Services.TicketService}}
+\doxysubsubsection{\texorpdfstring{GetUserTicketsAsync()}{GetUserTicketsAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_ticket_service_af8015f38405fcfbf3b3c19cc8e0f9ac4} 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket}} $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Ticket\+Service.\+Get\+User\+Tickets\+Async (\begin{DoxyParamCaption}\item[{string}]{colaborador\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém todos os tickets de um colaborador. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_ticket_service_a2493deb0c3846ddc5c46818477b6ec34}{Ticket2\+Help.\+BLL.\+Services.\+ITicket\+Service}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/Ticket\+Service.\+cs\end{DoxyCompactItemize}

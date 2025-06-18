@@ -242,42 +242,6 @@
                             </UniformGrid>
                         </StackPanel>
 
-                        <!-- Botões de Administrador (Ocultos por padrão) -->
-                        <StackPanel x:Name="AdminActions" Visibility="Collapsed" Margin="0,10,0,0">
-                            
-                            <Separator Background="#E0E0E0" Margin="0,20" Height="1"/>
-                            
-                            <TextBlock Text="Ações de Administrador" 
-                                      FontWeight="Bold" 
-                                      Margin="0,0,0,15"
-                                      AutomationProperties.Name="Secção de acções exclusivas para administradores"/>
-
-                            <UniformGrid Columns="2">
-                                
-                                <Button x:Name="ManageUsersButton" 
-                                       Style="{StaticResource SecondaryButton}"
-                                       Click="ManageUsersButton_Click"
-                                       TabIndex="5"
-                                       AutomationProperties.HelpText="Gerir utilizadores do sistema">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="👥" FontSize="18" Margin="0,0,10,0"/>
-                                        <TextBlock Text="Gerir Utilizadores"/>
-                                    </StackPanel>
-                                </Button>
-
-                                <Button x:Name="SystemSettingsButton" 
-                                       Style="{StaticResource SecondaryButton}"
-                                       Click="SystemSettingsButton_Click"
-                                       TabIndex="6"
-                                       AutomationProperties.HelpText="Configurar definições do sistema">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="⚙️" FontSize="18" Margin="0,0,10,0"/>
-                                        <TextBlock Text="Configurações"/>
-                                    </StackPanel>
-                                </Button>
-
-                            </UniformGrid>
-                        </StackPanel>
 
                     </StackPanel>
                 </Border>

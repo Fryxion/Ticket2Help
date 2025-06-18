@@ -1,0 +1,36 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Services.\+Report\+Generator Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator}{}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator}\index{Ticket2Help.BLL.Services.ReportGenerator@{Ticket2Help.BLL.Services.ReportGenerator}}
+
+
+Classe para gerar relatórios detalhados usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a3f0bd91b9b28f03c9cfee536a4cac9ab}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a3f0bd91b9b28f03c9cfee536a4cac9ab} 
+{\bfseries Report\+Generator} (\mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service}{IStatistics\+Service}} statistics\+Service, \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_ticket_repository}{ITicket\+Repository}} ticket\+Repository, \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a0e6e833285cd70d7e297676008142e93}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a0e6e833285cd70d7e297676008142e93} 
+async Task$<$ string $>$ {\bfseries Generate\+Complete\+Text\+Report\+Async} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Gera um relatório completo em texto usando dados do \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a392d86cf3a2f3f78dfa936bf85bb5d0d}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a392d86cf3a2f3f78dfa936bf85bb5d0d} 
+async Task$<$ string $>$ {\bfseries Generate\+Executive\+Summary\+Async} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Gera relatório executivo resumido usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a0a9a36dbbcf01a6f1a7d79554eebe28f}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a0a9a36dbbcf01a6f1a7d79554eebe28f} 
+async Task$<$ string $>$ {\bfseries Generate\+Current\+Month\+Report\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gera relatório mensal automaticamente. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a402d707e0d2d3927f0830cf3e0c57afe}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_a402d707e0d2d3927f0830cf3e0c57afe} 
+async Task$<$ string $>$ {\bfseries Generate\+Last30\+Days\+Report\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gera relatório dos últimos 30 dias. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_aa54f6f13006fb512b56f862ee7be4f89}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_report_generator_aa54f6f13006fb512b56f862ee7be4f89} 
+async Task$<$ string $>$ {\bfseries Generate\+Weekly\+Report\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gera relatório semanal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe para gerar relatórios detalhados usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/Statistics\+Service.\+cs\end{DoxyCompactItemize}

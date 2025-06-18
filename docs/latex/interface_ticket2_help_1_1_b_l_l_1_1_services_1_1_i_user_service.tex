@@ -1,0 +1,252 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service Interface Reference}
+\hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service}{}\label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+
+
+Interface para o serviço de utilizadores Define as operações de negócio relacionadas com utilizadores.  
+
+
+Inheritance diagram for Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a482137d6b2d96bebdb0ccd989eacaef6}{Authenticate\+Async}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Autentica um utilizador. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a2bfdb2de589cd43c3a7cf2ca4c709947}{Create\+User\+Async}} (\mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} user, string password)
+\begin{DoxyCompactList}\small\item\em Cria um novo utilizador. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_afcb05a8f451c4b67754f81506b5f8a13}{Get\+User\+By\+Id\+Async}} (string user\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém um utilizador pelo ID. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_ad90b71999a795589be10a663f0098451}{Get\+User\+By\+Username\+Async}} (string username)
+\begin{DoxyCompactList}\small\item\em Obtém um utilizador pelo nome de utilizador. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a67ff581f97ca3dab159aeb356bcb4abf}{Get\+Active\+Technicians\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém todos os técnicos ativos. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a3300b426bd0d836150d332d40bc52de0}{Update\+User\+Async}} (\mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} user)
+\begin{DoxyCompactList}\small\item\em Atualiza um utilizador. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_ac7aff862d515879c4d28b10c701ca537}{Change\+Password\+Async}} (string user\+Id, string current\+Password, string new\+Password)
+\begin{DoxyCompactList}\small\item\em Altera a password de um utilizador. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a47956558f2280f0b5a04962aaa260baa}{Set\+User\+Active\+Status\+Async}} (string user\+Id, bool is\+Active)
+\begin{DoxyCompactList}\small\item\em Ativa ou desativa um utilizador. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a2b4638fac77b575b49b70e30c563f425}{Username\+Exists\+Async}} (string username, string exclude\+User\+Id=null)
+\begin{DoxyCompactList}\small\item\em Verifica se um nome de utilizador já existe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface para o serviço de utilizadores Define as operações de negócio relacionadas com utilizadores. 
+
+\label{doc-func-members}
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a482137d6b2d96bebdb0ccd989eacaef6}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!AuthenticateAsync@{AuthenticateAsync}}
+\index{AuthenticateAsync@{AuthenticateAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{AuthenticateAsync()}{AuthenticateAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a482137d6b2d96bebdb0ccd989eacaef6} 
+Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Authenticate\+Async (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Autentica um utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Nome de utilizador\\
+\hline
+{\em password} & Password\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Utilizador autenticado ou null
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_a752a66614513b9998a8220783ffc59e0}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_ac7aff862d515879c4d28b10c701ca537}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!ChangePasswordAsync@{ChangePasswordAsync}}
+\index{ChangePasswordAsync@{ChangePasswordAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{ChangePasswordAsync()}{ChangePasswordAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_ac7aff862d515879c4d28b10c701ca537} 
+Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Change\+Password\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{, }\item[{string}]{current\+Password}{, }\item[{string}]{new\+Password}{}\end{DoxyParamCaption})}
+
+
+
+Altera a password de um utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & ID do utilizador\\
+\hline
+{\em current\+Password} & Password atual\\
+\hline
+{\em new\+Password} & Nova password\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se bem-\/sucedido
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_a248cd10d0cb62dafdf22592408827844}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a2bfdb2de589cd43c3a7cf2ca4c709947}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!CreateUserAsync@{CreateUserAsync}}
+\index{CreateUserAsync@{CreateUserAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{CreateUserAsync()}{CreateUserAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a2bfdb2de589cd43c3a7cf2ca4c709947} 
+Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Create\+User\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}}}]{user}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Cria um novo utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Dados do utilizador\\
+\hline
+{\em password} & Password em texto limpo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se criado com sucesso
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_ab6827e13f1f2bdf1591c161318ddc422}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a67ff581f97ca3dab159aeb356bcb4abf}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!GetActiveTechniciansAsync@{GetActiveTechniciansAsync}}
+\index{GetActiveTechniciansAsync@{GetActiveTechniciansAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{GetActiveTechniciansAsync()}{GetActiveTechniciansAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a67ff581f97ca3dab159aeb356bcb4abf} 
+Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Get\+Active\+Technicians\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém todos os técnicos ativos. 
+
+\begin{DoxyReturn}{Returns}
+Lista de técnicos
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_ad245bea1219f90d643a973252d7363d1}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_afcb05a8f451c4b67754f81506b5f8a13}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!GetUserByIdAsync@{GetUserByIdAsync}}
+\index{GetUserByIdAsync@{GetUserByIdAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{GetUserByIdAsync()}{GetUserByIdAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_afcb05a8f451c4b67754f81506b5f8a13} 
+Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Get\+User\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém um utilizador pelo ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & ID do utilizador\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Utilizador encontrado
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_a676b199c7f6a0dd93c2ec14e4b01e618}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_ad90b71999a795589be10a663f0098451}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!GetUserByUsernameAsync@{GetUserByUsernameAsync}}
+\index{GetUserByUsernameAsync@{GetUserByUsernameAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{GetUserByUsernameAsync()}{GetUserByUsernameAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_ad90b71999a795589be10a663f0098451} 
+Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}} $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Get\+User\+By\+Username\+Async (\begin{DoxyParamCaption}\item[{string}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Obtém um utilizador pelo nome de utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Nome de utilizador\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Utilizador encontrado
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_a4f6892b3b35b67fe24bd0afea5800f1f}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a47956558f2280f0b5a04962aaa260baa}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!SetUserActiveStatusAsync@{SetUserActiveStatusAsync}}
+\index{SetUserActiveStatusAsync@{SetUserActiveStatusAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{SetUserActiveStatusAsync()}{SetUserActiveStatusAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a47956558f2280f0b5a04962aaa260baa} 
+Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Set\+User\+Active\+Status\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Id}{, }\item[{bool}]{is\+Active}{}\end{DoxyParamCaption})}
+
+
+
+Ativa ou desativa um utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & ID do utilizador\\
+\hline
+{\em is\+Active} & Estado ativo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se bem-\/sucedido
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_a8d632362d2f09720d6d0917f8a6a8c2f}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a3300b426bd0d836150d332d40bc52de0}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!UpdateUserAsync@{UpdateUserAsync}}
+\index{UpdateUserAsync@{UpdateUserAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{UpdateUserAsync()}{UpdateUserAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a3300b426bd0d836150d332d40bc52de0} 
+Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Update\+User\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_user}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza um utilizador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Utilizador a atualizar\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se bem-\/sucedido
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_aa98353543ba1898e57fee4944c774646}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+\Hypertarget{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a2b4638fac77b575b49b70e30c563f425}\index{Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}!UsernameExistsAsync@{UsernameExistsAsync}}
+\index{UsernameExistsAsync@{UsernameExistsAsync}!Ticket2Help.BLL.Services.IUserService@{Ticket2Help.BLL.Services.IUserService}}
+\doxysubsubsection{\texorpdfstring{UsernameExistsAsync()}{UsernameExistsAsync()}}
+{\footnotesize\ttfamily \label{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_user_service_a2b4638fac77b575b49b70e30c563f425} 
+Task$<$ bool $>$ Ticket2\+Help.\+BLL.\+Services.\+IUser\+Service.\+Username\+Exists\+Async (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{exclude\+User\+Id}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Verifica se um nome de utilizador já existe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Nome de utilizador\\
+\hline
+{\em exclude\+User\+Id} & ID do utilizador a excluir da verificação\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se já existe
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_user_service_ad3ce8e7a8a85d966a06357e227d7484d}{Ticket2\+Help.\+BLL.\+Services.\+User\+Service}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/User\+Service.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,204 @@
+\chapter{🎫 Ticket2\+Help }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{🎫 Ticket2Help@{🎫 Ticket2Help}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+\href{https://opensource.org/licenses/MIT}{\texttt{}} \href{https://dotnet.microsoft.com/download/dotnet-framework/net48}{\texttt{}} \href{https://docs.microsoft.com/en-us/dotnet/desktop/wpf/}{\texttt{}} \href{https://www.microsoft.com/en-us/sql-server}{\texttt{}}\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{📋 Sobre o Projeto}{📋 Sobre o Projeto}}\label{md__r_e_a_d_m_e_autotoc_md1}
+{\bfseries{\doxylink{namespace_ticket2_help}{Ticket2\+Help}}} é um sistema completo de gestão de tickets de helpdesk desenvolvido em {\bfseries{WPF (.NET Framework 4.\+8)}} com arquitetura em camadas. O sistema permite a criação, gestão e resolução de tickets de suporte técnico, oferecendo uma interface intuitiva e funcionalidades robustas para equipas de TI.\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{\texorpdfstring{✨ Características Principais}{✨ Características Principais}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item 🎯 {\bfseries{Sistema de Tickets Completo}} -\/ Criação, atribuição, acompanhamento e resolução
+\item 👥 {\bfseries{Gestão de Utilizadores}} -\/ Colaboradores, Técnicos e Administradores
+\item 📊 {\bfseries{Relatórios e Estatísticas}} -\/ Dashboard com métricas de desempenho
+\item ♿ {\bfseries{Totalmente Acessível}} -\/ Compatível com leitores de tela e navegação por teclado
+\item 🔒 {\bfseries{Segurança Robusta}} -\/ Autenticação e autorização
+\item 🎨 {\bfseries{Interface Moderna}} -\/ Design responsivo e intuitivo
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{🏗️ Arquitetura}{🏗️ Arquitetura}}\label{md__r_e_a_d_m_e_autotoc_md3}
+O projeto segue uma {\bfseries{arquitetura em camadas}} bem definida\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Ticket2Help/}
+\DoxyCodeLine{├──\ 📁\ Ticket2Help.UI/\ \ \ \ \ \ \ \ \ \ \#\ Interface\ do\ Utilizador\ (WPF)}
+\DoxyCodeLine{├──\ 📁\ Ticket2Help.BLL/\ \ \ \ \ \ \ \ \ \#\ Business\ Logic\ Layer}
+\DoxyCodeLine{├──\ 📁\ Ticket2Help.DAL/\ \ \ \ \ \ \ \ \ \#\ Data\ Access\ Layer}
+\DoxyCodeLine{│\ \ \ ├──\ Models/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Modelos\ de\ dados}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{🔧 Tecnologias Utilizadas}{🔧 Tecnologias Utilizadas}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\bfseries{Frontend}}\+: WPF (.NET Framework 4.\+8)
+\item {\bfseries{Backend}}\+: C\# com arquitetura em camadas
+\item {\bfseries{Base de Dados}}\+: SQL Server / SQL Server Express
+\item {\bfseries{ORM}}\+: ADO.\+NET (repositórios personalizados)
+\item {\bfseries{Documentação}}\+: XML Documentation
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{\texorpdfstring{🚀 Início Rápido}{🚀 Início Rápido}}\label{md__r_e_a_d_m_e_autotoc_md5}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{\texorpdfstring{📋 Pré-\/requisitos}{📋 Pré-\/requisitos}}\label{md__r_e_a_d_m_e_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Visual Studio 2019+}} ou {\bfseries{Visual Studio Code}}
+\item {\bfseries{.NET Framework 4.\+8}} ou superior
+\item {\bfseries{SQL Server}} ou {\bfseries{SQL Server Express}}
+\item {\bfseries{Windows 10+}} (para WPF)
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{💾 Instalação}{💾 Instalação}}\label{md__r_e_a_d_m_e_autotoc_md7}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone o repositório\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/Fryxion/Ticket2Help}
+\DoxyCodeLine{cd\ ticket2help}
+
+\end{DoxyCode}
+
+\item {\bfseries{Configure a base de dados\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{-\/-\/\ Execute\ os\ scripts\ SQL\ na\ Solução\ Ticket2Help.DAL}}
+\DoxyCodeLine{\textcolor{comment}{-\/-\/\ 1.\ database.sql}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Configure a string de conexão\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{<!-\/-\/\ No\ appsettings.json\ -\/>\ Ticket2Help.UI\ -\/-\/>}}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}ConnectionStrings"{}}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{stringliteral}{"{}DefaultConnection"{}}:\ \textcolor{stringliteral}{"{}Server=localhost\(\backslash\)\(\backslash\)SQLEXPRESS;Initial\ Catalog=Ticket2HelpDb;Persist\ Security\ Info=True;User\ ID=sa;Password=123;Trust\ Server\ Certificate=True"{}}}
+\DoxyCodeLine{\ \ \ \},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}Application"{}}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{stringliteral}{"{}Name"{}}:\ \textcolor{stringliteral}{"{}Ticket2Help"{}},}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{stringliteral}{"{}Version"{}}:\ \textcolor{stringliteral}{"{}1.0.0"{}},}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{stringliteral}{"{}DefaultAttendanceStrategy"{}}:\ \textcolor{stringliteral}{"{}FIFO"{}},}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{stringliteral}{"{}CreateDefaultUsers"{}}:\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\ \ \ \}}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \textcolor{comment}{<!-\/-\/\ No\ appsettings.json\ -\/>\ Ticket2Help.DAL\ -\/>\ DatabaseContext.cs\ -\/-\/>}}
+\DoxyCodeLine{\ \textcolor{keyword}{\_connectionString}\ -\/>\ \textcolor{keyword}{colocar}\ \textcolor{keyword}{igual}\ \textcolor{keyword}{ao}\ \textcolor{keyword}{DefaultConnection}\ \textcolor{keyword}{de}\ \textcolor{keyword}{cima}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Compile e execute\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Via\ Visual\ Studio:\ F5}
+\DoxyCodeLine{\ registar\ um\ utilizador\ e\ colocar\ como\ administrador\ na\ base\ de\ dados}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{📚 Funcionalidades}{📚 Funcionalidades}}\label{md__r_e_a_d_m_e_autotoc_md8}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{🎫 Gestão de Tickets}{🎫 Gestão de Tickets}}\label{md__r_e_a_d_m_e_autotoc_md9}
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Criação de Tickets}} -\/ Interface intuitiva para reportar problemas
+\item ✅ {\bfseries{Categorização}} -\/ Hardware, Software, Rede, etc.
+\item ✅ {\bfseries{Prioridades}} -\/ Baixa, Normal, Alta, Crítica
+\item ✅ {\bfseries{Estados}} -\/ Por Atender, Em Progresso, Resolvido, Fechado
+\item ✅ {\bfseries{Atribuição}} -\/ Automática ou manual para técnicos
+\item ✅ {\bfseries{Comentários}} -\/ Sistema de comunicação entre utilizadores e técnicos
+\item ✅ {\bfseries{Histórico}} -\/ Registo completo de todas as alterações
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{\texorpdfstring{👥 Gestão de Utilizadores}{👥 Gestão de Utilizadores}}\label{md__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Tipos de Utilizador\+:}}
+\begin{DoxyItemize}
+\item {\bfseries{Colaborador}} -\/ Pode criar e acompanhar tickets
+\item {\bfseries{Técnico}} -\/ Pode atender e resolver tickets
+\item {\bfseries{Administrador}} -\/ Acesso total ao sistema
+\end{DoxyItemize}
+\item ✅ {\bfseries{Perfis Personalizáveis}} -\/ Nome, email, departamento
+\item ✅ {\bfseries{Auditoria}} -\/ Registo de ações dos utilizadores
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsection{\texorpdfstring{📊 Relatórios e Estatísticas}{📊 Relatórios e Estatísticas}}\label{md__r_e_a_d_m_e_autotoc_md11}
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Dashboard Principal}} -\/ Visão geral do sistema
+\item ✅ {\bfseries{Relatórios Predefinidos\+:}}
+\begin{DoxyItemize}
+\item Resumo Geral
+\item Tickets por Técnico
+\item Estatísticas por Período
+\item Desempenho do Sistema
+\item Relatórios por Categoria (Hardware/\+Software)
+\end{DoxyItemize}
+\item ✅ {\bfseries{Filtros Avançados}} -\/ Por data, estado, técnico, categoria
+\item ✅ {\bfseries{Gráficos Interativos}} -\/ Visualização de dados em tempo real
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysubsection{\texorpdfstring{♿ Acessibilidade}{♿ Acessibilidade}}\label{md__r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Navegação por Teclado}} -\/ Tab, atalhos personalizados
+\item ✅ {\bfseries{Leitores de Tela}} -\/ Compatível com NVDA, JAWS
+\item ✅ {\bfseries{Tooltips Informativos}} -\/ Ajuda contextual
+\item ✅ {\bfseries{Tamanhos de Fonte}} -\/ Escaláveis para melhor legibilidade
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsection{\texorpdfstring{🔒 Segurança}{🔒 Segurança}}\label{md__r_e_a_d_m_e_autotoc_md13}
+O sistema implementa várias camadas de segurança\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Autorização}} -\/ Controlo de acesso baseado em roles
+\item {\bfseries{Validação}} -\/ Sanitização de inputs do utilizador
+\item {\bfseries{Sessões}} -\/ Gestão segura de sessões de utilizador
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysubsection{\texorpdfstring{🗄️ Base de Dados}{🗄️ Base de Dados}}\label{md__r_e_a_d_m_e_autotoc_md14}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{Estrutura Principal\+:}{Estrutura Principal\+:}}\label{md__r_e_a_d_m_e_autotoc_md15}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{-\/-\/\ Tabelas\ Principais}}
+\DoxyCodeLine{Users\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{-\/-\/\ Utilizadores\ do\ sistema}}
+\DoxyCodeLine{Tickets\ \ \ \ \ \ \ \ \ \textcolor{comment}{-\/-\/\ Tickets\ de\ suporte}}
+\DoxyCodeLine{Categories\ \ \ \ \ \ \textcolor{comment}{-\/-\/\ Categorias\ de\ tickets}}
+\DoxyCodeLine{Comments\ \ \ \ \ \ \ \ \textcolor{comment}{-\/-\/\ Comentários\ dos\ tickets}}
+\DoxyCodeLine{Attachments\ \ \ \ \ \textcolor{comment}{-\/-\/\ Anexos\ dos\ tickets}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md16}{}\doxysection{\texorpdfstring{🔌 Integração e API}{🔌 Integração e API}}\label{md__r_e_a_d_m_e_autotoc_md16}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md17}{}\doxysubsection{\texorpdfstring{Service\+Locator}{Service\+Locator}}\label{md__r_e_a_d_m_e_autotoc_md17}
+O sistema utiliza um Service\+Locator simples para injeção de dependências\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Configuração\ inicial}}
+\DoxyCodeLine{ServiceLocator.RegisterService<IUserService>(userService);}
+\DoxyCodeLine{ServiceLocator.RegisterService<ITicketService>(ticketService);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Uso}}
+\DoxyCodeLine{var\ userService\ =\ ServiceLocator.GetService<IUserService>();}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md18}{}\doxysubsection{\texorpdfstring{Extensões Personalizadas}{Extensões Personalizadas}}\label{md__r_e_a_d_m_e_autotoc_md18}
+Para adicionar funcionalidades personalizadas\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Implementar\ interface}}
+\DoxyCodeLine{\textcolor{keyword}{public}\ \textcolor{keyword}{class\ }CustomTicketService\ :\ ITicketService}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Sua\ implementação\ personalizada}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Registar\ no\ sistema}}
+\DoxyCodeLine{ServiceLocator.RegisterService<ITicketService>(\textcolor{keyword}{new}\ CustomTicketService());}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md19}{}\doxysection{\texorpdfstring{🧪 Testes}{🧪 Testes}}\label{md__r_e_a_d_m_e_autotoc_md19}
+O projeto inclui testes unitários abrangentes\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Executar\ todos\ os\ testes}
+\DoxyCodeLine{dotnet\ test}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Executar\ testes\ específicos}
+\DoxyCodeLine{dotnet\ test\ -\/-\/filter\ "{}Category=Unit"{}}
+\DoxyCodeLine{dotnet\ test\ -\/-\/filter\ "{}Category=Integration"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Gerar\ relatório\ de\ cobertura}
+\DoxyCodeLine{dotnet\ test\ -\/-\/collect:"{}XPlat\ Code\ Coverage"{}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md20}{}\doxysubsection{\texorpdfstring{📝 Padrões de Código\+:}{📝 Padrões de Código\+:}}\label{md__r_e_a_d_m_e_autotoc_md20}
+
+\begin{DoxyItemize}
+\item {\bfseries{Nomenclatura}}\+: Pascal\+Case para classes, camel\+Case para variáveis
+\item {\bfseries{Comentários}}\+: XML Documentation para métodos públicos
+\item {\bfseries{Testes}}\+: Mínimo 80\% de cobertura para novas funcionalidades
+\item {\bfseries{Commits}}\+: Mensagens descritivas em português 
+\end{DoxyItemize}

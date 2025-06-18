@@ -311,19 +311,38 @@ namespace Ticket2Help.BLL.Services
         {
             return await Task.Run(() =>
             {
-                var hwStats = _ticketRepository.GetTicketStatistics(DAL.Models.TipoTicket.Hardware, startDate, endDate);
-                var swStats = _ticketRepository.GetTicketStatistics(DAL.Models.TipoTicket.Software, startDate, endDate);
-
-                return new Dictionary<string, object>
+                try
                 {
-                    ["Hardware"] = hwStats,
-                    ["Software"] = swStats,
-                    ["DataInicio"] = startDate,
-                    ["DataFim"] = endDate,
-                    ["TotalTickets"] = Convert.ToInt32(hwStats["TotalTickets"]) + Convert.ToInt32(swStats["TotalTickets"]),
-                    ["TotalAtendidos"] = Convert.ToInt32(hwStats["TicketsAtendidos"]) + Convert.ToInt32(swStats["TicketsAtendidos"]),
-                    ["TotalResolvidos"] = Convert.ToInt32(hwStats["TicketsResolvidos"]) + Convert.ToInt32(swStats["TicketsResolvidos"])
-                };
+                    var hwStats = _ticketRepository.GetTicketStatistics(DAL.Models.TipoTicket.Hardware, startDate, endDate);
+                    var swStats = _ticketRepository.GetTicketStatistics(DAL.Models.TipoTicket.Software, startDate, endDate);
+
+                    return new Dictionary<string, object>
+                    {
+                        ["Hardware"] = hwStats,
+                        ["Software"] = swStats,
+                        ["DataInicio"] = startDate,
+                        ["DataFim"] = endDate,
+                        ["TotalTickets"] = Convert.ToInt32(hwStats["TotalTickets"]) + Convert.ToInt32(swStats["TotalTickets"]),
+                        ["TotalAtendidos"] = Convert.ToInt32(hwStats["TicketsAtendidos"]) + Convert.ToInt32(swStats["TicketsAtendidos"]),
+                        ["TotalResolvidos"] = Convert.ToInt32(hwStats["TicketsResolvidos"]) + Convert.ToInt32(swStats["TicketsResolvidos"])
+                    };
+
+                }catch(Exception e)
+                {
+                    return new Dictionary<string, object>
+                    {
+                        ["Hardware"] = 0,
+                        ["Software"] = 0,
+                        ["DataInicio"] = startDate,
+                        ["DataFim"] = endDate,
+                        ["TotalTickets"] = Convert.ToInt32(0) + Convert.ToInt32(0),
+                        ["TotalAtendidos"] = Convert.ToInt32(0) + Convert.ToInt32(0),
+                        ["TotalResolvidos"] = Convert.ToInt32(0) + Convert.ToInt32(0)
+
+                    };
+                }
+
+
             });
         }
 
@@ -371,6 +390,7 @@ namespace Ticket2Help.BLL.Services
             return await Task.Run(() =>
             {
                 var stats = GetTicketStatisticsAsync(startDate, endDate).Result;
+
 
                 var totalTickets = Convert.ToInt32(stats["TotalTickets"]);
                 var totalAtendidos = Convert.ToInt32(stats["TotalAtendidos"]);

@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['hardwareticket_0',['HardwareTicket',['../class_ticket2_help_1_1_b_l_l_1_1_models_1_1_hardware_ticket.html#af2abba7b6f30461ae7922d93d6c620f6',1,'Ticket2Help.BLL.Models.HardwareTicket.HardwareTicket()'],['../class_ticket2_help_1_1_b_l_l_1_1_models_1_1_hardware_ticket.html#afadbf09147dae37db7e03f50df160bf3',1,'Ticket2Help.BLL.Models.HardwareTicket.HardwareTicket(string colaboradorId, string equipamento, string avaria)'],['../class_ticket2_help_1_1_d_a_l_1_1_models_1_1_hardware_ticket.html#a5c3af15807b43944d36ebb9db8ac59fe',1,'Ticket2Help.DAL.Models.HardwareTicket.HardwareTicket()'],['../class_ticket2_help_1_1_d_a_l_1_1_models_1_1_hardware_ticket.html#a7eb67b149e6dc3d471d3236acc8d31fe',1,'Ticket2Help.DAL.Models.HardwareTicket.HardwareTicket(string colaboradorId, string equipamento, string avaria)']]]
+];

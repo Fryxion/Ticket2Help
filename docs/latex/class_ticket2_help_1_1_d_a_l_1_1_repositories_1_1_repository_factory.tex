@@ -1,0 +1,154 @@
+\doxysection{Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory Class Reference}
+\hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory}{}\label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+
+
+Factory responsável pela criação e gestão de repositórios Implementa o padrão Factory para criação de objetos de acesso a dados.  
+
+
+Inheritance diagram for Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a087675bcaba600a59a7749f9b46f17e9}\label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a087675bcaba600a59a7749f9b46f17e9} 
+{\bfseries Repository\+Factory} ()
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa a factory com um contexto de base de dados. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a45d645af55f2a738fa85bb287f1d05ab}{Repository\+Factory}} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Construtor que permite especificar uma string de conexão personalizada. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_aaac43b0c5eee5518829b5f1cb6d47f3e}{Repository\+Factory}} (\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}} context)
+\begin{DoxyCompactList}\small\item\em Construtor que permite injeção de dependência do contexto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_ticket_repository}{ITicket\+Repository}} \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a7ece7c9992f23ce10612e84911141998}{Get\+Ticket\+Repository}} ()
+\begin{DoxyCompactList}\small\item\em Obtém uma instância do repositório de tickets. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a23ef61cf8e7c4e35b39a61a256dbfcaf}{Get\+User\+Repository}} ()
+\begin{DoxyCompactList}\small\item\em Obtém uma instância do repositório de utilizadores. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}} \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a88e33d61683d0833273ee7582925e6a1}{Get\+Database\+Context}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o contexto da base de dados (para operações avançadas ou transações) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a6d297803730a7299467944243b42f551}{Test\+Database\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Testa a conectividade com a base de dados. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_adc8124690d5c488213edb82173345d9c}\label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_adc8124690d5c488213edb82173345d9c} 
+void {\bfseries Dispose} ()
+\begin{DoxyCompactList}\small\item\em Implementação do padrão Dispose para libertar recursos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a66b5ece511c17ec06298a705afbbc6d6}{Dispose}} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Método protegido para libertar recursos geridos e não geridos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory responsável pela criação e gestão de repositórios Implementa o padrão Factory para criação de objetos de acesso a dados. 
+
+\label{doc-constructors}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a45d645af55f2a738fa85bb287f1d05ab}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!RepositoryFactory@{RepositoryFactory}}
+\index{RepositoryFactory@{RepositoryFactory}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{RepositoryFactory()}{RepositoryFactory()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a45d645af55f2a738fa85bb287f1d05ab} 
+Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Repository\+Factory (\begin{DoxyParamCaption}\item[{string}]{connection\+String}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que permite especificar uma string de conexão personalizada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & String de conexão personalizada\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_aaac43b0c5eee5518829b5f1cb6d47f3e}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!RepositoryFactory@{RepositoryFactory}}
+\index{RepositoryFactory@{RepositoryFactory}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{RepositoryFactory()}{RepositoryFactory()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_aaac43b0c5eee5518829b5f1cb6d47f3e} 
+Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Repository\+Factory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que permite injeção de dependência do contexto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Contexto da base de dados\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a66b5ece511c17ec06298a705afbbc6d6}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a66b5ece511c17ec06298a705afbbc6d6} 
+virtual void Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Método protegido para libertar recursos geridos e não geridos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & Indica se deve libertar recursos geridos\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a88e33d61683d0833273ee7582925e6a1}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!GetDatabaseContext@{GetDatabaseContext}}
+\index{GetDatabaseContext@{GetDatabaseContext}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{GetDatabaseContext()}{GetDatabaseContext()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a88e33d61683d0833273ee7582925e6a1} 
+\mbox{\hyperlink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}} Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Get\+Database\+Context (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém o contexto da base de dados (para operações avançadas ou transações) 
+
+\begin{DoxyReturn}{Returns}
+Instância do \doxylink{class_ticket2_help_1_1_d_a_l_1_1_data_1_1_database_context}{Database\+Context}
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a7ece7c9992f23ce10612e84911141998}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!GetTicketRepository@{GetTicketRepository}}
+\index{GetTicketRepository@{GetTicketRepository}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{GetTicketRepository()}{GetTicketRepository()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a7ece7c9992f23ce10612e84911141998} 
+\mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_ticket_repository}{ITicket\+Repository}} Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Get\+Ticket\+Repository (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma instância do repositório de tickets. 
+
+\begin{DoxyReturn}{Returns}
+Instância do \doxylink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_ticket_repository}{ITicket\+Repository}
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a23ef61cf8e7c4e35b39a61a256dbfcaf}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!GetUserRepository@{GetUserRepository}}
+\index{GetUserRepository@{GetUserRepository}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{GetUserRepository()}{GetUserRepository()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a23ef61cf8e7c4e35b39a61a256dbfcaf} 
+\mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Get\+User\+Repository (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma instância do repositório de utilizadores. 
+
+\begin{DoxyReturn}{Returns}
+Instância do \doxylink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}
+\end{DoxyReturn}
+\Hypertarget{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a6d297803730a7299467944243b42f551}\index{Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}!TestDatabaseConnection@{TestDatabaseConnection}}
+\index{TestDatabaseConnection@{TestDatabaseConnection}!Ticket2Help.DAL.Repositories.RepositoryFactory@{Ticket2Help.DAL.Repositories.RepositoryFactory}}
+\doxysubsubsection{\texorpdfstring{TestDatabaseConnection()}{TestDatabaseConnection()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_repository_factory_a6d297803730a7299467944243b42f551} 
+bool Ticket2\+Help.\+DAL.\+Repositories.\+Repository\+Factory.\+Test\+Database\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Testa a conectividade com a base de dados. 
+
+\begin{DoxyReturn}{Returns}
+True se a conexão está operacional, False caso contrário
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+DAL/Repository\+Factory.\+cs\end{DoxyCompactItemize}

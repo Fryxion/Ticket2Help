@@ -39,10 +39,8 @@ namespace Ticket2Help.UI
             CreateTicketButton.TabIndex = 2;
             AttendTicketsButton.TabIndex = 3;
             ViewReportsButton.TabIndex = 4;
-            ManageUsersButton.TabIndex = 5;
-            SystemSettingsButton.TabIndex = 6;
-            ProfileButton.TabIndex = 8;
-            LogoutButton.TabIndex = 9;
+            ProfileButton.TabIndex = 5;
+            LogoutButton.TabIndex = 6;
 
             // Focar no primeiro botão disponível quando janela carrega
             Loaded += (s, e) => ViewTicketsButton.Focus();
@@ -73,10 +71,6 @@ namespace Ticket2Help.UI
                 StatsCard.Visibility = Visibility.Visible;
             }
 
-            if (_currentUser.IsAdministrador())
-            {
-                AdminActions.Visibility = Visibility.Visible;
-            }
         }
 
         /// <summary>

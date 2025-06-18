@@ -1,0 +1,192 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service}{}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+
+
+Implementação do serviço de estatísticas Compatível com o seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL} existente.  
+
+
+Inheritance diagram for Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a6474fccc422d6e26d01a44a087757d8e}\label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a6474fccc422d6e26d01a44a087757d8e} 
+{\bfseries Statistics\+Service} (\mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_ticket_repository}{ITicket\+Repository}} ticket\+Repository, \mbox{\hyperlink{interface_ticket2_help_1_1_d_a_l_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\begin{DoxyCompactList}\small\item\em Construtor do serviço. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a435d04a6a9a11d2e10bd1b7852199056}{Generate\+Dashboard\+Statistics\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Gera estatísticas completas para o dashboard usando os métodos do seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_af23163cdf6f5d75e94c5a741eaded2a4}{Generate\+Statistics\+With\+Trend\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Gera estatísticas com análise de tendência. \end{DoxyCompactList}\item 
+async Task$<$ double $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a8ba948ba350a0456494906e7bdc4f318}{Get\+Attended\+Tickets\+Percentage\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Calcula a percentagem de tickets atendidos num período usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$(double resolved, double unresolved)$>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a7af3af54c8476bd1e7da3f1f44b44269}{Get\+Resolution\+Percentages\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Calcula as percentagens de resolução usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ double $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a6d8ddddbd9d19530148a1bd224ea6820}{Get\+Average\+Attendance\+Time\+Async}} (\mbox{\hyperlink{namespace_ticket2_help_1_1_d_a_l_1_1_models_a6ea9f763a928b329b39078ad8ef2a8eb}{DAL.\+Models.\+Tipo\+Ticket}} type)
+\begin{DoxyCompactList}\small\item\em Calcula o tempo médio de atendimento por tipo usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ Dictionary$<$ string, int $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_ae410a000f635b08e989f8702135c6ebb}{Get\+Tickets\+By\+Technician\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém distribuição de tickets por técnico usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ Dictionary$<$ string, int $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a9c42403b681303ec32f9a03347bbc900}{Get\+Tickets\+By\+Status\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém distribuição de tickets por estado usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_technician_performance}{Technician\+Performance}} $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a05bc4cf8eb555ea2ceedaa86ff1d1e5f}{Get\+Technician\+Performance\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Obtém performance detalhada dos técnicos usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_period_statistics}{Period\+Statistics}} $>$ $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a8a2ad4a876511a0f3dfd0e739eed0c2d}{Get\+Period\+Statistics\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date, string period\+Type="{}monthly"{})
+\begin{DoxyCompactList}\small\item\em Obtém estatísticas por períodos usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_productivity_metrics}{Productivity\+Metrics}} $>$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_aff2016994e5328114f3fe2532b7d1756}{Get\+Productivity\+Metrics\+Async}} (Date\+Time start\+Date, Date\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Obtém métricas de produtividade usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação do serviço de estatísticas Compatível com o seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL} existente. 
+
+\label{doc-func-members}
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a435d04a6a9a11d2e10bd1b7852199056}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GenerateDashboardStatisticsAsync@{GenerateDashboardStatisticsAsync}}
+\index{GenerateDashboardStatisticsAsync@{GenerateDashboardStatisticsAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GenerateDashboardStatisticsAsync()}{GenerateDashboardStatisticsAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a435d04a6a9a11d2e10bd1b7852199056} 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Generate\+Dashboard\+Statistics\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Gera estatísticas completas para o dashboard usando os métodos do seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_af5d027628b9a4daf5b1e667b43adaee1}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_af23163cdf6f5d75e94c5a741eaded2a4}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GenerateStatisticsWithTrendAsync@{GenerateStatisticsWithTrendAsync}}
+\index{GenerateStatisticsWithTrendAsync@{GenerateStatisticsWithTrendAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GenerateStatisticsWithTrendAsync()}{GenerateStatisticsWithTrendAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_af23163cdf6f5d75e94c5a741eaded2a4} 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_dashboard_statistics}{Dashboard\+Statistics}} $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Generate\+Statistics\+With\+Trend\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Gera estatísticas com análise de tendência. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_a764b4cfa2484dda7906a36c543e8e868}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a8ba948ba350a0456494906e7bdc4f318}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetAttendedTicketsPercentageAsync@{GetAttendedTicketsPercentageAsync}}
+\index{GetAttendedTicketsPercentageAsync@{GetAttendedTicketsPercentageAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetAttendedTicketsPercentageAsync()}{GetAttendedTicketsPercentageAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a8ba948ba350a0456494906e7bdc4f318} 
+async Task$<$ double $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Attended\+Tickets\+Percentage\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Calcula a percentagem de tickets atendidos num período usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_a15988269888d0441e07e74525dc62375}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a6d8ddddbd9d19530148a1bd224ea6820}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetAverageAttendanceTimeAsync@{GetAverageAttendanceTimeAsync}}
+\index{GetAverageAttendanceTimeAsync@{GetAverageAttendanceTimeAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetAverageAttendanceTimeAsync()}{GetAverageAttendanceTimeAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a6d8ddddbd9d19530148a1bd224ea6820} 
+async Task$<$ double $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Average\+Attendance\+Time\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_ticket2_help_1_1_d_a_l_1_1_models_a6ea9f763a928b329b39078ad8ef2a8eb}{DAL.\+Models.\+Tipo\+Ticket}}}]{type}{}\end{DoxyParamCaption})}
+
+
+
+Calcula o tempo médio de atendimento por tipo usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_af0cc951956ef16fda58494d81c165bd0}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a8a2ad4a876511a0f3dfd0e739eed0c2d}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetPeriodStatisticsAsync@{GetPeriodStatisticsAsync}}
+\index{GetPeriodStatisticsAsync@{GetPeriodStatisticsAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetPeriodStatisticsAsync()}{GetPeriodStatisticsAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a8a2ad4a876511a0f3dfd0e739eed0c2d} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_period_statistics}{Period\+Statistics}} $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Period\+Statistics\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{, }\item[{string}]{period\+Type}{ = {\ttfamily "{}monthly"{}}}\end{DoxyParamCaption})}
+
+
+
+Obtém estatísticas por períodos usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_aec487b82f24f118cd2ae536bdda5f56e}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_aff2016994e5328114f3fe2532b7d1756}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetProductivityMetricsAsync@{GetProductivityMetricsAsync}}
+\index{GetProductivityMetricsAsync@{GetProductivityMetricsAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetProductivityMetricsAsync()}{GetProductivityMetricsAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_aff2016994e5328114f3fe2532b7d1756} 
+async Task$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_productivity_metrics}{Productivity\+Metrics}} $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Productivity\+Metrics\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Obtém métricas de produtividade usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_a5263f796bf1281c84b719919e0293f6a}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a7af3af54c8476bd1e7da3f1f44b44269}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetResolutionPercentagesAsync@{GetResolutionPercentagesAsync}}
+\index{GetResolutionPercentagesAsync@{GetResolutionPercentagesAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetResolutionPercentagesAsync()}{GetResolutionPercentagesAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a7af3af54c8476bd1e7da3f1f44b44269} 
+async Task$<$(double resolved, double unresolved)$>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Resolution\+Percentages\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Calcula as percentagens de resolução usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_ae40e91f930b9c0812f7315d69254b841}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a05bc4cf8eb555ea2ceedaa86ff1d1e5f}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetTechnicianPerformanceAsync@{GetTechnicianPerformanceAsync}}
+\index{GetTechnicianPerformanceAsync@{GetTechnicianPerformanceAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetTechnicianPerformanceAsync()}{GetTechnicianPerformanceAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a05bc4cf8eb555ea2ceedaa86ff1d1e5f} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_technician_performance}{Technician\+Performance}} $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Technician\+Performance\+Async (\begin{DoxyParamCaption}\item[{Date\+Time}]{start\+Date}{, }\item[{Date\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Obtém performance detalhada dos técnicos usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_ae55b94d7916f7ca18d7b1f0e1c7f021e}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a9c42403b681303ec32f9a03347bbc900}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetTicketsByStatusAsync@{GetTicketsByStatusAsync}}
+\index{GetTicketsByStatusAsync@{GetTicketsByStatusAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetTicketsByStatusAsync()}{GetTicketsByStatusAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_a9c42403b681303ec32f9a03347bbc900} 
+async Task$<$ Dictionary$<$ string, int $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Tickets\+By\+Status\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém distribuição de tickets por estado usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_a23a5f0380811de0c1d310408db4d3fe6}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_ae410a000f635b08e989f8702135c6ebb}\index{Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}!GetTicketsByTechnicianAsync@{GetTicketsByTechnicianAsync}}
+\index{GetTicketsByTechnicianAsync@{GetTicketsByTechnicianAsync}!Ticket2Help.BLL.Services.StatisticsService@{Ticket2Help.BLL.Services.StatisticsService}}
+\doxysubsubsection{\texorpdfstring{GetTicketsByTechnicianAsync()}{GetTicketsByTechnicianAsync()}}
+{\footnotesize\ttfamily \label{class_ticket2_help_1_1_b_l_l_1_1_services_1_1_statistics_service_ae410a000f635b08e989f8702135c6ebb} 
+async Task$<$ Dictionary$<$ string, int $>$ $>$ Ticket2\+Help.\+BLL.\+Services.\+Statistics\+Service.\+Get\+Tickets\+By\+Technician\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém distribuição de tickets por técnico usando o \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+
+
+Implements \mbox{\hyperlink{interface_ticket2_help_1_1_b_l_l_1_1_services_1_1_i_statistics_service_ad0d3ae7dbc6e59cfcb18fa3f20751723}{Ticket2\+Help.\+BLL.\+Services.\+IStatistics\+Service}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/Statistics\+Service.\+cs\end{DoxyCompactItemize}

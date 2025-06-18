@@ -1666,23 +1666,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tiago\\.nuget\\packages\\": {},
+    "C:\\Users\\carib\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\carib\\Downloads\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj",
       "projectName": "Ticket2Help.DAL",
-      "projectPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj",
-      "packagesPath": "C:\\Users\\Tiago\\.nuget\\packages\\",
-      "outputPath": "G:\\trabalho\\Ticket2Help\\Ticket2Help.DAL\\obj\\",
+      "projectPath": "C:\\Users\\carib\\Downloads\\Ticket2Help\\Ticket2Help.DAL\\Ticket2Help.DAL.csproj",
+      "packagesPath": "C:\\Users\\carib\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\carib\\Downloads\\Ticket2Help\\Ticket2Help.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\carib\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1691,6 +1691,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1709,7 +1710,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -1736,7 +1737,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

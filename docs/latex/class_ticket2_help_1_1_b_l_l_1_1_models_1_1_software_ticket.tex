@@ -1,0 +1,99 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Models.\+Software\+Ticket Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket}{}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket}\index{Ticket2Help.BLL.Models.SoftwareTicket@{Ticket2Help.BLL.Models.SoftwareTicket}}
+
+
+Classe que representa um ticket de serviços de software Herda da classe base \doxylink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket} e implementa funcionalidades específicas de software.  
+
+
+Inheritance diagram for Ticket2\+Help.\+BLL.\+Models.\+Software\+Ticket\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a612467c0b496f4330e2eb2e25683c5e8}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a612467c0b496f4330e2eb2e25683c5e8} 
+{\bfseries Software\+Ticket} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_aa9403e5b772056e9722af9cffd5cec2f}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_aa9403e5b772056e9722af9cffd5cec2f} 
+{\bfseries Software\+Ticket} (string colaborador\+Id, string software, string descricao\+Necessidade)
+\begin{DoxyCompactList}\small\item\em Construtor com parâmetros. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a0bc7e6dc3bd255b72f1d639a24fd7433}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a0bc7e6dc3bd255b72f1d639a24fd7433} 
+override bool {\bfseries Is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Valida se o ticket de software é válido. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a3dc7a5db9e7a4544fb3c9b4fef5fcacc}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a3dc7a5db9e7a4544fb3c9b4fef5fcacc} 
+void {\bfseries Completar\+Atendimento\+Software} (\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} estado, string descricao\+Intervencao)
+\begin{DoxyCompactList}\small\item\em Método para completar atendimento de software. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_abfdb2d511424bf7a8124d70d7c08ab77}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_abfdb2d511424bf7a8124d70d7c08ab77} 
+override string {\bfseries Get\+Informacao\+Especifica} ()
+\begin{DoxyCompactList}\small\item\em Retorna informações específicas do ticket de software. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a8d8f3a3d6a06a8c4ada9ec2121a83fb3}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a8d8f3a3d6a06a8c4ada9ec2121a83fb3} 
+bool {\bfseries Is\+Urgente} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o ticket é urgente baseado em palavras-\/chave. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket2\+Help.\+BLL.\+Models.\+Ticket}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Atender\+Ticket} (string tecnico\+Id)
+\begin{DoxyCompactList}\small\item\em Método para atender o ticket. \end{DoxyCompactList}\item 
+virtual void {\bfseries Completar\+Atendimento} (\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} estado\+Atendimento)
+\begin{DoxyCompactList}\small\item\em Método para completar o atendimento. \end{DoxyCompactList}\item 
+bool {\bfseries Is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Método abstrato para validação específica de cada tipo de ticket. \end{DoxyCompactList}\item 
+string {\bfseries Get\+Informacao\+Especifica} ()
+\begin{DoxyCompactList}\small\item\em Método para obter informações específicas do ticket. \end{DoxyCompactList}\item 
+override string {\bfseries To\+String} ()
+\begin{DoxyCompactList}\small\item\em Override do To\+String para representação textual do ticket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a0443aadf752dde85680d696408d90e62}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a0443aadf752dde85680d696408d90e62} 
+string {\bfseries Software}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nome do software relacionado com o ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a6f1c93282d8f969ecdf7e60a267e0f32}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a6f1c93282d8f969ecdf7e60a267e0f32} 
+string {\bfseries Descricao\+Necessidade}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Descrição da necessidade ou problema reportado. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a0e5b7b69302d6a1823f17191b3124435}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a0e5b7b69302d6a1823f17191b3124435} 
+string {\bfseries Descricao\+Intervencao}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Descrição da intervenção efetuada (preenchida pelo técnico) \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a1d8897c26c223c8ab7c5aa60cfcc0df7}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_software_ticket_a1d8897c26c223c8ab7c5aa60cfcc0df7} 
+override \mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ae579a93cd260362f7d6d6185951ee2fd}{Tipo\+Ticket}} {\bfseries Tipo\+Ticket}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tipo do ticket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket2\+Help.\+BLL.\+Models.\+Ticket}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries Ticket\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID único do ticket (gerado automaticamente pela BD) \end{DoxyCompactList}\item 
+Date\+Time {\bfseries Data\+Criacao}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Data e hora de criação do ticket (gerada automaticamente) \end{DoxyCompactList}\item 
+string {\bfseries Colaborador\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID do colaborador que submeteu o ticket. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ab0c7650dbd95dc92573bb918b9603706}{Estado\+Ticket}} {\bfseries Estado\+Ticket}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Estado atual do ticket. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ae579a93cd260362f7d6d6185951ee2fd}{Tipo\+Ticket}} {\bfseries Tipo\+Ticket}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tipo do ticket (Hardware ou Software) \end{DoxyCompactList}\item 
+Date\+Time? {\bfseries Data\+Atendimento}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Data e hora de atendimento do ticket. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}}? {\bfseries Estado\+Atendimento}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Estado do atendimento (apenas aplicável quando o ticket está atendido) \end{DoxyCompactList}\item 
+string {\bfseries Tecnico\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID do técnico que atendeu o ticket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket2\+Help.\+BLL.\+Models.\+Ticket}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ticket} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe base. \end{DoxyCompactList}\item 
+{\bfseries Ticket} (string colaborador\+Id)
+\begin{DoxyCompactList}\small\item\em Construtor com parâmetros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe que representa um ticket de serviços de software Herda da classe base \doxylink{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{Ticket} e implementa funcionalidades específicas de software. 
+
+Classe que representa um ticket de serviços de software Compatível com a tabela Software\+Tickets do seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/Software\+Ticket.\+cs\end{DoxyCompactItemize}

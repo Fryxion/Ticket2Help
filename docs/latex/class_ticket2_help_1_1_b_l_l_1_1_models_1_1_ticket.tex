@@ -1,0 +1,75 @@
+\doxysection{Ticket2\+Help.\+BLL.\+Models.\+Ticket Class Reference}
+\hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}{}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}\index{Ticket2Help.BLL.Models.Ticket@{Ticket2Help.BLL.Models.Ticket}}
+
+
+Classe base abstrata para todos os tipos de tickets Adaptada para compatibilidade com seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}.  
+
+
+Inheritance diagram for Ticket2\+Help.\+BLL.\+Models.\+Ticket\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_affd484830bd35ce0d2d67f73d37d751a}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_affd484830bd35ce0d2d67f73d37d751a} 
+virtual void {\bfseries Atender\+Ticket} (string tecnico\+Id)
+\begin{DoxyCompactList}\small\item\em Método para atender o ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a4b905b6d25216fb35e8b61bf86aa8b81}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a4b905b6d25216fb35e8b61bf86aa8b81} 
+virtual void {\bfseries Completar\+Atendimento} (\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}} estado\+Atendimento)
+\begin{DoxyCompactList}\small\item\em Método para completar o atendimento. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a5a80f1acd15fc2ad9483d84a826539b6}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a5a80f1acd15fc2ad9483d84a826539b6} 
+bool {\bfseries Is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Método abstrato para validação específica de cada tipo de ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a99a153eaf2b3921defab7bf6eb06963b}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a99a153eaf2b3921defab7bf6eb06963b} 
+string {\bfseries Get\+Informacao\+Especifica} ()
+\begin{DoxyCompactList}\small\item\em Método para obter informações específicas do ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a35ad07599c231a5a95f1846ded7c6b27}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a35ad07599c231a5a95f1846ded7c6b27} 
+override string {\bfseries To\+String} ()
+\begin{DoxyCompactList}\small\item\em Override do To\+String para representação textual do ticket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a9ef1a031e3fde767714e633c058d4556}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a9ef1a031e3fde767714e633c058d4556} 
+{\bfseries Ticket} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe base. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_afca685dad970893f45e7a8b3c6e8f99d}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_afca685dad970893f45e7a8b3c6e8f99d} 
+{\bfseries Ticket} (string colaborador\+Id)
+\begin{DoxyCompactList}\small\item\em Construtor com parâmetros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a1966583ba7204dad3eeb41952b91f9a6}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a1966583ba7204dad3eeb41952b91f9a6} 
+int {\bfseries Ticket\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID único do ticket (gerado automaticamente pela BD) \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_afb38295f506ad89a62a4236f7dfb6dfb}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_afb38295f506ad89a62a4236f7dfb6dfb} 
+Date\+Time {\bfseries Data\+Criacao}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Data e hora de criação do ticket (gerada automaticamente) \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a439e9c8f8a980d6ec342d0d01bfacdbc}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a439e9c8f8a980d6ec342d0d01bfacdbc} 
+string {\bfseries Colaborador\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID do colaborador que submeteu o ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_afa3f3baf2aa6afe356c4ac9509e6038c}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_afa3f3baf2aa6afe356c4ac9509e6038c} 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ab0c7650dbd95dc92573bb918b9603706}{Estado\+Ticket}} {\bfseries Estado\+Ticket}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Estado atual do ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a4a7b98ecb7b275f797eff554351314a2}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a4a7b98ecb7b275f797eff554351314a2} 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_ae579a93cd260362f7d6d6185951ee2fd}{Tipo\+Ticket}} {\bfseries Tipo\+Ticket}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tipo do ticket (Hardware ou Software) \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a8603a3eb0189d58b382a58dd71832ab3}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_a8603a3eb0189d58b382a58dd71832ab3} 
+Date\+Time? {\bfseries Data\+Atendimento}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Data e hora de atendimento do ticket. \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_aebba2500cfae19fe74aecbcb24470cbf}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_aebba2500cfae19fe74aecbcb24470cbf} 
+\mbox{\hyperlink{namespace_ticket2_help_1_1_b_l_l_1_1_models_a41cd352cdaa526a6a663199f62a736d1}{Estado\+Atendimento}}? {\bfseries Estado\+Atendimento}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Estado do atendimento (apenas aplicável quando o ticket está atendido) \end{DoxyCompactList}\item 
+\Hypertarget{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_aa523022f83dd4813797e84f465bb4c3a}\label{class_ticket2_help_1_1_b_l_l_1_1_models_1_1_ticket_aa523022f83dd4813797e84f465bb4c3a} 
+string {\bfseries Tecnico\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID do técnico que atendeu o ticket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe base abstrata para todos os tipos de tickets Adaptada para compatibilidade com seu \doxylink{namespace_ticket2_help_1_1_d_a_l}{DAL}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Ticket2\+Help.\+BLL/Ticket.\+cs\end{DoxyCompactItemize}
