@@ -12,11 +12,11 @@ namespace Ticket2Help.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly User _currentUser;
+        private readonly BLL.Models.User _currentUser;
         private readonly TicketController _controller;
         private DispatcherTimer _clockTimer;
 
-        public MainWindow(User user, TicketController controller)
+        public MainWindow(BLL.Models.User user, TicketController controller)
         {
             _currentUser = user ?? throw new ArgumentNullException(nameof(user));
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
@@ -177,7 +177,10 @@ namespace Ticket2Help.UI
                 await Task.Delay(1000);
 
                 HideLoading();
-                ShowMessage("Funcionalidade 'Ver Meus Tickets' em desenvolvimento.", "Informação", MessageBoxImage.Information);
+                //ShowMessage("Funcionalidade 'Ver Meus Tickets' em desenvolvimento.", "Informação", MessageBoxImage.Information);
+                var mainWindow = new ViewTicketsWindow(_currentUser, _controller);
+                mainWindow.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

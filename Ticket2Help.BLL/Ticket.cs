@@ -102,7 +102,7 @@ namespace Ticket2Help.BLL.Models
         /// </summary>
         protected Ticket(string colaboradorId) : this()
         {
-            ColaboradorId = colaboradorId ?? throw new ArgumentNullException(nameof(colaboradorId));
+            ColaboradorId = colaboradorId;
         }
 
         /// <summary>

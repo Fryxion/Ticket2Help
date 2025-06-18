@@ -5,7 +5,6 @@ namespace Ticket2Help.BLL.Models
 {
     /// <summary>
     /// Classe que representa um ticket de serviços de hardware
-    /// Compatível com a tabela HardwareTickets do seu DAL
     /// </summary>
     public class HardwareTicket : Ticket
     {
@@ -47,8 +46,8 @@ namespace Ticket2Help.BLL.Models
         public HardwareTicket(string colaboradorId, string equipamento, string avaria)
             : base(colaboradorId)
         {
-            Equipamento = equipamento ?? throw new ArgumentNullException(nameof(equipamento));
-            Avaria = avaria ?? throw new ArgumentNullException(nameof(avaria));
+            Equipamento = equipamento;
+            Avaria = avaria;
         }
 
         /// <summary>

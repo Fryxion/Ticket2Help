@@ -185,3 +185,5 @@ G:\trabalho\Ticket2Help\Ticket2Help.UI\bin\Debug\net8.0-windows\runtimes\win\lib
 G:\trabalho\Ticket2Help\Ticket2Help.UI\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\MainWindow.g.cs
 G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\MainWindow.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\ViewTicketsWindow.baml
+G:\trabalho\Ticket2Help\Ticket2Help.UI\obj\Debug\net8.0-windows\ViewTicketsWindow.g.cs

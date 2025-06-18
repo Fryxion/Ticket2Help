@@ -163,6 +163,7 @@ namespace Ticket2Help.UI
             }
         }
 
+
         /// <summary>
         /// Abre a janela principal
         /// </summary>
